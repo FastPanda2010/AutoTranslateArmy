@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import argparse
 import csv
+import io
 import json
 import re
 from dataclasses import dataclass, field
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
+from urllib.request import urlopen
 
 from docx import Document
 from docx.enum.section import WD_ORIENT
@@ -15,6 +18,27 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
+
+
+DOC_FONT = "Microsoft YaHei Light"
+LOGO_WIDTH = Cm(2.0)
+
+
+def apply_doc_font(run) -> None:
+    """同时设置西文字体和中文 East Asia 字体，避免 Word 自动回退。"""
+    run.font.name = DOC_FONT
+    run._element.rPr.rFonts.set(qn("w:eastAsia"), DOC_FONT)
+
+
+def apply_style_font(style) -> None:
+    """给 Word 样式设置中英文字体。"""
+    style.font.name = DOC_FONT
+    r_pr = style._element.get_or_add_rPr()
+    r_fonts = r_pr.rFonts
+    if r_fonts is None:
+        r_fonts = OxmlElement("w:rFonts")
+        r_pr.append(r_fonts)
+    r_fonts.set(qn("w:eastAsia"), DOC_FONT)
 
 
 # 官方 JSON 里的属性字段顺序。标签中的换行会在 Word 单元格里显示成两行。
@@ -290,9 +314,109 @@ def set_cell_text(cell, text: str, *, bold: bool = False, size: int = 8, color: 
             paragraph.add_run().add_break()
         run = paragraph.add_run(line)
         run.bold = bold
+        apply_doc_font(run)
         run.font.size = Pt(size)
         if color:
             run.font.color.rgb = RGBColor.from_string(color)
+    cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+
+
+@lru_cache(maxsize=256)
+def fetch_logo_png(logo_url: str) -> bytes | None:
+    """下载官方 SVG logo，并转换成 python-docx 可插入的 PNG。
+
+    官方 JSON 里的 logo 通常是 SVG 链接。python-docx 对 SVG 支持不好，
+    所以这里优先用 cairosvg 转成 PNG。网络失败或缺少 cairosvg 时返回 None。
+    """
+    if not logo_url:
+        return None
+    try:
+        svg_bytes = urlopen(logo_url, timeout=8).read()
+    except Exception:
+        return None
+
+    try:
+        import resvg_py
+
+        return resvg_py.svg_to_bytes(svg_bytes.decode("utf-8"))
+    except Exception:
+        pass
+
+    try:
+        import resvg_python
+
+        png_data = resvg_python.svg_to_png(svg_bytes.decode("utf-8"))
+        return bytes(png_data)
+    except Exception:
+        pass
+
+    try:
+        import cairosvg
+
+        return cairosvg.svg2png(bytestring=svg_bytes, output_width=256, output_height=256)
+    except Exception:
+        pass
+
+    try:
+        from reportlab.graphics import renderPM
+        from svglib.svglib import svg2rlg
+
+        drawing = svg2rlg(io.BytesIO(svg_bytes))
+        if drawing is None:
+            return None
+        scale = min(256 / drawing.width, 256 / drawing.height)
+        drawing.width *= scale
+        drawing.height *= scale
+        drawing.scale(scale, scale)
+        return renderPM.drawToString(drawing, fmt="PNG")
+    except Exception:
+        return None
+
+
+def set_category_logo_cell(cell, category: str, logo_url: str | None) -> None:
+    """写入单位类型单元格：上方是类型文字，下方是单位 logo。"""
+    cell.text = ""
+
+    text_paragraph = cell.paragraphs[0]
+    text_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    text_paragraph.paragraph_format.space_after = Pt(2)
+    text_run = text_paragraph.add_run(category)
+    text_run.bold = True
+    apply_doc_font(text_run)
+    text_run.font.size = Pt(9)
+    text_run.font.color.rgb = RGBColor.from_string("FFFFFF")
+
+    logo_png = fetch_logo_png(logo_url or "")
+    if logo_png:
+        image_paragraph = cell.add_paragraph()
+        image_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        image_paragraph.paragraph_format.space_after = Pt(0)
+        image_run = image_paragraph.add_run()
+        image_run.add_picture(io.BytesIO(logo_png), width=LOGO_WIDTH)
+
+    cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+
+
+def set_unit_header_text(cell, chinese_name: str, english_name: str) -> None:
+    """写入单位表左侧表头：中文名左对齐大字，英文名右对齐小字。"""
+    cell.text = ""
+
+    chinese_paragraph = cell.paragraphs[0]
+    chinese_paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    chinese_paragraph.paragraph_format.space_after = Pt(0)
+    chinese_run = chinese_paragraph.add_run(chinese_name)
+    # chinese_run.bold = True
+    chinese_run.font.size = Pt(14)
+    chinese_run.font.color.rgb = RGBColor(0, 0, 0)
+
+    english_paragraph = cell.add_paragraph()
+    english_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    english_paragraph.paragraph_format.space_after = Pt(0)
+    english_run = english_paragraph.add_run(english_name)
+    # english_run.bold = True
+    english_run.font.size = Pt(9)
+    english_run.font.color.rgb = RGBColor(0, 0, 0)
+
     cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
 
@@ -378,7 +502,8 @@ def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translat
     run = heading.add_run("火力组")
     run.bold = True
     run.font.size = Pt(14)
-    run.font.name = "Microsoft YaHei"
+    run.font.name = DOC_FONT
+    run._element.rPr.rFonts.set(qn("w:eastAsia"), DOC_FONT)
     run.font.color.rgb = RGBColor(47, 85, 151)
 
     rows = 1
@@ -418,6 +543,31 @@ def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translat
             row_idx += 1
 
     doc.add_paragraph()
+
+
+def set_unit_header_text(cell, chinese_name: str, english_name: str) -> None:
+    """写入单位表左侧表头：中文名左对齐大字，英文名右对齐小字。"""
+    cell.text = ""
+
+    chinese_paragraph = cell.paragraphs[0]
+    chinese_paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    chinese_paragraph.paragraph_format.space_after = Pt(0)
+    chinese_run = chinese_paragraph.add_run(chinese_name)
+    #chinese_run.bold = True
+    apply_doc_font(chinese_run)
+    chinese_run.font.size = Pt(20)
+    chinese_run.font.color.rgb = RGBColor(0, 0, 0)
+
+    english_paragraph = cell.add_paragraph()
+    english_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    english_paragraph.paragraph_format.space_after = Pt(0)
+    english_run = english_paragraph.add_run(english_name)
+    #english_run.bold = True
+    apply_doc_font(english_run)
+    english_run.font.size = Pt(9)
+    english_run.font.color.rgb = RGBColor(0, 0, 0)
+
+    cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
 
 def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
@@ -469,9 +619,9 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     # 表头左 8 列放单位名，右 2 列放部队类别。
     left = merge_row(header, 0, 7)
     right = merge_row(header, 8, 9)
-    set_cell_text(left, f"{isc}\n{english}", bold=True, size=10, color="FFFFFF")
-    set_cell_text(right, cat, bold=True, size=9, color="FFFFFF")
-    set_cell_shading(left, "2F5597")
+    set_unit_header_text(left, isc, english)
+    set_category_logo_cell(right, cat, profile.get("logo") or unit.get("logo"))
+    set_cell_shading(left, "FFFFFF")
     set_cell_shading(right, "2F5597")
 
     # profile["str"] 为 true 时，官方资料用 STR；否则用 VITA。
@@ -586,14 +736,15 @@ def setup_document(doc: Document, title: str) -> None:
     # section.right_margin = Cm(1.0)
 
     styles = doc.styles
-    styles["Normal"].font.name = "Microsoft YaHei"
+    apply_style_font(styles["Normal"])
     styles["Normal"].font.size = Pt(10)
     heading = doc.add_paragraph()
     heading.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = heading.add_run(title)
     run.bold = True
     run.font.size = Pt(20)
-    run.font.name = "Microsoft YaHei"
+    run.font.name = DOC_FONT
+    run._element.rPr.rFonts.set(qn("w:eastAsia"), DOC_FONT)
     # run.font.color.rgb = RGBColor(47, 85, 151)
 
 
