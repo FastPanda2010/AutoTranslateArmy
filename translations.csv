@@ -1,0 +1,71 @@
+category,source,target
+*,Regular,正规军
+*,Irregular,非正规军
+*,Impetuous,狂暴
+*,Not Impetuous,
+*,Hackable,可入侵
+*,Non Hackable,不可入侵
+*,Cube,记忆立方
+*,Cube 2.0,记忆立方 2.0
+*,No Cube,
+*,Peripheral,附属
+type,LI,轻步兵
+type,MI,中步兵
+type,HI,重步兵
+type,TAG,TAG
+type,REM,遥控机
+type,SK,散兵
+type,WB,战帮
+type,VH,载具
+category,Line Troops,阵线部队
+category,Spec. Trained  Troops,特殊训练部队
+category,Veteran Troops,老兵部队
+category,Elite Troops,精英部队
+category,Support Troops,支援部队
+category,Character,人物
+category,Mercenary Troops,佣兵部队
+category,Headquarters Troops / Mechanized Troops,总部部队 / 机械化部队
+order,REGULAR,正规
+order,IRREGULAR,非正规
+order,LIEUTENANT,指挥官
+order,TACTICAL,战术感知
+skill,Courage,勇气
+skill,Mimetism,拟态
+skill,Camouflage,迷彩
+skill,Combat Jump,战斗突降
+skill,Parachutist,伞兵
+skill,Remote Presence,远程进驻
+skill,Super-Jump,超级跳跃
+skill,Stealth,潜行
+skill,Sensor,传感器
+skill,Specialist Operative,专家行动员
+skill,Chain of Command,指挥链
+skill,Counterintelligence,反情报
+skill,No Wound Incapacitation,无视伤痛
+equip,Biometric Visor,生体识别目镜
+equip,ECM: Hacker,ECM：黑客
+equip,ECM: Guided,ECM：制导
+equip,Deactivator,灭虫器
+equip,Deployable Repeater,可部署中继器
+weapon,Combi Rifle,复合步枪
+weapon,Light Shotgun,轻型霰弹枪
+weapon,Boarding Shotgun,登舰霰弹枪
+weapon,Heavy Flamethrower,重型火焰喷射器
+weapon,Light Flamethrower,轻型火焰喷射器
+weapon,Pistol,手枪
+weapon,CC Weapon,近战武器
+weapon,PARA CC Weapon,瘫痪近战武器
+weapon,AP Submachine Gun,穿甲冲锋枪
+weapon,Submachine Gun,冲锋枪
+weapon,Nanopulser,纳米脉冲器
+weapon,Pulzar,脉冲星
+weapon,E/Mitter,电磁发射器
+weapon,D-Charges,爆破装置
+weapon,E/M Mine,电磁地雷
+weapon,Mines,地雷
+extra,-3,-3
+extra,-6,-6
+extra,+1B,+1B
+extra,+2",+2”
+extra,+4",+4”
+extra,+8",+8”
