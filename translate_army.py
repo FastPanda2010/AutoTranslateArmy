@@ -22,6 +22,23 @@ from docx.shared import Cm, Pt, RGBColor
 
 DOC_FONT = "Microsoft YaHei Light"
 LOGO_WIDTH = Cm(2.0)
+ASSET_DIR = Path("Asset")
+ORDER_ICON_WIDTH = Pt(10)
+ORDER_ICON_FILES = {
+    "REGULAR": "regular.svg",
+    "TACTICAL": "tactical.svg",
+    "LIEUTENANT": "lieutenant.svg",
+    "IRREGULAR": "irregular.svg",
+    "IMPETUOUS": "impetuous.svg",
+}
+UNIT_TABLE_COLUMN_WIDTHS = [
+    Cm(0.7),  # 命令
+    Cm(1.5), Cm(1.5),  # 名称
+    Cm(2.1), Cm(2.1), Cm(2.1),  # 射击武器
+    Cm(1.9), Cm(1.9), Cm(1.9),  # 近战武器
+    Cm(0.7),  # SWC
+    Cm(0.7),  # C
+]
 
 
 def apply_doc_font(run) -> None:
@@ -343,6 +360,51 @@ def set_cell_text(cell, text: str, *, bold: bool = False, italic: bool = False, 
     cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
 
+@lru_cache(maxsize=16)
+def order_icon_png(order_type: str) -> bytes | None:
+    """读取 Asset 中的命令 SVG，并转换成 Word 可插入的 PNG。"""
+    icon_file = ORDER_ICON_FILES.get(order_type.upper())
+    if not icon_file:
+        return None
+    path = ASSET_DIR / icon_file
+    if not path.exists():
+        return None
+    try:
+        import resvg_py
+
+        return resvg_py.svg_to_bytes(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def set_order_icons_cell(cell, orders: list[dict[str, Any]], *, italic: bool = False) -> None:
+    """在命令列插入 order 图标；无法插图时退回为文本缩写。"""
+    cell.text = ""
+    paragraph = cell.paragraphs[0]
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    paragraph.paragraph_format.space_before = Pt(0)
+    paragraph.paragraph_format.space_after = Pt(0)
+
+    for order in orders or []:
+        order_type = str(order.get("type", "")).upper()
+        repeat = max(1, int(order.get("total") or 1))
+        for _ in range(repeat):
+            png = order_icon_png(order_type)
+            run = paragraph.add_run()
+            if png:
+                run.add_picture(io.BytesIO(png), width=ORDER_ICON_WIDTH)
+            else:
+                run.text = order_type[:1]
+                run.italic = italic
+                apply_doc_font(run)
+                run.font.size = Pt(8)
+            spacer = paragraph.add_run(" ")
+            apply_doc_font(spacer)
+            spacer.font.size = Pt(2)
+
+    cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+
+
 @lru_cache(maxsize=256)
 def fetch_logo_png(logo_url: str) -> bytes | None:
     """下载官方 SVG logo，并转换成 python-docx 可插入的 PNG。
@@ -424,6 +486,14 @@ def style_table(table) -> None:
         for cell in row.cells:
             for paragraph in cell.paragraphs:
                 paragraph.paragraph_format.space_after = Pt(0)
+
+
+def set_table_column_widths(table, widths: list[Any]) -> None:
+    """设置表格列宽，Word 仍可能微调，但会优先参考这些宽度。"""
+    table.autofit = False
+    for row in table.rows:
+        for cell, width in zip(row.cells, widths):
+            cell.width = width
 
 
 def add_note_paragraph(doc: Document, note: str | None, tr: Translator, *, label: str = "备注") -> None:
@@ -606,8 +676,9 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
 
     # 固定前 7 行为单位信息；后面每个 option 是一条配置/武器行。
     row_count = 7 + max(1, len(options))
-    table = doc.add_table(rows=row_count, cols=10)
+    table = doc.add_table(rows=row_count, cols=11)
     style_table(table)
+    set_table_column_widths(table, UNIT_TABLE_COLUMN_WIDTHS)
 
     # pg.isc 通常是资料组的英文显示名；unit.name 往往是全大写内部名。
     # 这里优先使用 pg.isc 翻译成中文，同时保留英文名作为第二行，方便对照官方。
@@ -620,8 +691,8 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     header = table.rows[0]
 
     # 表头左 8 列放单位名，右 2 列放部队类别。
-    left = merge_row(header, 0, 7)
-    right = merge_row(header, 8, 9)
+    left = merge_row(header, 0, 8)
+    right = merge_row(header, 9, 10)
     set_unit_header_text(left, isc, english)
     set_category_logo_cell(right, cat, profile.get("logo") or unit.get("logo"))
     set_cell_shading(left, "FFFFFF")
@@ -632,10 +703,11 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     labels = [label if key != "w" else wound_label(profile) for key, label in ATTR_LABELS]
 
     # 属性标题行和属性数值行。
-    for cell, label in zip(table.rows[1].cells, labels):
+    for cell, label in zip(table.rows[1].cells[:10], labels):
         set_cell_text(cell, label, bold=True, size=7)
         set_cell_shading(cell, "D9EAF7")
-    for cell, value in zip(table.rows[2].cells, profile_attr_values(profile)):
+    set_cell_shading(table.rows[1].cells[10], "D9EAF7")
+    for cell, value in zip(table.rows[2].cells[:10], profile_attr_values(profile)):
         set_cell_text(cell, value, bold=True, size=8)
 
     # profile_traits 会把 type id 和 chars id 翻译后拼起来。
@@ -644,7 +716,7 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
 
     # 特性行、装备行、技能行都使用左侧标签 + 右侧内容的结构。
     row = table.rows[3]
-    set_cell_text(merge_row(row, 0, 9), traits, size=8)
+    set_cell_text(merge_row(row, 0, 10), traits, size=8)
     #set_cell_text(merge_row(row, 2, 9), "", size=8)
 
     # 装备和技能在 JSON 中都是 id 引用；join_refs 会按 order 排序、查 filters 名称、
@@ -652,24 +724,25 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     equipment = join_refs(profile.get("equip", []), "equip", maps, tr)
     row = table.rows[4]
     set_cell_text(merge_row(row, 0, 1), "装备", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(merge_row(row, 2, 9), equipment, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 2, 10), equipment, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
 
     skills = join_refs(profile.get("skills", []), "skills", maps, tr)
     row = table.rows[5]
     set_cell_text(merge_row(row, 0, 1), "特殊技能", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(merge_row(row, 2, 9), skills, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 2, 10), skills, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
 
     # option 行采用 2+3+3+1+1 的列宽分组：
     # 名称占 2 列，射击武器占 3 列，近战武器占 3 列，SWC 和 C 各占 1 列。
-    option_labels = ["名称", "射击武器", "", "", "近战武器", "", "", "SWC", "C"]
+    option_labels = ["命令", "名称", "", "射击武器", "", "", "近战武器", "", "", "SWC", "C"]
 
     # 配置列表表头：名称 / 射击武器 / 近战武器 / SWC / 点数。
     row = table.rows[6]
-    set_cell_text(merge_row(row, 0, 1), option_labels[0], bold=True, size=8)
-    set_cell_text(merge_row(row, 2, 4), option_labels[1], bold=True, size=8)
-    set_cell_text(merge_row(row, 5, 7), option_labels[4], bold=True, size=8)
-    set_cell_text(row.cells[8], option_labels[7], bold=True, size=8)
-    set_cell_text(row.cells[9], option_labels[8], bold=True, size=8)
+    set_cell_text(row.cells[0], option_labels[0], bold=True, size=8)
+    set_cell_text(merge_row(row, 1, 2), option_labels[1], bold=True, size=8)
+    set_cell_text(merge_row(row, 3, 5), option_labels[3], bold=True, size=8)
+    set_cell_text(merge_row(row, 6, 8), option_labels[6], bold=True, size=8)
+    set_cell_text(row.cells[9], option_labels[9], bold=True, size=8)
+    set_cell_text(row.cells[10], option_labels[10], bold=True, size=8)
     for cell in row.cells:
         set_cell_shading(cell, "E7E6E6")
 
@@ -700,15 +773,16 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
             option_name = f"{option_name}（{extra_skills}）"
         if extra_equip:
             bs_text = " | ".join(p for p in [bs_text, extra_equip] if p)
-        set_cell_text(merge_row(row, 0, 1), option_name, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-        set_cell_text(merge_row(row, 2, 4), bs_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-        set_cell_text(merge_row(row, 5, 7), cc_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-        set_cell_text(row.cells[8], str(option.get("swc", "")), italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-        set_cell_text(row.cells[9], str(option.get("points", "")), italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        set_order_icons_cell(row.cells[0], option.get("orders", []), italic=row_italic)
+        set_cell_text(merge_row(row, 1, 2), option_name, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        set_cell_text(merge_row(row, 3, 5), bs_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        set_cell_text(merge_row(row, 6, 8), cc_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        set_cell_text(row.cells[9], str(option.get("swc", "")), italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.CENTER)
+        set_cell_text(row.cells[10], str(option.get("points", "")), italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.CENTER)
         
         if row_idx % 2 == 0:
             for cell in row.cells:
-                set_cell_shading(cell, "483D8B")
+                set_cell_shading(cell, "EFEEEE")
 
     add_note_paragraph(doc, pg.get("notes") or profile.get("notes"), tr)
 
