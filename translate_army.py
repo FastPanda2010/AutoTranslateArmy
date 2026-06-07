@@ -17,6 +17,7 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
 
+# 官方 JSON 里的属性字段顺序。标签中的换行会在 Word 单元格里显示成两行。
 ATTR_LABELS = [
     ("move", "移动力\nMOV"),
     ("cc", "近战\nCC"),
@@ -24,12 +25,13 @@ ATTR_LABELS = [
     ("ph", "体格\nPH"),
     ("wip", "意志\nWIP"),
     ("arm", "护甲\nARM"),
-    ("bts", "护盾\nBTS"),
+    ("bts", "生化盾\nBTS"),
     ("w", None),
     ("s", "轮廓值\nS"),
     ("ava", "可用数\nAVA"),
 ]
 
+# 官方 JSON 的 filters 里使用复数键；词汇表里使用更容易理解的单数类别。
 FILTER_CATEGORY = {
     "skills": "skill",
     "weapons": "weapon",
@@ -40,17 +42,26 @@ FILTER_CATEGORY = {
     "extras": "extra",
 }
 
+FIRETEAM_TYPE_LABELS = {
+    "DUO": "搭档",
+    "HARIS": "守护者",
+    "CORE": "核心",
+}
+
+# 官方数据中有些名称含不换行空格，先统一成普通空格再匹配词汇表。
 NBSP = "\u00a0"
 
 
 @dataclass
 class Translator:
+    """读取词汇表，并负责把英文术语翻译成中文。"""
+
     entries: dict[tuple[str, str], str] = field(default_factory=dict)
-    rules: list[tuple[re.Pattern[str], str]] = field(default_factory=list)
     missing: set[tuple[str, str]] = field(default_factory=set)
 
     @classmethod
-    def from_path(cls, path: Path | None, rules_path: Path | None = None) -> "Translator":
+    def from_path(cls, path: Path | None) -> "Translator":
+        """从 CSV 或 JSON 词汇表创建翻译器。"""
         tr = cls()
         if path and path.exists():
             if path.suffix.lower() == ".json":
@@ -64,14 +75,18 @@ class Translator:
                         source = (row.get("source") or "").strip()
                         if source:
                             tr.add(row.get("category", "*"), source, row.get("target", ""))
-        if rules_path and rules_path.exists():
-            tr.load_rules(rules_path)
         return tr
 
     def add(self, category: str | None, source: str, target: str | None) -> None:
-        self.entries[(category or "*", normalize(source))] = (target or "").strip()
+        """加入一条翻译；同时保存原大小写和小写版本，方便大小写不敏感匹配。"""
+        cat = category or "*"
+        key = normalize(source)
+        value = (target or "").strip()
+        self.entries[(cat, key)] = value
+        self.entries[(cat, key.lower())] = value
 
     def translate(self, category: str, source: Any, *, record_missing: bool = True) -> str:
+        """按类别翻译文本；先查具体类别，再查全局 '*' 类别。"""
         if source is None:
             return ""
         text = str(source).strip()
@@ -85,44 +100,24 @@ class Translator:
             entry_key_lower = (cat, key.lower())
             if entry_key_lower in self.entries:
                 return self.entries[entry_key_lower]
-        replaced = self.apply_rules(text)
-        if replaced != text:
-            return replaced
         guessed = self._rule_translate(category, text)
         if guessed != text:
             return guessed
         if record_missing:
+            # 没命中的词保留英文，并记录到 missing.csv 方便以后补词。
             self.missing.add((category, text))
         return text
 
     def _rule_translate(self, category: str, text: str) -> str:
+        """少量可由格式稳定推断的翻译规则，避免词汇表重复写 L1-L5。"""
         if category == "skill":
             m = re.fullmatch(r"Martial Arts L(\d+)", text)
             if m:
                 return f"武术{m.group(1)}级"
         return text
 
-    def load_rules(self, path: Path) -> None:
-        raw = json.loads(path.read_text(encoding="utf-8-sig"))
-        rules = raw.get("rules", raw if isinstance(raw, list) else [])
-        for item in rules:
-            pattern = item.get("pattern")
-            replacement = item.get("replacement", "")
-            if not pattern:
-                continue
-            flags = re.IGNORECASE if "i" in item.get("flags", "") else 0
-            try:
-                self.rules.append((re.compile(pattern, flags), replacement))
-            except re.error:
-                continue
-
-    def apply_rules(self, text: str) -> str:
-        result = text
-        for pattern, replacement in self.rules:
-            result = pattern.sub(replacement, result)
-        return result
-
     def write_missing(self, path: Path) -> None:
+        """把未翻译词导出成可以直接复制进词汇表的 CSV 格式。"""
         path.parent.mkdir(parents=True, exist_ok=True)
         with path.open("w", encoding="utf-8-sig", newline="") as f:
             writer = csv.writer(f)
@@ -132,6 +127,7 @@ class Translator:
 
 
 def normalize(text: Any) -> str:
+    """统一文本格式，避免同一个词因为特殊空格导致匹配失败。"""
     return str(text).replace(NBSP, " ").strip()
 
 
@@ -140,6 +136,7 @@ def index_by_id(items: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
 
 
 def build_filter_maps(data: dict[str, Any]) -> dict[str, dict[int, dict[str, Any]]]:
+    """把 filters 中的列表转成 id -> 项目字典，便于后续按 id 查名称。"""
     maps: dict[str, dict[int, dict[str, Any]]] = {}
     filters = data.get("filters", {})
     for key in FILTER_CATEGORY:
@@ -149,6 +146,7 @@ def build_filter_maps(data: dict[str, Any]) -> dict[str, dict[int, dict[str, Any
 
 
 def ref_name(ref: dict[str, Any] | int, filter_key: str, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> str:
+    """把 JSON 里的 id 引用转换成翻译后的名称，并附加 extra 修正。"""
     ref_id = ref if isinstance(ref, int) else ref.get("id")
     item = maps.get(filter_key, {}).get(int(ref_id), {"name": str(ref_id)})
     category = FILTER_CATEGORY[filter_key]
@@ -157,6 +155,7 @@ def ref_name(ref: dict[str, Any] | int, filter_key: str, maps: dict[str, dict[in
     if isinstance(ref, dict):
         extras = ref.get("extra")
         if extras:
+            # extra 通常是括号里的修正，例如 Mimetism (-3)、Dodge (+3)。
             extra_names = []
             for extra_id in extras:
                 extra_item = maps.get("extras", {}).get(int(extra_id), {"name": str(extra_id)})
@@ -174,10 +173,12 @@ def join_refs(refs: list[Any], filter_key: str, maps: dict[str, dict[int, dict[s
 
 
 def sorted_refs(refs: list[Any]) -> list[Any]:
+    """官方 JSON 用 order 控制显示顺序；没有 order 的项目放到最后。"""
     return sorted(refs or [], key=lambda r: r.get("order", 999) if isinstance(r, dict) else 999)
 
 
 def move_text(move: list[int] | tuple[int, int] | None) -> str:
+    """官方移动力以厘米保存；Infinity N5 军表显示为英寸。"""
     if not move:
         return ""
     if all(float(v) < 0 for v in move):
@@ -186,6 +187,7 @@ def move_text(move: list[int] | tuple[int, int] | None) -> str:
 
 
 def cm_to_inch(value: int | float) -> int | float:
+    """把厘米换算成英寸；官方 JSON 中 -1 表示无此属性。"""
     if float(value) < 0:
         return "-"
     converted = float(value) / 2.5
@@ -193,6 +195,7 @@ def cm_to_inch(value: int | float) -> int | float:
 
 
 def ava_text(value: Any) -> str:
+    """格式化 AVA；99 这类大数按“无限制”显示。"""
     if value is None:
         return "-"
     try:
@@ -205,10 +208,12 @@ def ava_text(value: Any) -> str:
 
 
 def wound_label(profile: dict[str, Any]) -> str:
+    """机械单位显示 STR，普通单位显示 VITA。"""
     return "结构值\nSTR" if profile.get("str") else "生命值\nVITA"
 
 
 def profile_attr_values(profile: dict[str, Any]) -> list[str]:
+    """按 ATTR_LABELS 的顺序取出属性值，供 Word 表格第二行使用。"""
     values = []
     for key, _ in ATTR_LABELS:
         if key == "move":
@@ -221,6 +226,7 @@ def profile_attr_values(profile: dict[str, Any]) -> list[str]:
 
 
 def stat_text(value: Any) -> str:
+    """把 -1 等无效属性显示为 '-'。"""
     try:
         return "-" if float(value) < 0 else str(value)
     except (TypeError, ValueError):
@@ -228,6 +234,7 @@ def stat_text(value: Any) -> str:
 
 
 def profile_traits(profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> str:
+    """组合兵种类型和特性，例如“轻步兵，正规军，可入侵”。"""
     parts = []
     if profile.get("type"):
         parts.append(ref_name(profile["type"], "type", maps, tr))
@@ -236,12 +243,34 @@ def profile_traits(profile: dict[str, Any], maps: dict[str, dict[int, dict[str, 
 
 
 def category_name(category_id: Any, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> str:
+    """翻译部队类别；0 或空值表示没有类别标签。"""
     if category_id in (None, 0):
         return ""
     return ref_name(int(category_id), "category", maps, tr)
 
 
+def infer_faction_id(json_path: Path, data: dict[str, Any]) -> int | None:
+    """优先从文件名推断军表编号；703.json 这样的文件名正好对应 faction id。"""
+    if json_path.stem.isdigit():
+        return int(json_path.stem)
+
+    counts: dict[int, int] = {}
+    for unit in data.get("units", []):
+        for faction in unit.get("factions") or []:
+            counts[int(faction)] = counts.get(int(faction), 0) + 1
+    return max(counts, key=counts.get) if counts else None
+
+
+def should_include_unit(unit: dict[str, Any], faction_id: int | None) -> bool:
+    """只输出属于当前军表的单位；factions=[] 的佣兵池单位不输出。"""
+    factions = unit.get("factions") or []
+    if faction_id is None:
+        return bool(factions)
+    return faction_id in factions
+
+
 def set_cell_shading(cell, fill: str) -> None:
+    """python-docx 没有直接设置单元格底色的高级 API，这里写入底层 OOXML。"""
     tc_pr = cell._tc.get_or_add_tcPr()
     shd = tc_pr.find(qn("w:shd"))
     if shd is None:
@@ -251,6 +280,7 @@ def set_cell_shading(cell, fill: str) -> None:
 
 
 def set_cell_text(cell, text: str, *, bold: bool = False, size: int = 8, color: str | None = None) -> None:
+    """统一写入单元格文字，保证居中、字号和换行表现一致。"""
     cell.text = ""
     lines = str(text).split("\n")
     paragraph = cell.paragraphs[0]
@@ -266,7 +296,13 @@ def set_cell_text(cell, text: str, *, bold: bool = False, size: int = 8, color: 
     cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
 
+def merge_row(row, start: int, end: int):
+    """合并一行中的连续单元格，让表头可以横跨多列。"""
+    return row.cells[start].merge(row.cells[end])
+
+
 def style_table(table) -> None:
+    """给每张单位表应用基础表格样式。"""
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     table.style = "Table Grid"
     for row in table.rows:
@@ -275,91 +311,260 @@ def style_table(table) -> None:
                 paragraph.paragraph_format.space_after = Pt(0)
 
 
+def fireteam_type_text(types: list[str]) -> str:
+    """把官方火力组类型缩写转换成中文显示名。"""
+    return "，".join(FIRETEAM_TYPE_LABELS.get(t, t) for t in types)
+
+
+def fireteam_limit_text(spec: dict[str, Any]) -> str:
+    """生成火力组数量限制说明，例如“最多1个核心火力组”。"""
+    parts = []
+    for key in ("CORE", "HARIS", "DUO"):
+        value = spec.get(key)
+        if value is None:
+            continue
+        label = FIRETEAM_TYPE_LABELS.get(key, key)
+        try:
+            count = int(value)
+        except (TypeError, ValueError):
+            parts.append(f"最多{value}个{label}火力组，")
+            continue
+        if count >= 99:
+            parts.append(f"{label}火力组的数量没有限制。")
+        else:
+            parts.append(f"最多{count}个{label}火力组，")
+    return "\n".join(parts)
+
+
+def translate_comment_text(comment: str, tr: Translator) -> str:
+    """翻译火力组备注；括号内多个逗号分隔的词会分别翻译。"""
+    text = normalize(comment)
+    if not text:
+        return ""
+    if text.startswith("(") and text.endswith(")"):
+        inner = text[1:-1]
+        pieces = [tr.translate("fireteam", piece.strip()) for piece in inner.split(",")]
+        return f"（{'，'.join(piece for piece in pieces if piece)}）"
+    if "(" in text and text.endswith(")"):
+        prefix, inner = text.split("(", 1)
+        prefix_text = tr.translate("fireteam", prefix.strip()) if prefix.strip() else ""
+        inner_text = translate_comment_text(f"({inner}", tr)
+        return f"{prefix_text}{inner_text}"
+    return tr.translate("fireteam", text)
+
+
+def fireteam_unit_text(unit: dict[str, Any], tr: Translator) -> str:
+    """火力组成员名称，由单位名和备注组合而成。"""
+    name = tr.translate("profile", unit.get("name", "").strip())
+    comment = translate_comment_text(unit.get("comment", ""), tr)
+    return f"{name}{comment}"
+
+
+def fireteam_min_text(unit: dict[str, Any]) -> str:
+    """required=true 且 min=0 时，样例军书用 '*' 表示必选骨干。"""
+    minimum = unit.get("min", 0)
+    if unit.get("required") and int(minimum or 0) == 0:
+        return "*"
+    return str(minimum)
+
+
+def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translator) -> None:
+    """在单位表之前生成 fireteamChart 火力组表；reinforcements 不参与生成。"""
+    if not chart or not chart.get("teams"):
+        return
+
+    heading = doc.add_paragraph()
+    heading.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = heading.add_run("火力组")
+    run.bold = True
+    run.font.size = Pt(14)
+    run.font.name = "Microsoft YaHei"
+    run.font.color.rgb = RGBColor(47, 85, 151)
+
+    rows = 1
+    for team in chart.get("teams", []):
+        rows += 2 + len(team.get("units", []))
+    table = doc.add_table(rows=rows, cols=3)
+    style_table(table)
+
+    row_idx = 0
+    limit_cell = merge_row(table.rows[row_idx], 0, 2)
+    set_cell_text(limit_cell, fireteam_limit_text(chart.get("spec", {})), bold=True, size=9)
+    set_cell_shading(limit_cell, "D9EAF7")
+    row_idx += 1
+
+    for team in chart.get("teams", []):
+        title = tr.translate("fireteam", team.get("name", ""))
+        types = fireteam_type_text(team.get("type", []))
+        if types and "（" not in title:
+            title = f"{title}（{types}）"
+
+        title_cell = merge_row(table.rows[row_idx], 0, 2)
+        set_cell_text(title_cell, title, bold=True, size=9, color="FFFFFF")
+        set_cell_shading(title_cell, "2F5597")
+        row_idx += 1
+
+        header = table.rows[row_idx]
+        for cell, label in zip(header.cells, ["最小", "最大", ""]):
+            set_cell_text(cell, label, bold=True, size=8)
+            set_cell_shading(cell, "E7E6E6")
+        row_idx += 1
+
+        for unit in team.get("units", []):
+            row = table.rows[row_idx]
+            set_cell_text(row.cells[0], fireteam_min_text(unit), size=8)
+            set_cell_text(row.cells[1], str(unit.get("max", "")), size=8)
+            set_cell_text(row.cells[2], fireteam_unit_text(unit, tr), size=8)
+            row_idx += 1
+
+    doc.add_paragraph()
+
+
 def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
+    """把一个 profileGroup 渲染成 Word 中的一张单位表。
+
+    Infinity 官方 JSON 的层级大致是：
+
+    - unit：一个单位条目，例如 MARUTS。
+    - profileGroups：同一个 unit 下的具体资料组；有些单位会把附属遥控单位放在另一个 group。
+    - profiles：单位的基础属性、技能、装备、特性。
+    - options：玩家建表时能选择的武器/技能/点数组合。
+
+    这个函数只负责生成一张 10 列 Word 表：
+
+    - 第 0 行：单位中文名/英文名 + 部队类别。
+    - 第 1 行：属性栏标题，MOV/CC/BS/PH/WIP/ARM/BTS/VITA或STR/S/AVA。
+    - 第 2 行：属性数值。
+    - 第 3 行：兵种类型和特性，例如“轻步兵，正规军，可入侵”。
+    - 第 4 行：装备。
+    - 第 5 行：特殊技能。
+    - 第 6 行：配置列表表头。
+    - 第 7 行以后：每个 option 一行，显示名称、射击武器、近战武器、SWC、点数。
+    """
     profiles = pg.get("profiles") or []
     if not profiles:
+        # 没有 profile 就没有基础属性，无法生成单位表。
         return
+
+    # 当前版本先采用每个 profileGroup 的第一个 profile 作为基础属性来源。
+    # 对大多数 Infinity Army JSON 来说，差异主要体现在 options，而不是 profiles。
     profile = profiles[0]
     options = pg.get("options") or []
+
+    # 固定前 7 行为单位信息；后面每个 option 是一条配置/武器行。
     row_count = 7 + max(1, len(options))
     table = doc.add_table(rows=row_count, cols=10)
     style_table(table)
 
+    # pg.isc 通常是资料组的英文显示名；unit.name 往往是全大写内部名。
+    # 这里优先使用 pg.isc 翻译成中文，同时保留英文名作为第二行，方便对照官方。
     title = tr.translate("unit", unit.get("name", ""))
     isc = tr.translate("unit", pg.get("isc") or unit.get("isc") or unit.get("name", ""))
     english = pg.get("isc") or unit.get("isc") or unit.get("name", "")
+
+    # category 可能出现在 profileGroup 或 profile 上；取到后通过 filters.category 翻译。
     cat = category_name(pg.get("category") or profile.get("category"), maps, tr)
     header = table.rows[0]
-    left = header.cells[0].merge(header.cells[7])
-    right = header.cells[8].merge(header.cells[9])
+
+    # 表头左 8 列放单位名，右 2 列放部队类别。
+    left = merge_row(header, 0, 7)
+    right = merge_row(header, 8, 9)
     set_cell_text(left, f"{isc}\n{english}", bold=True, size=10, color="FFFFFF")
     set_cell_text(right, cat, bold=True, size=9, color="FFFFFF")
     set_cell_shading(left, "2F5597")
     set_cell_shading(right, "2F5597")
 
+    # profile["str"] 为 true 时，官方资料用 STR；否则用 VITA。
+    # 其他属性标题固定来自 ATTR_LABELS，保证所有单位表列顺序一致。
     labels = [label if key != "w" else wound_label(profile) for key, label in ATTR_LABELS]
+
+    # 属性标题行和属性数值行。
     for cell, label in zip(table.rows[1].cells, labels):
         set_cell_text(cell, label, bold=True, size=7)
         set_cell_shading(cell, "D9EAF7")
     for cell, value in zip(table.rows[2].cells, profile_attr_values(profile)):
         set_cell_text(cell, value, bold=True, size=8)
 
+    # profile_traits 会把 type id 和 chars id 翻译后拼起来。
+    # 例如 type=1, chars=[3,5,21] 可能显示成“轻步兵，正规军，可入侵”。
     traits = profile_traits(profile, maps, tr)
-    row = table.rows[3]
-    set_cell_text(row.cells[0].merge(row.cells[1]), traits, size=8)
-    set_cell_text(row.cells[2].merge(row.cells[9]), "", size=8)
 
+    # 特性行、装备行、技能行都使用左侧标签 + 右侧内容的结构。
+    row = table.rows[3]
+    set_cell_text(merge_row(row, 0, 1), traits, size=8)
+    set_cell_text(merge_row(row, 2, 9), "", size=8)
+
+    # 装备和技能在 JSON 中都是 id 引用；join_refs 会按 order 排序、查 filters 名称、
+    # 套用 translations.csv，并把 extra 修正写成中文括号。
     equipment = join_refs(profile.get("equip", []), "equip", maps, tr)
     row = table.rows[4]
-    set_cell_text(row.cells[0].merge(row.cells[1]), "装备", bold=True, size=8)
-    set_cell_text(row.cells[2].merge(row.cells[9]), equipment, size=8)
+    set_cell_text(merge_row(row, 0, 1), "装备", bold=True, size=8)
+    set_cell_text(merge_row(row, 2, 9), equipment, size=8)
 
     skills = join_refs(profile.get("skills", []), "skills", maps, tr)
     row = table.rows[5]
-    set_cell_text(row.cells[0].merge(row.cells[1]), "特殊技能", bold=True, size=8)
-    set_cell_text(row.cells[2].merge(row.cells[9]), skills, size=8)
+    set_cell_text(merge_row(row, 0, 1), "特殊技能", bold=True, size=8)
+    set_cell_text(merge_row(row, 2, 9), skills, size=8)
 
+    # option 行采用 2+3+3+1+1 的列宽分组：
+    # 名称占 2 列，射击武器占 3 列，近战武器占 3 列，SWC 和 C 各占 1 列。
     option_labels = ["名称", "射击武器", "", "", "近战武器", "", "", "SWC", "C"]
+
+    # 配置列表表头：名称 / 射击武器 / 近战武器 / SWC / 点数。
     row = table.rows[6]
-    set_cell_text(row.cells[0].merge(row.cells[1]), option_labels[0], bold=True, size=8)
-    set_cell_text(row.cells[2].merge(row.cells[4]), option_labels[1], bold=True, size=8)
-    set_cell_text(row.cells[5].merge(row.cells[7]), option_labels[4], bold=True, size=8)
+    set_cell_text(merge_row(row, 0, 1), option_labels[0], bold=True, size=8)
+    set_cell_text(merge_row(row, 2, 4), option_labels[1], bold=True, size=8)
+    set_cell_text(merge_row(row, 5, 7), option_labels[4], bold=True, size=8)
     set_cell_text(row.cells[8], option_labels[7], bold=True, size=8)
     set_cell_text(row.cells[9], option_labels[8], bold=True, size=8)
     for cell in row.cells:
         set_cell_shading(cell, "E7E6E6")
 
     if not options:
+        # 极少数资料没有 options，此时用 profile 自身数据生成一行占位配置。
         options = [{"name": profile.get("name", ""), "weapons": profile.get("weapons", []), "swc": "-", "points": "-"}]
 
     for row_idx, option in enumerate(options, start=7):
+        # option 中可能带额外技能/装备，显示在名称或射击武器栏里。
         row = table.rows[row_idx]
+
+        # option.name 是这一行配置的名字；如果 orders 里有 LIEUTENANT，
+        # option_display_name 会在名字后追加“指挥官”标记。
         option_name = option_display_name(option, tr)
+
+        # 官方把全部武器放在 option.weapons 中；这里按 filters.weapons[type]
+        # 拆成射击武器 BS 和近战武器 CC，分别放到不同列。
         bs_weapons, cc_weapons = split_weapons(option.get("weapons", []), maps)
         bs_text = join_refs(bs_weapons, "weapons", maps, tr)
         cc_text = join_refs(cc_weapons, "weapons", maps, tr)
+
+        # 少数配置会在 option 层级额外增加技能或装备，而不是写在 profile 层级。
+        # 额外技能更像配置说明，放进名称括号；额外装备常是可部署物，拼到射击武器栏。
         extra_skills = join_refs(option.get("skills", []), "skills", maps, tr)
         extra_equip = join_refs(option.get("equip", []), "equip", maps, tr)
         if extra_skills:
             option_name = f"{option_name}（{extra_skills}）"
         if extra_equip:
             bs_text = " | ".join(p for p in [bs_text, extra_equip] if p)
-        set_cell_text(row.cells[0].merge(row.cells[1]), option_name, size=7)
-        set_cell_text(row.cells[2].merge(row.cells[4]), bs_text, size=7)
-        set_cell_text(row.cells[5].merge(row.cells[7]), cc_text, size=7)
+        set_cell_text(merge_row(row, 0, 1), option_name, size=7)
+        set_cell_text(merge_row(row, 2, 4), bs_text, size=7)
+        set_cell_text(merge_row(row, 5, 7), cc_text, size=7)
         set_cell_text(row.cells[8], str(option.get("swc", "")), size=7)
         set_cell_text(row.cells[9], str(option.get("points", "")), size=7)
 
+    # 每张单位表后留一个空段落，让下一张表之间有一点间距。
     doc.add_paragraph()
 
 
 def option_display_name(option: dict[str, Any], tr: Translator) -> str:
+    """配置名称；如果该配置是 Lieutenant，就在名称后追加指挥官标记。"""
     name = tr.translate("profile", option.get("name", ""))
     orders = [tr.translate("order", o.get("type", "")) for o in option.get("orders", []) if o.get("type") == "LIEUTENANT"]
     return f"{name}（{'，'.join(orders)}）" if orders else name
 
 
 def split_weapons(weapons: list[dict[str, Any]], maps: dict[str, dict[int, dict[str, Any]]]) -> tuple[list[Any], list[Any]]:
+    """按官方 weapon.type 把武器分为射击武器和近战武器。"""
     bs, cc = [], []
     for weapon in weapons or []:
         item = maps.get("weapons", {}).get(int(weapon.get("id", -1)), {})
@@ -371,24 +576,25 @@ def split_weapons(weapons: list[dict[str, Any]], maps: dict[str, dict[int, dict[
 
 
 def setup_document(doc: Document, title: str) -> None:
+    """设置整份 Word 文档的页面方向、边距、默认字体和标题。"""
     section = doc.sections[0]
-    section.orientation = WD_ORIENT.LANDSCAPE
-    section.page_width, section.page_height = section.page_height, section.page_width
-    section.top_margin = Cm(1.2)
+    # section.orientation = WD_ORIENT.LANDSCAPE
+    # section.page_width, section.page_height = section.page_height, section.page_width
+    section.top_margin = Cm(1.2) 
     section.bottom_margin = Cm(1.2)
-    section.left_margin = Cm(1.0)
-    section.right_margin = Cm(1.0)
+    # section.left_margin = Cm(1.0)
+    # section.right_margin = Cm(1.0)
 
     styles = doc.styles
     styles["Normal"].font.name = "Microsoft YaHei"
-    styles["Normal"].font.size = Pt(9)
+    styles["Normal"].font.size = Pt(10)
     heading = doc.add_paragraph()
     heading.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = heading.add_run(title)
     run.bold = True
     run.font.size = Pt(20)
     run.font.name = "Microsoft YaHei"
-    run.font.color.rgb = RGBColor(47, 85, 151)
+    # run.font.color.rgb = RGBColor(47, 85, 151)
 
 
 def generate_docx(
@@ -396,15 +602,22 @@ def generate_docx(
     output_path: Path,
     glossary_path: Path | None,
     missing_path: Path | None,
-    rules_path: Path | None,
 ) -> None:
+    """完整生成流程：读 JSON -> 读词汇表 -> 建索引 -> 写 Word -> 导出缺词表。"""
     data = json.loads(json_path.read_text(encoding="utf-8"))
-    tr = Translator.from_path(glossary_path, rules_path if rules_path.exists() else None)
+    faction_id = infer_faction_id(json_path, data)
+    tr = Translator.from_path(glossary_path)
     maps = build_filter_maps(data)
     doc = Document()
     setup_document(doc, f"Infinity 中文军表 {data.get('version', '')}".strip())
+    add_fireteam_chart(doc, data.get("fireteamChart"), tr)
 
+    # reinforcements 是增援规则数据，不属于常规军书单位表，故意不读取。
+    # factions=[] 的佣兵池单位也不输出，例如 Freelance Operator Samsa、Uhahu。
     for unit in data.get("units", []):
+        if not should_include_unit(unit, faction_id):
+            continue
+        # 一个 unit 下可能有多个 profileGroup，例如主单位和附属遥控单位。
         for pg in unit.get("profileGroups", []):
             add_unit_table(doc, unit, pg, maps, tr)
 
@@ -415,18 +628,18 @@ def generate_docx(
 
 
 def parse_args() -> argparse.Namespace:
+    """命令行参数定义。"""
     parser = argparse.ArgumentParser(description="Translate Infinity Army JSON into a Chinese DOCX army book.")
     parser.add_argument("json", type=Path, help="Official Infinity Army JSON file.")
     parser.add_argument("output", type=Path, help="Output .docx path.")
     parser.add_argument("--glossary", type=Path, default=Path("translations.csv"), help="CSV/JSON glossary path.")
-    parser.add_argument("--rules", type=Path, default=Path("wordreplacer_rules.json"), help="Converted WordReplacer rules JSON.")
     parser.add_argument("--missing", type=Path, default=None, help="Write untranslated glossary entries to this CSV.")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    generate_docx(args.json, args.output, args.glossary, args.missing, args.rules)
+    generate_docx(args.json, args.output, args.glossary, args.missing)
 
 
 if __name__ == "__main__":
