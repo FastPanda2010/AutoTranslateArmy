@@ -1535,10 +1535,10 @@ profile,MAXIMUS AGENT,干员马克西姆
 type,LI,轻步兵
 type,MI,中步兵
 type,HI,重步兵
-type,TAG,TAG
+type,TAG,战术机甲
 type,REM,遥控机
-type,SK,散兵
-type,WB,战帮
+type,SK,侦察兵
+type,WB,突击队
 type,VH,载具
 category,Line Troops,阵线部队
 category,Spec. Trained  Troops,特殊训练部队
@@ -1546,8 +1546,9 @@ category,Veteran Troops,老兵部队
 category,Elite Troops,精英部队
 category,Support Troops,支援部队
 category,Character,人物
-category,Mercenary Troops,佣兵部队
-category,Headquarters Troops / Mechanized Troops,总部部队 / 机械化部队
+category,Mercenary Troops,雇佣兵
+category,Headquarters Troops,指挥部队
+category,Headquarters Troops / Mechanized Troops,指挥部队 / 机械化部队
 order,REGULAR,正规
 order,IRREGULAR,非正规
 order,LIEUTENANT,指挥官

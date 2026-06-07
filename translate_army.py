@@ -183,13 +183,34 @@ def ref_name(ref: dict[str, Any] | int, filter_key: str, maps: dict[str, dict[in
             extra_names = []
             for extra_id in extras:
                 extra_item = maps.get("extras", {}).get(int(extra_id), {"name": str(extra_id)})
-                extra_names.append(tr.translate("extra", extra_item.get("name", extra_id)))
+                extra_names.append(extra_name(extra_item, tr))
             if extra_names:
                 name = f"{name}（{'，'.join(extra_names)}）"
         q = ref.get("q")
         if q and q != 1:
             name = f"{name} x{q}"
     return name
+
+
+def extra_name(extra_item: dict[str, Any], tr: Translator) -> str:
+    """格式化 extra 修正；DISTANCE 类型从厘米换算成英寸。"""
+    raw_name = extra_item.get("name", "")
+    if extra_item.get("type") == "DISTANCE":
+        return f"{distance_extra_text(raw_name)}\""
+    return tr.translate("extra", raw_name)
+
+
+def distance_extra_text(value: Any) -> str:
+    """官方 DISTANCE extra 使用厘米数值；军表显示时除以 2.5。"""
+    text = str(value).strip()
+    match = re.fullmatch(r"([+-]?)(\d+(?:\.\d+)?)", text)
+    if not match:
+        return text
+
+    sign, number = match.groups()
+    converted = float(number) / 2.5
+    converted_text = str(int(converted)) if converted.is_integer() else f"{converted:g}"
+    return f"{sign}{converted_text}"
 
 
 def join_refs(refs: list[Any], filter_key: str, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> str:
@@ -384,7 +405,7 @@ def set_category_logo_cell(cell, category: str, logo_url: str | None) -> None:
     text_run.bold = True
     apply_doc_font(text_run)
     text_run.font.size = Pt(9)
-    text_run.font.color.rgb = RGBColor.from_string("FFFFFF")
+    # text_run.font.color.rgb = RGBColor.from_string("FFFFFF")
 
     logo_png = fetch_logo_png(logo_url or "")
     if logo_png:
@@ -544,32 +565,6 @@ def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translat
 
     doc.add_paragraph()
 
-
-def set_unit_header_text(cell, chinese_name: str, english_name: str) -> None:
-    """写入单位表左侧表头：中文名左对齐大字，英文名右对齐小字。"""
-    cell.text = ""
-
-    chinese_paragraph = cell.paragraphs[0]
-    chinese_paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    chinese_paragraph.paragraph_format.space_after = Pt(0)
-    chinese_run = chinese_paragraph.add_run(chinese_name)
-    #chinese_run.bold = True
-    apply_doc_font(chinese_run)
-    chinese_run.font.size = Pt(20)
-    chinese_run.font.color.rgb = RGBColor(0, 0, 0)
-
-    english_paragraph = cell.add_paragraph()
-    english_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    english_paragraph.paragraph_format.space_after = Pt(0)
-    english_run = english_paragraph.add_run(english_name)
-    #english_run.bold = True
-    apply_doc_font(english_run)
-    english_run.font.size = Pt(9)
-    english_run.font.color.rgb = RGBColor(0, 0, 0)
-
-    cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
-
-
 def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
     """把一个 profileGroup 渲染成 Word 中的一张单位表。
 
@@ -622,7 +617,7 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     set_unit_header_text(left, isc, english)
     set_category_logo_cell(right, cat, profile.get("logo") or unit.get("logo"))
     set_cell_shading(left, "FFFFFF")
-    set_cell_shading(right, "2F5597")
+    set_cell_shading(right, "FFFFFF")
 
     # profile["str"] 为 true 时，官方资料用 STR；否则用 VITA。
     # 其他属性标题固定来自 ATTR_LABELS，保证所有单位表列顺序一致。
