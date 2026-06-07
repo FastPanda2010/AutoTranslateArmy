@@ -324,17 +324,18 @@ def set_cell_shading(cell, fill: str) -> None:
     shd.set(qn("w:fill"), fill)
 
 
-def set_cell_text(cell, text: str, *, bold: bool = False, size: int = 8, color: str | None = None) -> None:
+def set_cell_text(cell, text: str, *, bold: bool = False, italic: bool = False, size: int = 8, color: str | None = None, alignment: int = WD_ALIGN_PARAGRAPH.CENTER) -> None:
     """统一写入单元格文字，保证居中、字号和换行表现一致。"""
     cell.text = ""
     lines = str(text).split("\n")
     paragraph = cell.paragraphs[0]
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    paragraph.alignment = alignment
     for i, line in enumerate(lines):
         if i:
             paragraph.add_run().add_break()
         run = paragraph.add_run(line)
         run.bold = bold
+        run.italic = italic
         apply_doc_font(run)
         run.font.size = Pt(size)
         if color:
@@ -361,38 +362,7 @@ def fetch_logo_png(logo_url: str) -> bytes | None:
 
         return resvg_py.svg_to_bytes(svg_bytes.decode("utf-8"))
     except Exception:
-        pass
-
-    try:
-        import resvg_python
-
-        png_data = resvg_python.svg_to_png(svg_bytes.decode("utf-8"))
-        return bytes(png_data)
-    except Exception:
-        pass
-
-    try:
-        import cairosvg
-
-        return cairosvg.svg2png(bytestring=svg_bytes, output_width=256, output_height=256)
-    except Exception:
-        pass
-
-    try:
-        from reportlab.graphics import renderPM
-        from svglib.svglib import svg2rlg
-
-        drawing = svg2rlg(io.BytesIO(svg_bytes))
-        if drawing is None:
-            return None
-        scale = min(256 / drawing.width, 256 / drawing.height)
-        drawing.width *= scale
-        drawing.height *= scale
-        drawing.scale(scale, scale)
-        return renderPM.drawToString(drawing, fmt="PNG")
-    except Exception:
         return None
-
 
 def set_category_logo_cell(cell, category: str, logo_url: str | None) -> None:
     """写入单位类型单元格：上方是类型文字，下方是单位 logo。"""
@@ -454,6 +424,44 @@ def style_table(table) -> None:
         for cell in row.cells:
             for paragraph in cell.paragraphs:
                 paragraph.paragraph_format.space_after = Pt(0)
+
+
+def add_note_paragraph(doc: Document, note: str | None, tr: Translator, *, label: str = "备注") -> None:
+    """输出 note 段落；无内容时不输出。"""
+    note_text = normalize(note or "")
+    if not note_text:
+        return
+    paragraph = doc.add_paragraph()
+    paragraph.paragraph_format.space_before = Pt(3)
+    paragraph.paragraph_format.space_after = Pt(6)
+    label_run = paragraph.add_run(f"{label}：")
+    label_run.bold = True
+    apply_doc_font(label_run)
+    label_run.font.size = Pt(9)
+    text_run = paragraph.add_run(tr.translate("note", note_text, record_missing=False))
+    apply_doc_font(text_run)
+    text_run.font.size = Pt(9)
+
+
+def add_unit_intro(doc: Document, unit: dict[str, Any], tr: Translator) -> None:
+    """多子单位条目前的总标题和总 note，例如 POST-HUMANS。"""
+    title = tr.translate("unit", unit.get("isc") or unit.get("name", ""))
+    english = unit.get("isc") or unit.get("name", "")
+
+    paragraph = doc.add_paragraph()
+    paragraph.paragraph_format.space_before = Pt(6)
+    paragraph.paragraph_format.space_after = Pt(3)
+    title_run = paragraph.add_run(title)
+    title_run.bold = True
+    apply_doc_font(title_run)
+    title_run.font.size = Pt(16)
+    if english and english != title:
+        english_run = paragraph.add_run(f"\n{english}")
+        apply_doc_font(english_run)
+        english_run.font.size = Pt(9)
+        english_run.italic = True
+
+    add_note_paragraph(doc, unit.get("notes"), tr)
 
 
 def fireteam_type_text(types: list[str]) -> str:
@@ -636,20 +644,20 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
 
     # 特性行、装备行、技能行都使用左侧标签 + 右侧内容的结构。
     row = table.rows[3]
-    set_cell_text(merge_row(row, 0, 1), traits, size=8)
-    set_cell_text(merge_row(row, 2, 9), "", size=8)
+    set_cell_text(merge_row(row, 0, 9), traits, size=8)
+    #set_cell_text(merge_row(row, 2, 9), "", size=8)
 
     # 装备和技能在 JSON 中都是 id 引用；join_refs 会按 order 排序、查 filters 名称、
     # 套用 translations.csv，并把 extra 修正写成中文括号。
     equipment = join_refs(profile.get("equip", []), "equip", maps, tr)
     row = table.rows[4]
-    set_cell_text(merge_row(row, 0, 1), "装备", bold=True, size=8)
-    set_cell_text(merge_row(row, 2, 9), equipment, size=8)
+    set_cell_text(merge_row(row, 0, 1), "装备", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 2, 9), equipment, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
 
     skills = join_refs(profile.get("skills", []), "skills", maps, tr)
     row = table.rows[5]
-    set_cell_text(merge_row(row, 0, 1), "特殊技能", bold=True, size=8)
-    set_cell_text(merge_row(row, 2, 9), skills, size=8)
+    set_cell_text(merge_row(row, 0, 1), "特殊技能", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 2, 9), skills, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
 
     # option 行采用 2+3+3+1+1 的列宽分组：
     # 名称占 2 列，射击武器占 3 列，近战武器占 3 列，SWC 和 C 各占 1 列。
@@ -672,6 +680,7 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     for row_idx, option in enumerate(options, start=7):
         # option 中可能带额外技能/装备，显示在名称或射击武器栏里。
         row = table.rows[row_idx]
+        row_italic = bool(option.get("disabled"))
 
         # option.name 是这一行配置的名字；如果 orders 里有 LIEUTENANT，
         # option_display_name 会在名字后追加“指挥官”标记。
@@ -691,14 +700,17 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
             option_name = f"{option_name}（{extra_skills}）"
         if extra_equip:
             bs_text = " | ".join(p for p in [bs_text, extra_equip] if p)
-        set_cell_text(merge_row(row, 0, 1), option_name, size=7)
-        set_cell_text(merge_row(row, 2, 4), bs_text, size=7)
-        set_cell_text(merge_row(row, 5, 7), cc_text, size=7)
-        set_cell_text(row.cells[8], str(option.get("swc", "")), size=7)
-        set_cell_text(row.cells[9], str(option.get("points", "")), size=7)
+        set_cell_text(merge_row(row, 0, 1), option_name, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        set_cell_text(merge_row(row, 2, 4), bs_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        set_cell_text(merge_row(row, 5, 7), cc_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        set_cell_text(row.cells[8], str(option.get("swc", "")), italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        set_cell_text(row.cells[9], str(option.get("points", "")), italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        
+        if row_idx % 2 == 0:
+            for cell in row.cells:
+                set_cell_shading(cell, "483D8B")
 
-    # 每张单位表后留一个空段落，让下一张表之间有一点间距。
-    doc.add_paragraph()
+    add_note_paragraph(doc, pg.get("notes") or profile.get("notes"), tr)
 
 
 def option_display_name(option: dict[str, Any], tr: Translator) -> str:
@@ -757,6 +769,8 @@ def generate_docx(
     doc = Document()
     setup_document(doc, f"Infinity 中文军表 {data.get('version', '')}".strip())
     add_fireteam_chart(doc, data.get("fireteamChart"), tr)
+    if data.get("fireteamChart", {}).get("teams"):
+        doc.add_page_break()
 
     # reinforcements 是增援规则数据，不属于常规军书单位表，故意不读取。
     # factions=[] 的佣兵池单位也不输出，例如 Freelance Operator Samsa、Uhahu。
@@ -764,8 +778,12 @@ def generate_docx(
         if not should_include_unit(unit, faction_id):
             continue
         # 一个 unit 下可能有多个 profileGroup，例如主单位和附属遥控单位。
+        profile_groups = unit.get("profileGroups", [])
+        if len(profile_groups) > 1 and normalize(unit.get("notes") or ""):
+            add_unit_intro(doc, unit, tr)
         for pg in unit.get("profileGroups", []):
             add_unit_table(doc, unit, pg, maps, tr)
+        doc.add_page_break()
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     doc.save(output_path)
