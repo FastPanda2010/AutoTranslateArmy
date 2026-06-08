@@ -1069,8 +1069,8 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Vostok Sputniks,东方护卫机
 *,"Jelena Kovač, Securitate DI",秘密警察警督，叶莲娜·科瓦奇
 *,Securitate,秘密警察
-*,"Jazz&Billie, Tactical Hacking Team",杰兹米·凯迪科维斯，战术黑客
-*,"Billie, Customized Support Remote",比莉，改装支援遥控机
+*,"Jazz&Billie, Tactical Hacking Team",爵士&比莉，战术黑客小组
+*,"Billie, Customized Support Remote",比莉，改装的支援遥控机
 *,GRENZER,边防队
 *,HELLCAT,地狱猫
 *,ZONDNAUT,探机骑士
@@ -1544,6 +1544,7 @@ category,Elite Troops,精英部队
 category,Support Troops,支援部队
 category,Character,人物
 category,Mercenary Troops,雇佣兵
+category,Mechanized Troops,机械化部队
 category,Headquarters Troops,指挥部队
 category,Headquarters Troops / Mechanized Troops,指挥部队 / 机械化部队
 order,REGULAR,正规
@@ -1590,3 +1591,129 @@ extra,+1B,+1B
 extra,"+2""",+2”
 extra,"+4""",+4”
 extra,"+8""",+8”
+char,Deepspace,深空
+char,Surface,地表
+equip,Bangbomb,闪光弹
+equip,Deployable Cover,可部署掩体
+equip,TinBot: Firewall,援护机仆：防火墙
+equip,X Visor,X目镜
+extra,+1,+1
+extra,+1 Order,+1命令
+extra,+1SD,+1SD
+extra,+2B,+2B
+extra,+3,+3
+extra,+4,+4
+extra,+9,+9
+extra,-9,-9
+extra,1,1
+extra,1 Use,1次
+extra,AP,穿甲
+extra,ARM,ARM
+extra,ARM +3,ARM +3
+extra,Ancillary,辅助
+extra,Combi R.,复合步枪
+extra,Critical,暴击
+extra,Dep. Zone,部署区
+extra,Diablos,恶魔
+extra,"Dodge (PH+3), GizmoKit (PH+1)",闪避(PH+3),修理装置(PH+1)
+extra,Escape System -3,逃生装置-3
+extra,IMM-B,不可移动-B
+extra,Jet Propulsion,喷射推进
+extra,PH=11,PH=11
+extra,PS=3,PS=3
+extra,PS=5,PS=5
+extra,PS=6,PS=6
+extra,PS=7,PS=7
+extra,SR-1,SR-1
+extra,SR-2,SR-2
+extra,Servant,仆从
+extra,Shock,冲击
+extra,Synchronized,同步
+extra,Total,全部
+extra,UPGRADE: Carbonite,升级：急冻
+extra,UPGRADE: Carbonite (PS=6),升级：急冻(PS=6)
+extra,UPGRADE: Firewall (-3),升级：防火墙(-3)
+extra,UPGRADE: Total Control (+1B),升级：完全控制(+1B)
+extra,UPGRADE: Trinity (SR-1),升级：三位一体(SR-1)
+extra,UPGRADE: Zero Pain,升级：不知疼痛
+extra,Zero-G,零重力
+fireteam,Correccional,惩戒
+fireteam,Correctional,惩戒
+fireteam,Correctional Fireteams,惩戒火力组
+fireteam,Corregidor,克雷吉多
+fireteam,Corregidor Deepspace Fireteams,克雷吉多深空火力组
+fireteam,Corregidor Surface Fireteams,克雷吉多地表火力组
+fireteam,Deepspace  Armored Fireteams,深空装甲火力组
+fireteam,FTO,FTO
+fireteam,Geckos,壁虎
+fireteam,Geckos Deepspace Fireteams,壁虎深空火力组
+fireteam,Geckos Surface Fireteams,壁虎地表火力组
+fireteam,Surface Armored Fireteams,地表装甲火力组
+fireteam,Wildcards Deepspace,深空自由人
+fireteam,Wildcards Surface,地表自由人
+profile,ALGUACIL GATTA,法警GATTA
+profile,BAMBABOT-1,班巴遥控机-1
+profile,BAMBABOT-2,班巴遥控机-2
+profile,BAMBADROID,班巴机器人
+profile,BEARCAT,熊狸
+profile,COYOTE,郊狼
+profile,COYOTE FTO,郊狼FTO
+profile,GATOR PILOT,鳄鱼驾驶员
+profile,JAZZ FTO,爵士FTO
+profile,McMURROUGH,麦克默罗
+profile,ROBBYBOT,罗比
+profile,RUBY MONDAY,露比·曼迪
+profile,SHIFTA,抵抗军
+profile,STEMPLER ZOND FTO,横梁探机FTO
+profile,SĀCHĀ,萨查
+profile,TAG-TREIBER,机甲驭手
+profile,TERRITORIAL,护疆者
+profile,VIGILANTE,义警
+profile,VOSTOK FTO,旋风FTO
+skill,BS=12,BS=12
+skill,BTS=3,BTS=3
+skill,Combat Instinct,战斗本能
+skill,Commlink,通讯链接
+skill,FT Master,火力组教官
+skill,Hacker,黑客
+skill,Jump,跳跃
+skill,No Cover,无掩体
+skill,TAGCom,机甲辅控
+skill,Technorganic,科技器官
+skill,Warhorse,久经沙场
+unit,'GATOR' SQUADRON,鳄鱼中队
+unit,'GECKO' SQUADRON,壁虎中队
+unit,'Gator' Squadron,鳄鱼中队
+unit,Bakunin CLOCKMAKERS,巴枯宁钟表匠
+unit,BambaBot,班巴遥控机
+unit,BambaDroid,班巴机器人
+unit,"Bearcats, Airborne Heavy Regiment",熊狸，空降重装军团
+unit,"Coyotes, Recon and Maneuver Team",郊狼，侦查机动队
+unit,"DAKTARIS (Daks, Campaign Doctors)",达克塔利，战地医生
+unit,"INTRUDERS, Corregidor Assault Commandos",入侵者，克雷吉多突击队
+unit,"JAZZ & BILLIE, Tactical Hacking Team",爵士&比莉，战术黑客小队
+unit,Kazurabā Ruby Monday,露比·曼迪，异常区锐舞者
+unit,"LOBOS, Correctional Response Group",暴狼，矫正快反部队
+unit,"McMurrough, Mercenary Dog-Warrior",麦克默罗，佣兵巨犬战士
+unit,Robomechanical Attendant RobbyBot,简易机械侍从 罗比
+unit,Shifta Insertion Group,抵抗军，快速投放部队
+unit,"Sāchā, Xenotech Hunters",萨查，异形科技猎人
+unit,"TAG-Treiber, NMF TAG Squadrons Support Pilots",机甲驭手，流浪者机甲部队辅助驾驶员
+unit,"TOMCATS, Emergency and Rescue Special Team",雄猫，应急救援特勤组
+unit,"Territorials, Territorial Domination Unit",护疆者，领土管控部队
+unit,"Vigilantes, Tactical Support and Surveillance Special Group",义警，战术支援与监视特别大队
+weapon,AP + DA CC Weapon,穿甲+双重作用近战武器
+weapon,AP Mine,穿甲地雷
+weapon,Adhesive Launcher Rifle,黏胶步枪
+weapon,Armed Turret,武装炮塔
+weapon,Armed Turret (Combi R.),武装炮塔(复合步枪)
+weapon,Boarding Pistol,登舰手枪
+weapon,Cybermine,赛博地雷
+weapon,Disco Baller,迪斯客
+weapon,E/M Carbine,电磁卡宾枪
+weapon,Kobra Pistol,眼镜蛇手枪
+weapon,Mk12,Mk12
+weapon,PARA Mine,瘫痪地雷
+weapon,Redfury AP,穿甲红怒机枪
+weapon,Shock Mine,冲击地雷
+weapon,Thunderbolt,雷霆

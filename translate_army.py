@@ -32,13 +32,14 @@ ORDER_ICON_FILES = {
     "IMPETUOUS": "impetuous.svg",
 }
 UNIT_TABLE_COLUMN_WIDTHS = [
-    Cm(0.7),  # 命令
-    Cm(1.5), Cm(1.5),  # 名称
-    Cm(2.1), Cm(2.1), Cm(2.1),  # 射击武器
-    Cm(1.9), Cm(1.9), Cm(1.9),  # 近战武器
+    Cm(0.4), Cm(0.4),  # 命令
+    Cm(0.75), Cm(0.75), Cm(0.75), Cm(0.75),  # 名称
+    Cm(1.05), Cm(1.05), Cm(1.05), Cm(1.05), Cm(1.05), Cm(1.05),  # 射击武器
+    Cm(0.95), Cm(0.95), Cm(0.95), Cm(0.95), Cm(0.95), Cm(0.95),  # 近战武器
     Cm(0.7),  # SWC
     Cm(0.7),  # C
 ]
+FIRETEAM_TABLE_COLUMN_WIDTHS = [Cm(2.0), Cm(2.0), Cm(8.0)]
 
 
 def apply_doc_font(run) -> None:
@@ -81,6 +82,7 @@ FILTER_CATEGORY = {
     "type": "type",
     "category": "category",
     "extras": "extra",
+    "peripheral": "profile",
 }
 
 FIRETEAM_TYPE_LABELS = {
@@ -186,7 +188,7 @@ def build_filter_maps(data: dict[str, Any]) -> dict[str, dict[int, dict[str, Any
     return maps
 
 
-def ref_name(ref: dict[str, Any] | int, filter_key: str, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> str:
+def ref_name(ref: dict[str, Any] | int, filter_key: str, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator, *, extra_brackets: str = "paren") -> str:
     """把 JSON 里的 id 引用转换成翻译后的名称，并附加 extra 修正。"""
     ref_id = ref if isinstance(ref, int) else ref.get("id")
     item = maps.get(filter_key, {}).get(int(ref_id), {"name": str(ref_id)})
@@ -202,7 +204,11 @@ def ref_name(ref: dict[str, Any] | int, filter_key: str, maps: dict[str, dict[in
                 extra_item = maps.get("extras", {}).get(int(extra_id), {"name": str(extra_id)})
                 extra_names.append(extra_name(extra_item, tr))
             if extra_names:
-                name = f"{name}（{'，'.join(extra_names)}）"
+                joined_extras = "，".join(extra_names)
+                if extra_brackets == "square":
+                    name = f"{name}[{joined_extras}]"
+                else:
+                    name = f"{name}（{joined_extras}）"
         q = ref.get("q")
         if q and q != 1:
             name = f"{name} x{q}"
@@ -230,8 +236,8 @@ def distance_extra_text(value: Any) -> str:
     return f"{sign}{converted_text}"
 
 
-def join_refs(refs: list[Any], filter_key: str, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> str:
-    return "，".join(ref_name(ref, filter_key, maps, tr) for ref in sorted_refs(refs))
+def join_refs(refs: list[Any], filter_key: str, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator, *, extra_brackets: str = "paren") -> str:
+    return "，".join(ref_name(ref, filter_key, maps, tr, extra_brackets=extra_brackets) for ref in sorted_refs(refs))
 
 
 def sorted_refs(refs: list[Any]) -> list[Any]:
@@ -341,7 +347,7 @@ def set_cell_shading(cell, fill: str) -> None:
     shd.set(qn("w:fill"), fill)
 
 
-def set_cell_text(cell, text: str, *, bold: bool = False, italic: bool = False, size: int = 8, color: str | None = None, alignment: int = WD_ALIGN_PARAGRAPH.CENTER) -> None:
+def set_cell_text(cell, text: str, *, bold: bool = False, italic: bool = False, size: float = 8, color: str | None = None, alignment: int = WD_ALIGN_PARAGRAPH.CENTER) -> None:
     """统一写入单元格文字，保证居中、字号和换行表现一致。"""
     cell.text = ""
     lines = str(text).split("\n")
@@ -426,22 +432,13 @@ def fetch_logo_png(logo_url: str) -> bytes | None:
     except Exception:
         return None
 
-def set_category_logo_cell(cell, category: str, logo_url: str | None) -> None:
-    """写入单位类型单元格：上方是类型文字，下方是单位 logo。"""
+def set_logo_cell(cell, logo_url: str | None) -> None:
+    """写入单位 logo 单元格。"""
     cell.text = ""
-
-    text_paragraph = cell.paragraphs[0]
-    text_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    text_paragraph.paragraph_format.space_after = Pt(2)
-    text_run = text_paragraph.add_run(category)
-    text_run.bold = True
-    apply_doc_font(text_run)
-    text_run.font.size = Pt(9)
-    # text_run.font.color.rgb = RGBColor.from_string("FFFFFF")
 
     logo_png = fetch_logo_png(logo_url or "")
     if logo_png:
-        image_paragraph = cell.add_paragraph()
+        image_paragraph = cell.paragraphs[0]
         image_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
         image_paragraph.paragraph_format.space_after = Pt(0)
         image_run = image_paragraph.add_run()
@@ -534,6 +531,47 @@ def add_unit_intro(doc: Document, unit: dict[str, Any], tr: Translator) -> None:
     add_note_paragraph(doc, unit.get("notes"), tr)
 
 
+def should_add_unit_options_table(unit: dict[str, Any]) -> bool:
+    """有些组队单位把可选项放在 unit.options，子 profileGroup 只保留 disabled 明细。"""
+    unit_options = unit.get("options") or []
+    profile_groups = unit.get("profileGroups") or []
+    if not unit_options or len(profile_groups) <= 1:
+        return False
+
+    for pg in profile_groups:
+        options = pg.get("options") or []
+        if not options or not all(bool(option.get("disabled")) for option in options):
+            return False
+    return True
+
+
+def add_unit_options_table(doc: Document, unit: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
+    """渲染只有配置行的父单位表，用于 Jazz & Billie 这类组队单位。"""
+    options = unit.get("options") or []
+    if not options:
+        return
+
+    row_count = 2 + len(options)
+    table = doc.add_table(rows=row_count, cols=20)
+    style_table(table)
+    set_table_column_widths(table, UNIT_TABLE_COLUMN_WIDTHS)
+
+    title = tr.translate("unit", unit.get("isc") or unit.get("name", ""))
+    english = unit.get("isc") or unit.get("name", "")
+    title_cell = merge_row(table.rows[0], 0, 19)
+    set_unit_header_text(title_cell, title, english)
+    set_cell_shading(title_cell, "FFFFFF")
+
+    add_option_header_row(table.rows[1])
+    for row_idx, option in enumerate(options, start=2):
+        add_option_row(table.rows[row_idx], option, maps, tr)
+        if row_idx % 2 == 1:
+            for cell in table.rows[row_idx].cells:
+                set_cell_shading(cell, "EFEEEE")
+
+    doc.add_paragraph()
+
+
 def fireteam_type_text(types: list[str]) -> str:
     """把官方火力组类型缩写转换成中文显示名。"""
     return "，".join(FIRETEAM_TYPE_LABELS.get(t, t) for t in types)
@@ -608,11 +646,12 @@ def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translat
     rows = 1
     for team in chart.get("teams", []):
         rows += 2 + len(team.get("units", []))
-    table = doc.add_table(rows=rows, cols=3)
+    table = doc.add_table(rows=rows, cols=6)
     style_table(table)
+    set_table_column_widths(table, FIRETEAM_TABLE_COLUMN_WIDTHS)
 
     row_idx = 0
-    limit_cell = merge_row(table.rows[row_idx], 0, 2)
+    limit_cell = merge_row(table.rows[row_idx], 0, 5)
     set_cell_text(limit_cell, fireteam_limit_text(chart.get("spec", {})), bold=True, size=9)
     set_cell_shading(limit_cell, "D9EAF7")
     row_idx += 1
@@ -623,22 +662,29 @@ def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translat
         if types and "（" not in title:
             title = f"{title}（{types}）"
 
-        title_cell = merge_row(table.rows[row_idx], 0, 2)
+        title_cell = merge_row(table.rows[row_idx], 0, 5)
         set_cell_text(title_cell, title, bold=True, size=9, color="FFFFFF")
         set_cell_shading(title_cell, "2F5597")
         row_idx += 1
 
         header = table.rows[row_idx]
-        for cell, label in zip(header.cells, ["最小", "最大", ""]):
-            set_cell_text(cell, label, bold=True, size=8)
-            set_cell_shading(cell, "E7E6E6")
+        set_cell_text(header.cells[0], "最小", size=8)
+        set_cell_shading(header.cells[0], "E7E6E6")
+        set_cell_text(header.cells[1], "最大", size=8)
+        set_cell_shading(header.cells[1], "E7E6E6")
+        unitname_cell = merge_row(header, 2, 5)
+        set_cell_text(unitname_cell, "", size=8)
+        set_cell_shading(unitname_cell, "E7E6E6")
         row_idx += 1
 
-        for unit in team.get("units", []):
+        for idx ,unit in enumerate(team.get("units", [])):
             row = table.rows[row_idx]
             set_cell_text(row.cells[0], fireteam_min_text(unit), size=8)
             set_cell_text(row.cells[1], str(unit.get("max", "")), size=8)
-            set_cell_text(row.cells[2], fireteam_unit_text(unit, tr), size=8)
+
+            unit_cell = merge_row(table.rows[row_idx], 2, 5)
+            set_cell_text(unit_cell, fireteam_unit_text(unit, tr), size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+
             row_idx += 1
 
     doc.add_paragraph()
@@ -653,7 +699,7 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     - profiles：单位的基础属性、技能、装备、特性。
     - options：玩家建表时能选择的武器/技能/点数组合。
 
-    这个函数只负责生成一张 10 列 Word 表：
+    这个函数只负责生成一张 20 列 Word 表：
 
     - 第 0 行：单位中文名/英文名 + 部队类别。
     - 第 1 行：属性栏标题，MOV/CC/BS/PH/WIP/ARM/BTS/VITA或STR/S/AVA。
@@ -674,9 +720,9 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     profile = profiles[0]
     options = pg.get("options") or []
 
-    # 固定前 7 行为单位信息；后面每个 option 是一条配置/武器行。
-    row_count = 7 + max(1, len(options))
-    table = doc.add_table(rows=row_count, cols=11)
+    # 固定前 8 行为单位信息；后面每个 option 是一条配置/武器行。
+    row_count = 8 + max(1, len(options))
+    table = doc.add_table(rows=row_count, cols=20)
     style_table(table)
     set_table_column_widths(table, UNIT_TABLE_COLUMN_WIDTHS)
 
@@ -688,26 +734,31 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
 
     # category 可能出现在 profileGroup 或 profile 上；取到后通过 filters.category 翻译。
     cat = category_name(pg.get("category") or profile.get("category"), maps, tr)
-    header = table.rows[0]
+    header_top = table.rows[0]
+    header_bottom = table.rows[1]
 
-    # 表头左 8 列放单位名，右 2 列放部队类别。
-    left = merge_row(header, 0, 8)
-    right = merge_row(header, 9, 10)
+    # 表头左 16 列放单位名，并跨 category/logo 两行；右 4 列上方是类别，下方是 logo。
+    left = merge_row(header_top, 0, 15).merge(merge_row(header_bottom, 0, 15))
+    category_cell = merge_row(header_top, 16, 19)
+    logo_cell = merge_row(header_bottom, 16, 19)
     set_unit_header_text(left, isc, english)
-    set_category_logo_cell(right, cat, profile.get("logo") or unit.get("logo"))
+    set_cell_text(category_cell, cat, bold=True, size=9)
+    set_logo_cell(logo_cell, profile.get("logo") or unit.get("logo"))
     set_cell_shading(left, "FFFFFF")
-    set_cell_shading(right, "FFFFFF")
+    set_cell_shading(category_cell, "FFFFFF")
+    set_cell_shading(logo_cell, "FFFFFF")
 
     # profile["str"] 为 true 时，官方资料用 STR；否则用 VITA。
     # 其他属性标题固定来自 ATTR_LABELS，保证所有单位表列顺序一致。
     labels = [label if key != "w" else wound_label(profile) for key, label in ATTR_LABELS]
 
     # 属性标题行和属性数值行。
-    for cell, label in zip(table.rows[1].cells[:10], labels):
+    for index, label in enumerate(labels):
+        cell = merge_row(table.rows[2], index * 2, index * 2 + 1)
         set_cell_text(cell, label, bold=True, size=7)
         set_cell_shading(cell, "D9EAF7")
-    set_cell_shading(table.rows[1].cells[10], "D9EAF7")
-    for cell, value in zip(table.rows[2].cells[:10], profile_attr_values(profile)):
+    for index, value in enumerate(profile_attr_values(profile)):
+        cell = merge_row(table.rows[3], index * 2, index * 2 + 1)
         set_cell_text(cell, value, bold=True, size=8)
 
     # profile_traits 会把 type id 和 chars id 翻译后拼起来。
@@ -715,76 +766,100 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     traits = profile_traits(profile, maps, tr)
 
     # 特性行、装备行、技能行都使用左侧标签 + 右侧内容的结构。
-    row = table.rows[3]
-    set_cell_text(merge_row(row, 0, 10), traits, size=8)
+    row = table.rows[4]
+    set_cell_text(merge_row(row, 0, 19), traits, size=8)
     #set_cell_text(merge_row(row, 2, 9), "", size=8)
 
     # 装备和技能在 JSON 中都是 id 引用；join_refs 会按 order 排序、查 filters 名称、
     # 套用 translations.csv，并把 extra 修正写成中文括号。
     equipment = join_refs(profile.get("equip", []), "equip", maps, tr)
-    row = table.rows[4]
-    set_cell_text(merge_row(row, 0, 1), "装备", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(merge_row(row, 2, 10), equipment, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    row = table.rows[5]
+    set_cell_text(merge_row(row, 0, 3), "装备", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 4, 19), equipment, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
 
     skills = join_refs(profile.get("skills", []), "skills", maps, tr)
-    row = table.rows[5]
-    set_cell_text(merge_row(row, 0, 1), "特殊技能", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(merge_row(row, 2, 10), skills, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-
-    # option 行采用 2+3+3+1+1 的列宽分组：
-    # 名称占 2 列，射击武器占 3 列，近战武器占 3 列，SWC 和 C 各占 1 列。
-    option_labels = ["命令", "名称", "", "射击武器", "", "", "近战武器", "", "", "SWC", "C"]
-
-    # 配置列表表头：名称 / 射击武器 / 近战武器 / SWC / 点数。
     row = table.rows[6]
-    set_cell_text(row.cells[0], option_labels[0], bold=True, size=8)
-    set_cell_text(merge_row(row, 1, 2), option_labels[1], bold=True, size=8)
-    set_cell_text(merge_row(row, 3, 5), option_labels[3], bold=True, size=8)
-    set_cell_text(merge_row(row, 6, 8), option_labels[6], bold=True, size=8)
-    set_cell_text(row.cells[9], option_labels[9], bold=True, size=8)
-    set_cell_text(row.cells[10], option_labels[10], bold=True, size=8)
-    for cell in row.cells:
-        set_cell_shading(cell, "E7E6E6")
+    set_cell_text(merge_row(row, 0, 3), "特殊技能", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 4, 19), skills, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+
+    add_option_header_row(table.rows[7])
 
     if not options:
         # 极少数资料没有 options，此时用 profile 自身数据生成一行占位配置。
         options = [{"name": profile.get("name", ""), "weapons": profile.get("weapons", []), "swc": "-", "points": "-"}]
 
-    for row_idx, option in enumerate(options, start=7):
-        # option 中可能带额外技能/装备，显示在名称或射击武器栏里。
-        row = table.rows[row_idx]
-        row_italic = bool(option.get("disabled"))
-
-        # option.name 是这一行配置的名字；如果 orders 里有 LIEUTENANT，
-        # option_display_name 会在名字后追加“指挥官”标记。
-        option_name = option_display_name(option, tr)
-
-        # 官方把全部武器放在 option.weapons 中；这里按 filters.weapons[type]
-        # 拆成射击武器 BS 和近战武器 CC，分别放到不同列。
-        bs_weapons, cc_weapons = split_weapons(option.get("weapons", []), maps)
-        bs_text = join_refs(bs_weapons, "weapons", maps, tr)
-        cc_text = join_refs(cc_weapons, "weapons", maps, tr)
-
-        # 少数配置会在 option 层级额外增加技能或装备，而不是写在 profile 层级。
-        # 额外技能更像配置说明，放进名称括号；额外装备常是可部署物，拼到射击武器栏。
-        extra_skills = join_refs(option.get("skills", []), "skills", maps, tr)
-        extra_equip = join_refs(option.get("equip", []), "equip", maps, tr)
-        if extra_skills:
-            option_name = f"{option_name}（{extra_skills}）"
-        if extra_equip:
-            bs_text = " | ".join(p for p in [bs_text, extra_equip] if p)
-        set_order_icons_cell(row.cells[0], option.get("orders", []), italic=row_italic)
-        set_cell_text(merge_row(row, 1, 2), option_name, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-        set_cell_text(merge_row(row, 3, 5), bs_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-        set_cell_text(merge_row(row, 6, 8), cc_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-        set_cell_text(row.cells[9], str(option.get("swc", "")), italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.CENTER)
-        set_cell_text(row.cells[10], str(option.get("points", "")), italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.CENTER)
+    for row_idx, option in enumerate(options, start=8):
+        add_option_row(table.rows[row_idx], option, maps, tr)
         
-        if row_idx % 2 == 0:
-            for cell in row.cells:
+        if row_idx % 2 == 1:
+            for cell in table.rows[row_idx].cells:
                 set_cell_shading(cell, "EFEEEE")
 
     add_note_paragraph(doc, pg.get("notes") or profile.get("notes"), tr)
+
+
+def add_option_header_row(row) -> None:
+    """写入配置列表表头。"""
+    # option 行采用 2+4+6+6+1+1 的列宽分组：
+    # 命令占 2 列，名称占 4 列，射击武器占 6 列，近战武器占 6 列，SWC 和 C 各占 1 列。
+    option_labels = ["命令", "名称", "射击武器", "近战武器", "S", "C"]
+    set_cell_text(merge_row(row, 0, 1), option_labels[0], bold=True, size=8)
+    set_cell_text(merge_row(row, 2, 5), option_labels[1], bold=True, size=8)
+    set_cell_text(merge_row(row, 6, 11), option_labels[2], bold=True, size=8)
+    set_cell_text(merge_row(row, 12, 17), option_labels[3], bold=True, size=8)
+    set_cell_text(row.cells[18], option_labels[4], bold=True, size=8)
+    set_cell_text(row.cells[19], option_labels[5], bold=True, size=8)
+    for cell in row.cells:
+        set_cell_shading(cell, "E7E6E6")
+
+
+def add_option_row(row, option: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
+    """写入一条 option 配置行。"""
+    row_italic = bool(option.get("disabled"))
+
+    # option.name 是这一行配置的名字；如果 orders 里有 LIEUTENANT，
+    # option_display_name 会在名字后追加“指挥官”标记。
+    option_name = option_display_name(option, tr)
+
+    # 官方把全部武器放在 option.weapons 中；这里按 filters.weapons[type]
+    # 拆成射击武器 BS 和近战武器 CC，分别放到不同列。
+    bs_weapons, cc_weapons = split_weapons(option.get("weapons", []), maps)
+    bs_text = join_refs(bs_weapons, "weapons", maps, tr)
+    cc_text = join_refs(cc_weapons, "weapons", maps, tr)
+
+    # 少数配置会在 option 层级额外增加技能或装备，而不是写在 profile 层级。
+    # PERSON 装备更像配置说明，放进名称括号；WEAPON 装备拼到射击武器栏。
+    person_equip, weapon_equip = split_equip_by_type(option.get("equip", []), maps)
+    extra_skills = join_refs(option.get("skills", []), "skills", maps, tr, extra_brackets="square")
+    person_equip_text = join_refs(person_equip, "equip", maps, tr, extra_brackets="square")
+    name_details = ". ".join(p for p in [extra_skills, person_equip_text] if p)
+    if name_details:
+        option_name = f"{option_name}（{name_details}）"
+
+    weapon_equip_text = join_refs(weapon_equip, "equip", maps, tr)
+    bs_text = " | ".join(p for p in [bs_text, weapon_equip_text] if p)
+    peripheral_text = join_refs(option.get("peripheral", []), "peripheral", maps, tr)
+    if peripheral_text:
+        bs_text = " || ".join(p for p in [bs_text, peripheral_text] if p)
+
+    set_order_icons_cell(merge_row(row, 0, 1), option.get("orders", []), italic=row_italic)
+    set_cell_text(merge_row(row, 2, 5), option_name, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 6, 11), bs_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 12, 17), cc_text, italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(row.cells[18], str(option.get("swc", "")), italic=row_italic, size=7.5, alignment=WD_ALIGN_PARAGRAPH.CENTER)
+    set_cell_text(row.cells[19], str(option.get("points", "")), italic=row_italic, size=8, alignment=WD_ALIGN_PARAGRAPH.CENTER)
+
+
+def split_equip_by_type(equip_refs: list[dict[str, Any]], maps: dict[str, dict[int, dict[str, Any]]]) -> tuple[list[Any], list[Any]]:
+    """按 filters.equip.type 把 option 装备拆成名称栏装备和远程武器栏装备。"""
+    person_equip, weapon_equip = [], []
+    for equip_ref in equip_refs or []:
+        item = maps.get("equip", {}).get(int(equip_ref.get("id", -1)), {})
+        if item.get("type") == "WEAPON":
+            weapon_equip.append(equip_ref)
+        else:
+            person_equip.append(equip_ref)
+    return person_equip, weapon_equip
 
 
 def option_display_name(option: dict[str, Any], tr: Translator) -> str:
@@ -855,6 +930,8 @@ def generate_docx(
         profile_groups = unit.get("profileGroups", [])
         if len(profile_groups) > 1 and normalize(unit.get("notes") or ""):
             add_unit_intro(doc, unit, tr)
+        if should_add_unit_options_table(unit):
+            add_unit_options_table(doc, unit, maps, tr)
         for pg in unit.get("profileGroups", []):
             add_unit_table(doc, unit, pg, maps, tr)
         doc.add_page_break()
