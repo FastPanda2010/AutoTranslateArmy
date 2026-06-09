@@ -91,6 +91,20 @@ FIRETEAM_TYPE_LABELS = {
     "CORE": "核心",
 }
 
+CATEGORY_SORT_ORDER = [
+    "Garrison Troops",
+    "Line Troops",
+    "Spec. Trained Troops",
+    "Veteran Troops",
+    "Elite Troops",
+    "Headquarters Troops",
+    "Headquarters Troops / Mechanized Troops",
+    "Mechanized Troops",
+    "Support Troops",
+    "Character",
+    "Mercenary Troops",
+]
+
 # 官方数据中有些名称含不换行空格，先统一成普通空格再匹配词汇表。
 NBSP = "\u00a0"
 
@@ -100,7 +114,7 @@ class Translator:
     """读取词汇表，并负责把英文术语翻译成中文。"""
 
     entries: dict[tuple[str, str], str] = field(default_factory=dict)
-    missing: set[tuple[str, str]] = field(default_factory=set)
+    missing: dict[tuple[str, str], tuple[str, str]] = field(default_factory=dict)
 
     @classmethod
     def from_path(cls, path: Path | None) -> "Translator":
@@ -148,8 +162,15 @@ class Translator:
             return guessed
         if record_missing:
             # 没命中的词保留英文，并记录到 missing.csv 方便以后补词。
-            self.missing.add((category, text))
+            self.record_missing(category, text)
         return text
+
+    def record_missing(self, category: str, source: str) -> None:
+        """大小写不敏感地记录缺词，避免同一术语输出大小写两份。"""
+        key = (category, normalize(source).lower())
+        current = self.missing.get(key)
+        if current is None or missing_source_score(source) > missing_source_score(current[1]):
+            self.missing[key] = (category, source)
 
     def _rule_translate(self, category: str, text: str) -> str:
         """少量可由格式稳定推断的翻译规则，避免词汇表重复写 L1-L5。"""
@@ -165,13 +186,33 @@ class Translator:
         with path.open("w", encoding="utf-8-sig", newline="") as f:
             writer = csv.writer(f)
             writer.writerow(["category", "source", "target"])
-            for category, source in sorted(self.missing):
+            for category, source in sorted(self.missing.values(), key=lambda item: (item[0], normalize(item[1]).lower(), item[1])):
                 writer.writerow([category, source, ""])
 
 
 def normalize(text: Any) -> str:
     """统一文本格式，避免同一个词因为特殊空格导致匹配失败。"""
     return str(text).replace(NBSP, " ").strip()
+
+
+def missing_source_score(source: str) -> tuple[int, int]:
+    """缺词大小写重复时，优先保留更像自然显示名的写法。"""
+    text = normalize(source)
+    has_lower = any(ch.islower() for ch in text)
+    has_upper = any(ch.isupper() for ch in text)
+    return (int(has_lower and has_upper), -int(text.isupper()))
+
+
+def normalize_category_for_sort(text: Any) -> str:
+    """类别排序时忽略连续空白差异，例如官方的双空格类别名。"""
+    return re.sub(r"\s+", " ", normalize(text))
+
+
+CATEGORY_SORT_INDEX = {normalize_category_for_sort(name): index for index, name in enumerate(CATEGORY_SORT_ORDER)}
+SPECIAL_CHAR_BADGES = {
+    30: ("D68623", "000000"),  # Deepspace
+    29: ("256D1B", "FFFFFF"),  # Surface
+}
 
 
 def index_by_id(items: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
@@ -317,6 +358,30 @@ def category_name(category_id: Any, maps: dict[str, dict[int, dict[str, Any]]], 
     return ref_name(int(category_id), "category", maps, tr)
 
 
+def unit_category_sort_key(unit: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], original_index: int) -> tuple[int, int]:
+    """按第一个可识别的 profileGroup/profile category 给单位排序。"""
+    category_id = first_unit_category_id(unit)
+    return category_sort_key(category_id, maps, original_index)
+
+
+def category_sort_key(category_id: Any, maps: dict[str, dict[int, dict[str, Any]]], original_index: int) -> tuple[int, int]:
+    """把 category id 转成稳定排序 key。"""
+    category_item = maps.get("category", {}).get(int(category_id), {}) if category_id not in (None, 0) else {}
+    category_sort = CATEGORY_SORT_INDEX.get(normalize_category_for_sort(category_item.get("name", "")), len(CATEGORY_SORT_ORDER))
+    return category_sort, original_index
+
+
+def first_unit_category_id(unit: dict[str, Any]) -> Any:
+    """提取单位排序用类别，优先使用第一个 profileGroup 的类别。"""
+    for pg in unit.get("profileGroups", []) or []:
+        if pg.get("category") not in (None, 0):
+            return pg.get("category")
+        for profile in pg.get("profiles", []) or []:
+            if profile.get("category") not in (None, 0):
+                return profile.get("category")
+    return unit.get("category")
+
+
 def infer_faction_id(json_path: Path, data: dict[str, Any]) -> int | None:
     """优先从文件名推断军表编号；703.json 这样的文件名正好对应 faction id。"""
     if json_path.stem.isdigit():
@@ -344,6 +409,15 @@ def set_cell_shading(cell, fill: str) -> None:
     if shd is None:
         shd = OxmlElement("w:shd")
         tc_pr.append(shd)
+    shd.set(qn("w:fill"), fill)
+
+
+def set_run_shading(run, fill: str) -> None:
+    r_pr = run._element.get_or_add_rPr()
+    shd = r_pr.find(qn("w:shd"))
+    if shd is None:
+        shd = OxmlElement("w:shd")
+        r_pr.append(shd)
     shd.set(qn("w:fill"), fill)
 
 
@@ -689,6 +763,47 @@ def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translat
 
     doc.add_paragraph()
 
+
+def char_ref_id(ref: dict[str, Any] | int) -> int | None:
+    try:
+        return int(ref if isinstance(ref, int) else ref.get("id"))
+    except (TypeError, ValueError):
+        return None
+
+
+def special_char_badges(profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> list[tuple[str, str, str]]:
+    badges = []
+    seen = set()
+    for char_ref in profile.get("chars", []) or []:
+        char_id = char_ref_id(char_ref)
+        if char_id in SPECIAL_CHAR_BADGES and char_id not in seen:
+            fill, color = SPECIAL_CHAR_BADGES[char_id]
+            badges.append((ref_name(char_ref, "chars", maps, tr), fill, color))
+            seen.add(char_id)
+    return badges
+
+
+def add_special_char_badges(doc: Document, profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
+    badges = special_char_badges(profile, maps, tr)
+    if not badges:
+        return
+
+    paragraph = doc.add_paragraph()
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    paragraph.paragraph_format.space_before = Pt(3)
+    paragraph.paragraph_format.space_after = Pt(1)
+    for index, (text, fill, color) in enumerate(badges):
+        if index:
+            spacer = paragraph.add_run(" ")
+            apply_doc_font(spacer)
+            spacer.font.size = Pt(14)
+        run = paragraph.add_run(text)
+        apply_doc_font(run)
+        run.font.size = Pt(14)
+        run.font.color.rgb = RGBColor.from_string(color)
+        set_run_shading(run, fill)
+
+
 def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
     """把一个 profileGroup 渲染成 Word 中的一张单位表。
 
@@ -719,6 +834,7 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     # 对大多数 Infinity Army JSON 来说，差异主要体现在 options，而不是 profiles。
     profile = profiles[0]
     options = pg.get("options") or []
+    add_special_char_badges(doc, profile, maps, tr)
 
     # 固定前 8 行为单位信息；后面每个 option 是一条配置/武器行。
     row_count = 8 + max(1, len(options))
@@ -923,9 +1039,14 @@ def generate_docx(
 
     # reinforcements 是增援规则数据，不属于常规军书单位表，故意不读取。
     # factions=[] 的佣兵池单位也不输出，例如 Freelance Operator Samsa、Uhahu。
-    for unit in data.get("units", []):
-        if not should_include_unit(unit, faction_id):
-            continue
+    included_units = [
+        (index, unit)
+        for index, unit in enumerate(data.get("units", []))
+        if should_include_unit(unit, faction_id)
+    ]
+    included_units.sort(key=lambda item: unit_category_sort_key(item[1], maps, item[0]))
+
+    for _, unit in included_units:
         # 一个 unit 下可能有多个 profileGroup，例如主单位和附属遥控单位。
         profile_groups = unit.get("profileGroups", [])
         if len(profile_groups) > 1 and normalize(unit.get("notes") or ""):

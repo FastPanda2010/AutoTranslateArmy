@@ -298,8 +298,8 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,KAMAU,无声勇士
 *,LOCUST,蝗虫
 *,BLACK FRIAR,黑衣修士
-*,TECH-BEE,机蜂
-*,TECH-BEES,机蜂
+*,TECH-BEE,科技蜂
+*,TECH-BEES,科技蜂
 *,KNIGHT OF MONTESA,蒙特莎骑士
 *,ECHO-BRAVO,回音杀手
 *,ZULU-COBRA,祖鲁眼镜蛇
@@ -332,12 +332,9 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,LÓNG YÁ,龙牙
 *,TÁOWÙ,梼杌
 *,Mastermind and schemer,犯罪大师与阴谋家
-*,ZHÀNYĪNG Imperial Agents,鹰阶帝国特工
-*,ZHÀNYING,鹰阶帝国特工
 *,DĀOYĪNG Operative Control Unit,刀鹰行动控制单位
 *,DĀOYĪNG,刀鹰
-*,TIGER SOLDIERS,虎贲卫
-*,TIGER SOLDIER,虎贲卫
+*,TIGER SOLDIERS,虎战士
 *,"Zúyŏng Invincibles, Terra-cotta Soldiers",卒俑无敌军
 *,"ZÚYǑNG Invincibles, Terra-cotta Soldiers",卒俑无敌军
 *,ZÚYǑNG Invincibles,卒俑无敌军
@@ -374,17 +371,8 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,ARMAND,阿曼德
 *,Chaīyì Yáokòng,差役遥控机
 *,CHAĪYÌ Yaókòng,差役遥控机
-*,"Imperial Agents, Pheasant Rank",雉阶帝国特工
-*,"IMPERIAL AGENT, Pheasant Rank",雉阶帝国特工
-*,PHEASANT IMPERIAL AGENT,雉阶帝国特工
 *,"KNAUF, Outlaw Sniper",克瑙夫，亡命狙击手
 *,KNAUF,克瑙夫
-*,"Imperial Agents, Crane Rank",鹤阶帝国特工
-*,"IMPERIAL AGENTS, Crane Rank",鹤阶帝国特工
-*,CRANE AGENT,鹤阶帝国特工
-*,Sù-Jiàn Immediate Action Unit,速剑快速行动单位
-*,SÙ-JIÀN Immediate Action Unit,速剑快速行动单位
-*,SÙ-JIÀN,速剑
 *,HIGH MOBILITY FORM,高机动模式
 *,COMBAT FORM,战斗模式
 *,AÏDA SWANSON,阿依达·斯旺森
@@ -397,12 +385,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,PANGGULING,穿山甲
 *,Legendary Gunslinger,传奇枪客
 *,WILD BILL,狂野比尔
-*,Marksman Leader,神射手部队领袖
-*,"Bào Troops, Judicial Watch Unit",锦豹卫，司法监察单位
-*,"BÀO TROOPS, Judicial Watch Unit",锦豹卫，司法监察单位
-*,Bào Troops,锦豹卫
-*,BÀO TROOP,锦豹卫
-*,\AUTHORIZED BOUNTY HUNTERS,授权赏金猎人
+*,"Bào Troops, Judicial Watch Unit",豹兵，司法监察单位
 *,BOUNTY HUNTER,赏金猎人
 *,"WARCORS, WAR CORRESPONDENTS",战地记者
 *,WARCOR,战地记者
@@ -467,16 +450,9 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,ADIL,阿迪力
 *,JOHN HAWKWOOD,约翰·霍克伍德
 *,Mercenary Officer,佣兵军官
-*,HAWKWOOD,霍克伍德
 *,ZHANSHI,战士
-*,Son-Bae  Yáokòng,老兵遥控机
-*,SON-BAE Yaókòng,老兵遥控机
 *,SUN TZE,孙武子
-*,CELESTIAL GUARD Monitor,御林军监督
-*,CELESTIAL GUARD,御林军
-*,KUANG SHI,僵尸
 *,YÁOZĂO,遥蚤
-*,NINJAS,忍者
 *,NINJA,忍者
 *,Line Kazaks,哥萨克前线部队
 *,Para-Commandos,第1空降突击团
@@ -1146,7 +1122,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,JAZZ,爵士
 *,BILLIE,比莉
 *,BERSERK,狂战士
-*,BIOIMMUNITY,生化免疫
 *,BOOTY,战利品
 *,CAMOUFLAGE,迷彩
 *,CHAIN OF COMMAND,指挥链
@@ -1158,7 +1133,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,DOCTOR,军医
 *,DOGGED,顽强
 *,ENGINEER,工程师
-*,EXPLODE,自爆
+*,EXPLODE,爆炸
 *,FORWARD DEPLOYMENT,深入部署
 *,FORWARD OBSERVER,前线观测员
 *,FRENZY,狂热
@@ -1172,7 +1147,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,LIEUTENANT,尉官
 *,MARKSMANSHIP,神射手
 *,MARTIAL ARTS,武术
-*,METACHEMISTRY,超化学合成剂
+*,METACHEMISTRY,超化学合剂
 *,MINELAYER,布雷者
 *,MIMETISM,拟态
 *,MNEMONICA,心智转移
@@ -1188,7 +1163,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,MELEE WEAPONS,近战武器
 *,WEAPONRY,武器
 *,EQUIPMENT,装备
-*,PERIPHERAL,辅助设备
 *,PILOT,驾驶员
 *,PROTHEION,生命汲取
 *,REGENERATION,重生
@@ -1203,8 +1177,8 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,SPECIALIST OPERATIVE,专家行动员
 *,STRATEGIC DEPLOYMENT,战略部署
 *,STEALTH,潜行
-*,STRATEGOS L1,战略家 L1
-*,STRATEGOS L2,战略家 L2
+*,STRATEGOS L1,战略家L1
+*,STRATEGOS L2,战略家L2
 *,SUPER-JUMP,超级跳跃
 *,SURPRISE ATTACK,偷袭
 *,TACTICAL AWARENESS,战术意识
@@ -1233,9 +1207,9 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,HOLOPROJECTOR,全息投影装置
 *,MEDIKIT,医疗装置
 *,MOTORCYCLE,摩托
-*,MULTISPECTRAL VISOR L1,多光谱目镜1级
-*,MULTISPECTRAL VISOR L2,多光谱目镜2级
-*,MULTISPECTRAL VISOR L3,多光谱目镜3级
+*,MULTISPECTRAL VISOR L1,多光谱目镜L1
+*,MULTISPECTRAL VISOR L2,多光谱目镜L2
+*,MULTISPECTRAL VISOR L3,多光谱目镜L3
 *,NANOSCREEN,纳米屏障
 *,TINBOT,援护机仆
 *,X-VISOR,X目镜
@@ -1276,10 +1250,10 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,DROP BEARS,树袋熊炸弹
 *,E/M MINES,电磁地雷
 *,MINE DISPENSER,地雷抛射器
-*,MONOFILAMENT MINES,单分子纤维束地雷
+*,MONOFILAMENT MINES,单分子地雷
 *,SHOCK MINES,冲击地雷
 *,VIRAL MINES,病毒地雷
-*,WILDPARROT,狂野鹦鹉
+*,WILDPARROT,野鹦鹉
 *,AP HEAVY PISTOL,重型穿甲手枪
 *,ASSAULT PISTOL,突击手枪
 *,BREAKER PISTOL,破盾手枪
@@ -1304,7 +1278,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,BOARDING SHOTGUN,登舰霰弹枪
 *,HEAVY SHOTGUN,重型霰弹枪
 *,LIGHT SHOTGUN,轻型霰弹枪
-*,T2 BOARDING SHOTGUN,T2 登舰霰弹枪
+*,T2 BOARDING SHOTGUN,T2登舰霰弹枪
 *,VULKAN SHOTGUN,火山霰弹枪
 *,AP SNIPER RIFLE,穿甲狙击步枪
 *,K1 SNIPER RIFLE,K1 狙击步枪
@@ -1339,22 +1313,20 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,PLASMA CARBINE,等离子卡宾枪
 *,PORTABLE AUTOCANNON,单兵便携自动炮
 *,PULZAR,纳米喷射器
-*,RED FURY,赤红愤怒
+*,RED FURY,红怒机枪
 *,SEPSITOR PLUS,强效腐化器
-*,SUBMACHINE GUN,微型冲锋枪
+*,SUBMACHINE GUN,冲锋枪
 *,URAGAN MRL,飓风多管火箭发射器
 *,ZAPPER,灭虫器
 *,SNIPER RIFLE,狙击步枪
 *,RIFLE,步枪
 *,SPITFIRE,轻机枪
 *,PISTOL,手枪
-*,BS ATTACK,射击攻击
+*,BS ATTACK,射击
 *,REPEATER,中继器
 *,FIREWALL,防火墙
 *,DODGE,闪避
-*,CC ATTACK,近战攻击
-*,MINESWEEPER,扫雷器
-*,DEPLOYABLE,可部署
+*,CC ATTACK,近战
 *,CC WEAPON,近战武器
 *,HEAVY MACHINE GUN,重机枪
 *,HACKING DEVICE,黑客装置
@@ -1366,8 +1338,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Hidden Deployment,隐匿部署
 *,ITS BIKE RECON Motorized Bounty Hunters,ITS赛季摩托赏金猎人
 *,Motorized Bounty Hunters,摩托化赏金猎人
-*,DISMOUNTED,步行模式
-*,This option is only available for missions with the Bike Recon rule,本选项只有在ITS13赛季具备【载具侦查】规则的任务可用，不占用军表分数、不计入战斗组的10人或军表的15人限制计数中，在任务中本单位视作专家部队
 *,Sergeant So-ra Kwon,权素拉中士
 *,"Sergeant SO-RA KWON, JUJAK Regiment",权素拉中士，朱雀团
 *,So-ra Kwon,权素拉
@@ -1382,7 +1352,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,FULL POWER,全动力模式
 *,BATTLE-RAVAGED,战损模式
 *,MENDOZA,门多萨
-*,Padre-Inquisidor,审判神父
+*,Padre-Inquisidor,随军神父
 *,KYLE HAWKINS,凯尔·霍金斯
 *,HAWKINS,霍金斯
 *,Military Order CURATORS,修会监护使
@@ -1507,7 +1477,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,UHAHU,尤哈胡
 *,"EMILY HANDELMAN, Intel Agent",艾米丽·汉德尔曼，情报特工
 *,EMILY,艾米丽
-*,Corporate Security Unit,公司安保单位
 *,SEÑOR MASSACRE,大屠杀先生
 *,AVICENNA,阿维西那
 *,"VALKYRIE, Elite Bodyguard",瓦尔基里，精英保镖
@@ -1537,16 +1506,17 @@ type,REM,遥控机
 type,SK,侦察兵
 type,WB,突击队
 type,VH,载具
+category,Garrison Troops,守备部队
 category,Line Troops,阵线部队
 category,Spec. Trained  Troops,特殊训练部队
 category,Veteran Troops,老兵部队
 category,Elite Troops,精英部队
+category,Headquarters Troops,指挥部队
+category,Headquarters Troops / Mechanized Troops,指挥部队 / 机械化部队
+category,Mechanized Troops,机械化部队
 category,Support Troops,支援部队
 category,Character,人物
 category,Mercenary Troops,雇佣兵
-category,Mechanized Troops,机械化部队
-category,Headquarters Troops,指挥部队
-category,Headquarters Troops / Mechanized Troops,指挥部队 / 机械化部队
 order,REGULAR,正规
 order,IRREGULAR,非正规
 order,LIEUTENANT,指挥官
@@ -1567,7 +1537,7 @@ skill,No Wound Incapacitation,无视伤痛
 equip,Biometric Visor,生体识别目镜
 equip,ECM: Hacker,ECM：黑客
 equip,ECM: Guided,ECM：制导
-equip,Deactivator,灭虫器
+equip,Deactivator,关闭器
 equip,Deployable Repeater,可部署中继器
 weapon,Combi Rifle,复合步枪
 weapon,Light Shotgun,轻型霰弹枪
@@ -1591,8 +1561,8 @@ extra,+1B,+1B
 extra,"+2""",+2”
 extra,"+4""",+4”
 extra,"+8""",+8”
-char,Deepspace,深空
-char,Surface,地表
+char,Deepspace,深空部队
+char,Surface,地表部队
 equip,Bangbomb,闪光弹
 equip,Deployable Cover,可部署掩体
 equip,TinBot: Firewall,援护机仆：防火墙
@@ -1717,3 +1687,74 @@ weapon,PARA Mine,瘫痪地雷
 weapon,Redfury AP,穿甲红怒机枪
 weapon,Shock Mine,冲击地雷
 weapon,Thunderbolt,雷霆
+char,Mechanical Transmutation,机械变形
+extra,+1 Command Token,+1指挥点
+extra,2,2
+extra,Ad. Launcher Rifle,黏胶步枪
+extra,Auto,自动
+extra,BTS,BTS
+extra,Continous Damage,持续伤害
+extra,Enhanced,增强
+extra,Isolated,孤立
+extra,PH=12,PH=12
+extra,PH=13,PH=13
+extra,T2,T2
+extra,UPGRADE: Cybermask,升级：电子伪装
+extra,WIP=14,WIP=14
+fireteam,ALEPH's Support Fireteams,阿勒夫支援火力组
+fireteam,CSU,CSU
+fireteam,Celestial Guard Fireteams,天卫火力组
+fireteam,Dakini,空行母
+fireteam,Fast Attack Fireteams,快攻火力组
+fireteam,Imperial Agent Crane Rank,鹤阶帝国特工
+fireteam,Kuang Shi Fireteam,僵尸火力组
+fireteam,Wu Míng,无名
+fireteam,Wu Míng Fireteams,无名火力组
+fireteam,Zhian,治安
+fireteam,Zhian (Law&Order) Fireteams,治安火力组
+profile,--,--
+profile,BAYARA,巴牙喇
+profile,CSU,CSU
+profile,DRAGON LORD,龙主
+profile,FĒIQUÁN,飞拳
+profile,JÌNWÈI,禁卫
+profile,JĪNYÀO,金鹞
+profile,KOGA NINJA,甲贺忍者
+profile,LONGWANG PILOT,龙王驾驶员
+profile,LÓNGWÁNG,龙王
+profile,PANGGULING FTO,穿山甲FTO
+profile,QIÁNFĒNG,前锋
+profile,QÍSHÌ,骑士
+profile,SFORZA FTO,斯福尔扎FTO
+profile,SHÀNGDIÀO,上吊
+profile,SHÉNJI,神机
+profile,Yáokòng SON-BAE FTO,遥控 老兵FTO
+skill,Aerial,滞空
+skill,Limited Cover,有限掩体
+skill,Tech-recovery,技术复原
+unit,Authorized Bounty Hunters,授权赏金猎人
+unit,Bayara Palace Guard,巴牙喇宫廷卫
+unit,CHAĪYÌ Yáokòng (Messenger Remote),遥控 差役
+unit,"CSU, Corporate Security Unit",CSU，公司安保单位
+unit,"Dragon Lords, Imperial Service Judges",
+unit,"Father Lucien Sforza, Authorized Bounty Hunter",卢西恩·斯福尔扎神父，授权赏金猎人
+unit,Fēiquán Imperial Tactical Wing,
+unit,Guǐ Fēng Xi Zhuang,
+unit,HÙSÒNG Yáokòng (Escort Remote),遥控 护送
+unit,"IMPERIAL AGENT, Pheasant Rank (Yě Jī)",
+unit,"IMPERIAL AGENTS, Crane Rank (Xiān Hè)",
+unit,Imperial Vanguard Qiánfēng,前锋
+unit,Jinyao Drop Unit,金鹞空降部队
+unit,"Jìnwèi, the Forbidden Troops",禁卫
+unit,Koga Ninjas,甲贺忍者
+unit,"Lóngwáng, Imperial TAG Police",
+unit,"Major Lunah, ex-Aristeia! Sniper",
+unit,"Qíshì, StateEmpire TAG Support Pilots",
+unit,"SHÉNJI YÍNG, Divine Machine Battalion",
+unit,Shàngdiào Ancillary Remote Unit,
+unit,"Shénjī Yíng, Divine Machine Battalion",
+unit,Son-Bae Yáokòng,
+unit,"Táowù, Mastermind and schemer",
+unit,WÈIBĪNG Yáokòng (Guardian Remote),
+unit,WÚ MÍNG Assault Corps (Those Without Name),无名突击队
+weapon,Silenced Pistol,消音手枪
