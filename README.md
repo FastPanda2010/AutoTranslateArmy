@@ -7,7 +7,7 @@
 ## 快速开始
 
 ```powershell
-& "C:\Users\zhaoj\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" translate_army.py samples\703.json output\703-cn.docx --glossary translations.csv --missing output\missing.csv
+& python3 translate_army.py “你从army网页取得的json” “你想输出路径/文件名” --glossary translations.csv --missing output\missing.csv
 ```
 
 生成结果：
