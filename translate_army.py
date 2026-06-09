@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import io
 import json
 import re
@@ -23,6 +24,7 @@ from docx.shared import Cm, Pt, RGBColor
 DOC_FONT = "Microsoft YaHei Light"
 LOGO_WIDTH = Cm(2.0)
 ASSET_DIR = Path("Asset")
+LOGO_CACHE_DIR = Path(".cache") / "logos"
 ORDER_ICON_WIDTH = Pt(10)
 ORDER_ICON_FILES = {
     "REGULAR": "regular.svg",
@@ -494,6 +496,13 @@ def fetch_logo_png(logo_url: str) -> bytes | None:
     """
     if not logo_url:
         return None
+    cache_path = LOGO_CACHE_DIR / f"{hashlib.sha256(logo_url.encode('utf-8')).hexdigest()}.png"
+    if cache_path.exists():
+        try:
+            return cache_path.read_bytes()
+        except Exception:
+            pass
+
     try:
         svg_bytes = urlopen(logo_url, timeout=8).read()
     except Exception:
@@ -502,9 +511,17 @@ def fetch_logo_png(logo_url: str) -> bytes | None:
     try:
         import resvg_py
 
-        return resvg_py.svg_to_bytes(svg_bytes.decode("utf-8"))
+        png_bytes = resvg_py.svg_to_bytes(svg_bytes.decode("utf-8"))
     except Exception:
         return None
+
+    try:
+        LOGO_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        cache_path.write_bytes(png_bytes)
+    except Exception:
+        pass
+    return png_bytes
+
 
 def set_logo_cell(cell, logo_url: str | None) -> None:
     """写入单位 logo 单元格。"""
@@ -590,7 +607,7 @@ def add_unit_intro(doc: Document, unit: dict[str, Any], tr: Translator) -> None:
     english = unit.get("isc") or unit.get("name", "")
 
     paragraph = doc.add_paragraph()
-    paragraph.paragraph_format.space_before = Pt(6)
+    paragraph.paragraph_format.space_before = Pt(0)
     paragraph.paragraph_format.space_after = Pt(3)
     title_run = paragraph.add_run(title)
     title_run.bold = True

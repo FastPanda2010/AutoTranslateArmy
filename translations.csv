@@ -451,7 +451,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,JOHN HAWKWOOD,约翰·霍克伍德
 *,Mercenary Officer,佣兵军官
 *,ZHANSHI,战士
-*,SUN TZE,孙武子
+*,SUN TZE,孙子
 *,YÁOZĂO,遥蚤
 *,NINJA,忍者
 *,Line Kazaks,哥萨克前线部队
@@ -1002,7 +1002,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Mobile Brigada,机动旅
 *,Tunguska Interventors,通古斯卡干涉者
 *,'Iguana' Squadron,鬣蜥中队
-*,'Iguana' Operator,鬣蜥机师
+*,'Iguana' Operator,鬣蜥操作员
 *,Stempler Zonds,攀爬探机
 *,Reaktion Zonds,反应探机
 *,Vertigo Zonds,眩晕探机
@@ -1621,7 +1621,7 @@ fireteam,Geckos Surface Fireteams,壁虎地表火力组
 fireteam,Surface Armored Fireteams,地表装甲火力组
 fireteam,Wildcards Deepspace,深空自由人
 fireteam,Wildcards Surface,地表自由人
-profile,ALGUACIL GATTA,法警GATTA
+profile,ALGUACIL GATTA,法警 雌猫部队
 profile,BAMBABOT-1,班巴遥控机-1
 profile,BAMBABOT-2,班巴遥控机-2
 profile,BAMBADROID,班巴机器人
@@ -1738,8 +1738,8 @@ unit,CHAĪYÌ Yáokòng (Messenger Remote),遥控 差役
 unit,"CSU, Corporate Security Unit",CSU，公司安保单位
 unit,"Dragon Lords, Imperial Service Judges",
 unit,"Father Lucien Sforza, Authorized Bounty Hunter",卢西恩·斯福尔扎神父，授权赏金猎人
-unit,Fēiquán Imperial Tactical Wing,
-unit,Guǐ Fēng Xi Zhuang,
+unit,Fēiquán Imperial Tactical Wing,飞拳，帝国战术联队
+unit,Guǐ Fēng Xi Zhuang,鬼风 习壵
 unit,HÙSÒNG Yáokòng (Escort Remote),遥控 护送
 unit,"IMPERIAL AGENT, Pheasant Rank (Yě Jī)",
 unit,"IMPERIAL AGENTS, Crane Rank (Xiān Hè)",
@@ -1747,14 +1747,14 @@ unit,Imperial Vanguard Qiánfēng,前锋
 unit,Jinyao Drop Unit,金鹞空降部队
 unit,"Jìnwèi, the Forbidden Troops",禁卫
 unit,Koga Ninjas,甲贺忍者
-unit,"Lóngwáng, Imperial TAG Police",
+unit,"Lóngwáng, Imperial TAG Police",龙王，帝国机甲警察
 unit,"Major Lunah, ex-Aristeia! Sniper",
-unit,"Qíshì, StateEmpire TAG Support Pilots",
-unit,"SHÉNJI YÍNG, Divine Machine Battalion",
-unit,Shàngdiào Ancillary Remote Unit,
-unit,"Shénjī Yíng, Divine Machine Battalion",
-unit,Son-Bae Yáokòng,
+unit,"Qíshì, StateEmpire TAG Support Pilots",骑士，帝国机甲支援驾驶员
+unit,Shàngdiào Ancillary Remote Unit,上吊远程辅助单位
+unit,"Shénjī Yíng, Divine Machine Battalion",神机营
+unit,Son-Bae Yáokòng,遥控 老兵
 unit,"Táowù, Mastermind and schemer",
 unit,WÈIBĪNG Yáokòng (Guardian Remote),
 unit,WÚ MÍNG Assault Corps (Those Without Name),无名突击队
 weapon,Silenced Pistol,消音手枪
+profile,JAZZ Hacker & BILLIE,爵士黑客&比莉
