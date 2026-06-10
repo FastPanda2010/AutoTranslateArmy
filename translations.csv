@@ -445,8 +445,8 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,CHIEF MECH-ENGINEER CHUNG-HEE JEONG,工兵主任郑昌熙
 *,CHUNG-HEE JEONG,郑昌熙
 *,CHIEF JEONG,郑主任
-*,Imperial Agent ADIL Mehmut (Crane Rank Armor),阿迪力（鹤阶装甲）
-*,ADIL Crane Rank,阿迪力鹤阶
+*,Imperial Agent ADIL Mehmut (Crane Rank Armor),帝国特工阿迪力·麦合木提（鹤阶装甲）
+*,ADIL Crane Rank,鹤阶阿迪力
 *,ADIL,阿迪力
 *,JOHN HAWKWOOD,约翰·霍克伍德
 *,Mercenary Officer,佣兵军官
@@ -1519,7 +1519,6 @@ category,Character,人物
 category,Mercenary Troops,雇佣兵
 order,REGULAR,正规
 order,IRREGULAR,非正规
-order,LIEUTENANT,指挥官
 order,TACTICAL,战术感知
 skill,Courage,勇气
 skill,Mimetism,拟态
@@ -1715,7 +1714,7 @@ fireteam,Zhian (Law&Order) Fireteams,治安火力组
 profile,--,--
 profile,BAYARA,巴牙喇
 profile,CSU,CSU
-profile,DRAGON LORD,龙主
+profile,DRAGON LORD,龙领主
 profile,FĒIQUÁN,飞拳
 profile,JÌNWÈI,禁卫
 profile,JĪNYÀO,金鹞
@@ -1736,25 +1735,48 @@ unit,Authorized Bounty Hunters,授权赏金猎人
 unit,Bayara Palace Guard,巴牙喇宫廷卫
 unit,CHAĪYÌ Yáokòng (Messenger Remote),遥控 差役
 unit,"CSU, Corporate Security Unit",CSU，公司安保单位
-unit,"Dragon Lords, Imperial Service Judges",
+unit,"Dragon Lords, Imperial Service Judges",龙领主，帝国特勤法官
 unit,"Father Lucien Sforza, Authorized Bounty Hunter",卢西恩·斯福尔扎神父，授权赏金猎人
 unit,Fēiquán Imperial Tactical Wing,飞拳，帝国战术联队
 unit,Guǐ Fēng Xi Zhuang,鬼风 习壵
 unit,HÙSÒNG Yáokòng (Escort Remote),遥控 护送
-unit,"IMPERIAL AGENT, Pheasant Rank (Yě Jī)",
-unit,"IMPERIAL AGENTS, Crane Rank (Xiān Hè)",
+unit,"IMPERIAL AGENT, Pheasant Rank (Yě Jī)",雉阶帝国特工
+unit,"IMPERIAL AGENTS, Crane Rank (Xiān Hè)",鹤阶帝国特工
 unit,Imperial Vanguard Qiánfēng,前锋
 unit,Jinyao Drop Unit,金鹞空降部队
 unit,"Jìnwèi, the Forbidden Troops",禁卫
 unit,Koga Ninjas,甲贺忍者
 unit,"Lóngwáng, Imperial TAG Police",龙王，帝国机甲警察
-unit,"Major Lunah, ex-Aristeia! Sniper",
+unit,"Major Lunah, ex-Aristeia! Sniper",卢娜少校，前竞技场狙击手
 unit,"Qíshì, StateEmpire TAG Support Pilots",骑士，帝国机甲支援驾驶员
 unit,Shàngdiào Ancillary Remote Unit,上吊远程辅助单位
 unit,"Shénjī Yíng, Divine Machine Battalion",神机营
 unit,Son-Bae Yáokòng,遥控 老兵
-unit,"Táowù, Mastermind and schemer",
-unit,WÈIBĪNG Yáokòng (Guardian Remote),
+unit,"Táowù, Mastermind and schemer",梼杌，幕后黑手与阴谋家
+unit,WÈIBĪNG Yáokòng (Guardian Remote),遥控 卫兵
 unit,WÚ MÍNG Assault Corps (Those Without Name),无名突击队
 weapon,Silenced Pistol,消音手枪
 profile,JAZZ Hacker & BILLIE,爵士黑客&比莉
+extra,Kuang Shi,僵尸
+fireteam,Celestial Guard,天卫
+fireteam,Kuang Shi,僵尸
+profile,BÀO TROOP,豹兵
+profile,CELESTIAL GUARD,天卫
+profile,CELESTIAL GUARD Monitor,天卫监军
+profile,CRANE AGENT,鹤阶特工
+profile,KUANG SHI,僵尸
+profile,PHEASANT IMPERIAL AGENT,雉阶特工
+profile,SON-BAE Yaókòng,遥控 老兵
+profile,SÙ-JIÀN,速剑
+profile,ZHÀNYING,战鹰
+unit,Celestial Guard,天卫
+unit,Celestial Guard Monitor,天卫监军
+unit,Dikpala Tacbots,方位护法战术机器人
+unit,"Imperial Agents, Crane Rank",鹤阶帝国特工
+unit,"Imperial Agents, Pheasant Rank",雉阶帝国特工
+unit,JĪNYÀO Drop Unit,金鹞空降部队
+unit,Kuang Shi,僵尸
+unit,Ninjas,忍者
+unit,"SHÉNJI YÍNG, Divine Machine Battalion",神机营
+unit,SÙ-JIÀN Immediate Action Unit,速剑快速行动部队
+unit,ZHÀNYĪNG Imperial Agents,战鹰帝国特工

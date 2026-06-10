@@ -18,13 +18,14 @@ from docx.enum.table import WD_TABLE_ALIGNMENT, WD_CELL_VERTICAL_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Cm, Pt, RGBColor
+from docx.shared import Cm, Emu, Pt, RGBColor
 
 
 DOC_FONT = "Microsoft YaHei Light"
 LOGO_WIDTH = Cm(2.0)
 ASSET_DIR = Path("Asset")
 LOGO_CACHE_DIR = Path(".cache") / "logos"
+UNIT_IMAGE_DIR = ASSET_DIR / "unit_images"
 ORDER_ICON_WIDTH = Pt(10)
 ORDER_ICON_FILES = {
     "REGULAR": "regular.svg",
@@ -538,7 +539,64 @@ def set_logo_cell(cell, logo_url: str | None) -> None:
     cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
 
-def set_unit_header_text(cell, chinese_name: str, english_name: str) -> None:
+def sanitize_unit_image_name(name: str) -> str:
+    """Return a stable Windows-safe filename stem for extracted unit images."""
+    stem = re.sub(r'[<>:"/\\|?*\x00-\x1f]', "_", normalize(name))
+    stem = re.sub(r"\s+", " ", stem).strip(" .")
+    return stem[:120] or "unit"
+
+
+def _unit_image_entry(image_dir: Path, entry: dict[str, Any]) -> dict[str, Any] | None:
+    path = image_dir / entry.get("file", "")
+    if not path.exists():
+        return None
+    return {
+        "path": path,
+        "width_emu": int(entry.get("width_emu") or 0),
+        "height_emu": int(entry.get("height_emu") or 0),
+    }
+
+
+def load_unit_images(image_set: str) -> dict[str, list[list[dict[str, Any]]]]:
+    image_dir = UNIT_IMAGE_DIR / image_set
+    manifest_path = image_dir / "manifest.json"
+    if not manifest_path.exists():
+        return {}
+
+    raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+    result: dict[str, list[list[dict[str, Any]]]] = {}
+
+    if raw.get("tables"):
+        for table in raw.get("tables", []):
+            english_name = table.get("english_name", "")
+            valid_entries = [
+                parsed
+                for entry in table.get("images", [])
+                if (parsed := _unit_image_entry(image_dir, entry)) is not None
+            ]
+            if english_name and valid_entries:
+                result.setdefault(english_name, []).append(valid_entries)
+        return result
+
+    for english_name, entries in raw.get("units", {}).items():
+        valid_entries = [
+            parsed
+            for entry in entries
+            if (parsed := _unit_image_entry(image_dir, entry)) is not None
+        ]
+        if valid_entries:
+            result[english_name] = [valid_entries]
+    return result
+
+
+def next_unit_images(unit_images: dict[str, list[list[dict[str, Any]]]] | None, english_name: str) -> list[dict[str, Any]]:
+    groups = (unit_images or {}).get(english_name)
+    if not groups:
+        return []
+    return groups.pop(0)
+
+
+def set_unit_header_text(cell, chinese_name: str, english_name: str, unit_images: list[dict[str, Any]] | None = None) -> None:
     """写入单位表左侧表头：中文名左对齐大字，英文名右对齐小字。"""
     cell.text = ""
 
@@ -549,6 +607,17 @@ def set_unit_header_text(cell, chinese_name: str, english_name: str) -> None:
     # chinese_run.bold = True
     chinese_run.font.size = Pt(14)
     chinese_run.font.color.rgb = RGBColor(0, 0, 0)
+
+    for image in unit_images or []:
+        image_paragraph = cell.add_paragraph()
+        image_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        image_paragraph.paragraph_format.space_after = Pt(0)
+        image_run = image_paragraph.add_run()
+        width = image.get("width_emu") or None
+        if width:
+            image_run.add_picture(str(image["path"]), width=Emu(width))
+        else:
+            image_run.add_picture(str(image["path"]), width=Cm(4.0))
 
     english_paragraph = cell.add_paragraph()
     english_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
@@ -636,7 +705,13 @@ def should_add_unit_options_table(unit: dict[str, Any]) -> bool:
     return True
 
 
-def add_unit_options_table(doc: Document, unit: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
+def add_unit_options_table(
+    doc: Document,
+    unit: dict[str, Any],
+    maps: dict[str, dict[int, dict[str, Any]]],
+    tr: Translator,
+    unit_images: dict[str, list[list[dict[str, Any]]]] | None = None,
+) -> None:
     """渲染只有配置行的父单位表，用于 Jazz & Billie 这类组队单位。"""
     options = unit.get("options") or []
     if not options:
@@ -650,7 +725,7 @@ def add_unit_options_table(doc: Document, unit: dict[str, Any], maps: dict[str, 
     title = tr.translate("unit", unit.get("isc") or unit.get("name", ""))
     english = unit.get("isc") or unit.get("name", "")
     title_cell = merge_row(table.rows[0], 0, 19)
-    set_unit_header_text(title_cell, title, english)
+    set_unit_header_text(title_cell, title, english, next_unit_images(unit_images, english))
     set_cell_shading(title_cell, "FFFFFF")
 
     add_option_header_row(table.rows[1])
@@ -821,7 +896,14 @@ def add_special_char_badges(doc: Document, profile: dict[str, Any], maps: dict[s
         set_run_shading(run, fill)
 
 
-def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
+def add_unit_table(
+    doc: Document,
+    unit: dict[str, Any],
+    pg: dict[str, Any],
+    maps: dict[str, dict[int, dict[str, Any]]],
+    tr: Translator,
+    unit_images: dict[str, list[list[dict[str, Any]]]] | None = None,
+) -> None:
     """把一个 profileGroup 渲染成 Word 中的一张单位表。
 
     Infinity 官方 JSON 的层级大致是：
@@ -874,7 +956,7 @@ def add_unit_table(doc: Document, unit: dict[str, Any], pg: dict[str, Any], maps
     left = merge_row(header_top, 0, 15).merge(merge_row(header_bottom, 0, 15))
     category_cell = merge_row(header_top, 16, 19)
     logo_cell = merge_row(header_bottom, 16, 19)
-    set_unit_header_text(left, isc, english)
+    set_unit_header_text(left, isc, english, next_unit_images(unit_images, english))
     set_cell_text(category_cell, cat, bold=True, size=9)
     set_logo_cell(logo_cell, profile.get("logo") or unit.get("logo"))
     set_cell_shading(left, "FFFFFF")
@@ -1048,6 +1130,7 @@ def generate_docx(
     faction_id = infer_faction_id(json_path, data)
     tr = Translator.from_path(glossary_path)
     maps = build_filter_maps(data)
+    unit_images = load_unit_images(json_path.stem)
     doc = Document()
     setup_document(doc, f"Infinity 中文军表 {data.get('version', '')}".strip())
     add_fireteam_chart(doc, data.get("fireteamChart"), tr)
@@ -1069,9 +1152,9 @@ def generate_docx(
         if len(profile_groups) > 1 and normalize(unit.get("notes") or ""):
             add_unit_intro(doc, unit, tr)
         if should_add_unit_options_table(unit):
-            add_unit_options_table(doc, unit, maps, tr)
+            add_unit_options_table(doc, unit, maps, tr, unit_images)
         for pg in unit.get("profileGroups", []):
-            add_unit_table(doc, unit, pg, maps, tr)
+            add_unit_table(doc, unit, pg, maps, tr, unit_images)
         doc.add_page_break()
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
