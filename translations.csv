@@ -1706,3 +1706,83 @@ unit,Tarksia Interception Wing,多罗叉航空拦截联队
 unit,Yaksha Tacbots,夜叉战术机器人
 weapon,AP Thunderbolt,穿甲雷霆
 weapon,MULTI Red Fury,多用途红怒机枪
+extra,+6,+6
+extra,-8,-8
+extra,Cyberplug,赛博器官
+extra,Jungle,丛林
+extra,PH=14,PH=14
+extra,PH=16,PH=16
+extra,Stingers,
+extra,UPGRADE: Carbonite (+1 B),升级：急冻(+1B)
+extra,UPGRADE: Firewall (-6),升级：防火墙(-6)
+extra,UPGRADE: Trinity,升级：三位一体
+extra,Viral,病毒
+fireteam,Control Fireteams,控制火力组
+fireteam,Dragon,龙
+fireteam,Dragon Fireteams,龙火力组
+fireteam,FTO-2,FTO-2
+fireteam,Harbingers,预兆者
+fireteam,Harbingers Fireteams,预兆者火力组
+fireteam,Heavies Fireteams,重装兵火力组
+fireteam,Research,研究
+fireteam,Research Fireteams,研究火力组
+fireteam,Shadow,影
+fireteam,Shadow Fireteams,影火力组
+fireteam,Team Achilles Fireteams,阿喀琉斯小队火力组
+fireteam,Tekdraken,机械龙
+profile,BLACKHEART,黑心
+profile,CLIFF-JUMPER,跳崖者
+profile,CONTRABANDOLERO,走私者
+profile,DRAKIOS FTO,德拉基奥斯FTO
+profile,GEARHEAD,齿轮狂徒
+profile,GEARHEAD FTO,齿轮狂徒FTO
+profile,GLYPH WARCOR,符印战地记者
+profile,HARBINGER,预兆者
+profile,IRONSIDE,铁躯
+profile,JUGGERNAUT,巨无霸
+profile,KISS! (Repeater),KISS!(中继器)
+profile,KO DALI FTO,寇达莉FTO
+profile,KO DALI FTO-2,寇达莉FTO-2
+profile,KYDOIMOS,库多摩斯
+profile,MED-TECH OBSIDON,黑曜石医疗维修体
+profile,PANDORA,潘多拉
+profile,PATROCLUS FTO,帕特洛克罗斯FTO
+profile,PUZZLER,迷惑者
+profile,RAINDANCER,雨舞者
+profile,RAINDANCER FTO,雨舞者FTO
+profile,RANTER,咆哮者
+profile,SKYHOUND,天空猎犬
+profile,STALDRON,希塔德隆
+profile,STEELJAWS,钢颚
+profile,STINGER,毒牙
+profile,TEUCER FTO,透克罗斯FTO
+profile,WRAITH-1,幽灵1号
+profile,WRAITH-1  FTO,幽灵1号FTO
+skill,Cyberplug,赛博接口
+unit,BIT & KISS!,比特与KISS!
+unit,"CLIFF-JUMPERS, Extreme Jump Unit",跳崖者，极限突降部队
+unit,"CONTRABANDOLEROS, Resource Extraction Team",走私者，资源回收小队
+unit,"Cube Jäger, Mercenary Recoverers",立方猎手，佣兵回收者
+unit,"DRAKIOS, Team Achilles' dragon",德拉基奥斯，阿基里斯小队之龙
+unit,"GEARHEADS, Tech Savant Team",齿轮狂徒，科技精英小队
+unit,"GLYPH WARCORS, Ur Hegemony Journalists",符印战地记者，厄尔霸权报道团
+unit,"HARBINGERS, New Mankind Defense Infantry",预兆者，新人类防卫步兵
+unit,IRONSIDES Heavy Mobile Regiment,铁躯重装机动军团
+unit,"JUGGERNAUTS, Armored Assault Cavalry",巨无霸，装甲突击骑兵
+unit,Kydoimos,库多摩斯
+unit,"PANDORA, Team Achilles' Field Researcher",潘多拉，阿基里斯小队的实地研究员
+unit,"PATROCLUS, Team Achilles' shadow",帕特洛克罗斯，阿基里斯小队之影
+unit,"RAINDANCERS, Light Assault Company",雨舞者，轻装突击连队
+unit,"Sartroids: Puzzlers, Cyberplugged Forward Remotes",萨特机兵：迷惑者，赛博接入突进无人机
+unit,"SARTROIDS: RANTERS, Cyberplugged Attack Remotes",萨特机兵：咆哮者，赛博接入攻击无人机
+unit,"SKYHOUNDS, Combat and Recon Air Squadron",天空猎犬，战斗侦察飞行中队
+unit,"STINGERS, Security Tactical Unit",毒牙，安保战术部队
+unit,Tekdrakens: Blackhearts,机械龙：黑心
+unit,Tekdrakens: Steeljaws,机械龙：钢颚
+unit,"TEUCER, Team Achilles' shooter",透克罗斯，阿基里斯小队的射手
+unit,"WRAITH-1, Clandestine Action Group",幽灵1号，隐秘行动小组
+weapon,Armed Turret (Marksman R.),武装炮塔(神射手步枪)
+profile,SARTROIDS: PUZZLERS - AUTONOMOUS PROFILE,萨特机兵：迷惑者 - 自主行动
+profile,SARTROIDS: PUZZLERS - CONNECTED PROFILE,萨特机兵：迷惑者 - 链接操控
+profile,SARTROIDS: RANTERS - AUTONOMOUS PROFILE,萨特机兵：咆哮者 - 自主行动
+profile,SARTROIDS: RANTERS - CONNECTED PROFILE,萨特机兵：咆哮者 - 链接操控

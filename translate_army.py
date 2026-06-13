@@ -718,9 +718,24 @@ def add_note_paragraph(doc: Document, note: str | None, tr: Translator, *, label
     text_run.font.size = Pt(9)
 
 
+def translated_unit_intro_title(unit: dict[str, Any], tr: Translator) -> str:
+    title_source = unit.get("isc") or unit.get("name", "")
+    title = tr.translate("unit", title_source, record_missing=False)
+    if title != title_source:
+        return title
+
+    fallback_source = unit.get("name", "")
+    if fallback_source and normalize(fallback_source) != normalize(title_source):
+        fallback_title = tr.translate("unit", fallback_source, record_missing=False)
+        if fallback_title != fallback_source:
+            return fallback_title
+
+    return tr.translate("unit", title_source)
+
+
 def add_unit_intro(doc: Document, unit: dict[str, Any], tr: Translator) -> None:
     """多子单位条目前的总标题和总 note，例如 POST-HUMANS。"""
-    title = tr.translate("unit", unit.get("isc") or unit.get("name", ""))
+    title = translated_unit_intro_title(unit, tr)
     english = unit.get("isc") or unit.get("name", "")
 
     paragraph = doc.add_paragraph()
@@ -770,7 +785,7 @@ def add_unit_options_table(
     style_table(table)
     set_table_column_widths(table, UNIT_TABLE_COLUMN_WIDTHS)
 
-    title = tr.translate("unit", unit.get("isc") or unit.get("name", ""))
+    title = translated_unit_intro_title(unit, tr)
     english = unit.get("isc") or unit.get("name", "")
     title_cell = merge_row(table.rows[0], 0, 19)
     set_unit_header_text(title_cell, title, english, next_unit_images(unit_images, english))
@@ -983,15 +998,15 @@ def add_unit_table(
     options = pg.get("options") or []
     add_special_char_badges(doc, profile, maps, tr)
 
-    # 固定前 8 行为单位信息；后面每个 option 是一条配置/武器行。
-    row_count = 8 + max(1, len(options))
+    # 前 2 行为单位信息；中间按 profile 重复属性/特性/装备/技能；后面是配置/武器行。
+    profile_section_rows = 6 if len(profiles) > 1 else 5
+    row_count = 2 + len(profiles) * profile_section_rows + 1 + max(1, len(options))
     table = doc.add_table(rows=row_count, cols=20)
     style_table(table)
     set_table_column_widths(table, UNIT_TABLE_COLUMN_WIDTHS)
 
     # pg.isc 通常是资料组的英文显示名；unit.name 往往是全大写内部名。
     # 这里优先使用 pg.isc 翻译成中文，同时保留英文名作为第二行，方便对照官方。
-    title = tr.translate("unit", unit.get("name", ""))
     isc = tr.translate("unit", pg.get("isc") or unit.get("isc") or unit.get("name", ""))
     english = pg.get("isc") or unit.get("isc") or unit.get("name", "")
 
@@ -1011,54 +1026,83 @@ def add_unit_table(
     set_cell_shading(category_cell, "FFFFFF")
     set_cell_shading(logo_cell, "FFFFFF")
 
-    # profile["str"] 为 true 时，官方资料用 STR；否则用 VITA。
-    # 其他属性标题固定来自 ATTR_LABELS，保证所有单位表列顺序一致。
-    labels = [label if key != "w" else wound_label(profile) for key, label in ATTR_LABELS]
+    row_idx = 2
+    for current_profile in profiles:
+        row_idx = add_profile_section_rows(
+            table,
+            row_idx,
+            current_profile,
+            maps,
+            tr,
+            show_profile_title=len(profiles) > 1,
+        )
 
-    # 属性标题行和属性数值行。
-    for index, label in enumerate(labels):
-        cell = merge_row(table.rows[2], index * 2, index * 2 + 1)
-        set_cell_text(cell, label, bold=True, size=7)
-        set_cell_shading(cell, "D9EAF7")
-    for index, value in enumerate(profile_attr_values(profile)):
-        cell = merge_row(table.rows[3], index * 2, index * 2 + 1)
-        set_cell_text(cell, value, bold=True, size=8)
-
-    # profile_traits 会把 type id 和 chars id 翻译后拼起来。
-    # 例如 type=1, chars=[3,5,21] 可能显示成“轻步兵，正规军，可入侵”。
-    traits = profile_traits(profile, maps, tr)
-
-    # 特性行、装备行、技能行都使用左侧标签 + 右侧内容的结构。
-    row = table.rows[4]
-    set_cell_text(merge_row(row, 0, 19), traits, size=8)
-    #set_cell_text(merge_row(row, 2, 9), "", size=8)
-
-    # 装备和技能在 JSON 中都是 id 引用；join_refs 会按 order 排序、查 filters 名称、
-    # 套用 translations.csv，并把 extra 修正写成中文括号。
-    equipment = join_refs(profile.get("equip", []), "equip", maps, tr)
-    row = table.rows[5]
-    set_cell_text(merge_row(row, 0, 3), "装备", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(merge_row(row, 4, 19), equipment, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-
-    skills = join_refs(profile.get("skills", []), "skills", maps, tr)
-    row = table.rows[6]
-    set_cell_text(merge_row(row, 0, 3), "特殊技能", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-    set_cell_text(merge_row(row, 4, 19), skills, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
-
-    add_option_header_row(table.rows[7])
+    add_option_header_row(table.rows[row_idx])
+    row_idx += 1
 
     if not options:
         # 极少数资料没有 options，此时用 profile 自身数据生成一行占位配置。
         options = [{"name": profile.get("name", ""), "weapons": profile.get("weapons", []), "swc": "-", "points": "-"}]
 
-    for row_idx, option in enumerate(options, start=8):
-        add_option_row(table.rows[row_idx], option, maps, tr)
+    for option_offset, option in enumerate(options):
+        option_row_idx = row_idx + option_offset
+        add_option_row(table.rows[option_row_idx], option, maps, tr)
         
-        if row_idx % 2 == 1:
-            for cell in table.rows[row_idx].cells:
+        if option_offset % 2 == 1:
+            for cell in table.rows[option_row_idx].cells:
                 set_cell_shading(cell, "EFEEEE")
 
     add_note_paragraph(doc, pg.get("notes") or profile.get("notes"), tr)
+
+
+def profile_section_title(profile: dict[str, Any], tr: Translator) -> str:
+    """Return the display text for a profile-specific stat block title."""
+    english = profile.get("isc") or profile.get("name", "")
+    title = tr.translate("profile", english)
+    if english and title != english:
+        return f"{title}\n{english}"
+    return title
+
+
+def add_profile_section_rows(
+    table,
+    start_row: int,
+    profile: dict[str, Any],
+    maps: dict[str, dict[int, dict[str, Any]]],
+    tr: Translator,
+    *,
+    show_profile_title: bool,
+) -> int:
+    if show_profile_title:
+        title_cell = merge_row(table.rows[start_row], 0, 19)
+        set_cell_text(title_cell, profile_section_title(profile, tr), bold=True, size=8)
+        set_cell_shading(title_cell, "E7E6E6")
+        start_row += 1
+
+    labels = [label if key != "w" else wound_label(profile) for key, label in ATTR_LABELS]
+    for index, label in enumerate(labels):
+        cell = merge_row(table.rows[start_row], index * 2, index * 2 + 1)
+        set_cell_text(cell, label, bold=True, size=7)
+        set_cell_shading(cell, "D9EAF7")
+
+    for index, value in enumerate(profile_attr_values(profile)):
+        cell = merge_row(table.rows[start_row + 1], index * 2, index * 2 + 1)
+        set_cell_text(cell, value, bold=True, size=8)
+
+    traits = profile_traits(profile, maps, tr)
+    set_cell_text(merge_row(table.rows[start_row + 2], 0, 19), traits, size=8)
+
+    equipment = join_refs(profile.get("equip", []), "equip", maps, tr)
+    row = table.rows[start_row + 3]
+    set_cell_text(merge_row(row, 0, 3), "装备", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 4, 19), equipment, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+
+    skills = join_refs(profile.get("skills", []), "skills", maps, tr)
+    row = table.rows[start_row + 4]
+    set_cell_text(merge_row(row, 0, 3), "特殊技能", bold=True, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_text(merge_row(row, 4, 19), skills, size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+
+    return start_row + 5
 
 
 def add_option_header_row(row) -> None:
@@ -1194,7 +1238,7 @@ def generate_docx(
     for _, unit in included_units:
         # 一个 unit 下可能有多个 profileGroup，例如主单位和附属遥控单位。
         profile_groups = unit.get("profileGroups", [])
-        if len(profile_groups) > 1 and normalize(unit.get("notes") or ""):
+        if len(profile_groups) > 1:
             add_unit_intro(doc, unit, tr)
         if should_add_unit_options_table(unit):
             add_unit_options_table(doc, unit, maps, tr, unit_images)

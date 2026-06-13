@@ -1,0 +1,380 @@
+{
+  "source_docx": "output\\605-cn.docx",
+  "source_json": "samples\\605.json",
+  "tables": [
+    {
+      "english_name": "Unidron Batroids",
+      "images": [
+        {
+          "file": "Unidron Batroids.png",
+          "width_emu": 3550920,
+          "height_emu": 2354580,
+          "sha256": "a7b98a112cbba958a2d84a0c845789576358023eb0ba474bb6a3068d8b8f1231"
+        }
+      ]
+    },
+    {
+      "english_name": "Harbingers, New Mankind Defense Infantry",
+      "images": [
+        {
+          "file": "Harbingers, New Mankind Defense Infantry.png",
+          "width_emu": 3254375,
+          "height_emu": 2624455,
+          "sha256": "ca053105f4271a5f5318dd91b52aae1dfd9fc42f7b2b3dc0590fa84f682c30b3"
+        }
+      ]
+    },
+    {
+      "english_name": "Gearheads, Tech Savant Team",
+      "images": [
+        {
+          "file": "Gearheads, Tech Savant Team.png",
+          "width_emu": 2835275,
+          "height_emu": 2510155,
+          "sha256": "f51a59a5030c2885f930cd171bb783b91426eda704bb9e387687dcb954df81ee"
+        }
+      ]
+    },
+    {
+      "english_name": "Nexus Operatives",
+      "images": [
+        {
+          "file": "Nexus Operatives.png",
+          "width_emu": 3328035,
+          "height_emu": 1927225,
+          "sha256": "f804d43c54fdb8aca39f3ecf3958c3898ad6c19fc5f52a6feef811ec99a207d3"
+        }
+      ]
+    },
+    {
+      "english_name": "Contrabandoleros, Resource Extraction Team",
+      "images": [
+        {
+          "file": "Contrabandoleros, Resource Extraction Team.png",
+          "width_emu": 3058160,
+          "height_emu": 2710815,
+          "sha256": "bcdaff7185548fb710080961354135238cbbf6da5b41137ecaa2ec26bf3c4437"
+        }
+      ]
+    },
+    {
+      "english_name": "Raindancers, Light Assault Company",
+      "images": [
+        {
+          "file": "Raindancers, Light Assault Company.png",
+          "width_emu": 3190240,
+          "height_emu": 2798445,
+          "sha256": "5c5b42b60177730402cb97fae99ba956cb3d6ccdf503d2f2248504f674ec8b32"
+        }
+      ]
+    },
+    {
+      "english_name": "Cliff-Jumpers, Extreme Jump Unit",
+      "images": [
+        {
+          "file": "Cliff-Jumpers, Extreme Jump Unit.png",
+          "width_emu": 2337435,
+          "height_emu": 2469515,
+          "sha256": "32c9cbdf774e6bf39cab306291f220b6551285128ee55da7b874dc1ea1ff43d3"
+        }
+      ]
+    },
+    {
+      "english_name": "Stingers, Security Tactical Unit",
+      "images": [
+        {
+          "file": "Stingers, Security Tactical Unit.png",
+          "width_emu": 3050540,
+          "height_emu": 3036570,
+          "sha256": "9390f16d0fc330fdebab432cc92584759d9219d3b1efb0f6d90f24af7c4aeb17"
+        }
+      ]
+    },
+    {
+      "english_name": "Skyhounds, Combat and Recon Air Squadron",
+      "images": [
+        {
+          "file": "Skyhounds, Combat and Recon Air Squadron.png",
+          "width_emu": 3432175,
+          "height_emu": 3147695,
+          "sha256": "aa50f105653e1ce10afe8b994ca6c100318c6bbad5ed178203ee74de73d5cfca"
+        }
+      ]
+    },
+    {
+      "english_name": "Ironsides Heavy Mobile Regiment",
+      "images": [
+        {
+          "file": "Ironsides Heavy Mobile Regiment.png",
+          "width_emu": 2662555,
+          "height_emu": 2498725,
+          "sha256": "e7dbb3898f689da94394ed6ebe8317959333253c32e6c7337fcefc1f1a2acfb0"
+        }
+      ]
+    },
+    {
+      "english_name": "Wraith-1, Clandestine Action Group",
+      "images": [
+        {
+          "file": "Wraith-1, Clandestine Action Group.png",
+          "width_emu": 2120900,
+          "height_emu": 2893060,
+          "sha256": "80200349f6dcded7482ceff43b931229c550ccf7161853620b4d03b9a7db7143"
+        }
+      ]
+    },
+    {
+      "english_name": "Juggernauts, Armored Assault Cavalry",
+      "images": [
+        {
+          "file": "Juggernauts, Armored Assault Cavalry.png",
+          "width_emu": 3197860,
+          "height_emu": 2875280,
+          "sha256": "d28966de6237bcbdc7f1647e6c767b4fea5f1ad14d58389280d63e77717c3725"
+        }
+      ]
+    },
+    {
+      "english_name": "Tekdrakens: Blackhearts",
+      "images": [
+        {
+          "file": "Tekdrakens_ Blackhearts.png",
+          "width_emu": 2691130,
+          "height_emu": 2531745,
+          "sha256": "833abdf63e711534ac05e1a829822b00bd0c1cfea06520a4897ea8df728ca802"
+        }
+      ]
+    },
+    {
+      "english_name": "M-Drones",
+      "images": [
+        {
+          "file": "M-Drones.png",
+          "width_emu": 2962910,
+          "height_emu": 2299970,
+          "sha256": "788c495a9d40072e1f59f545ac12143fcff268a6ddeda05646911645173b1ac7"
+        }
+      ]
+    },
+    {
+      "english_name": "Ikadron Batroids",
+      "images": [
+        {
+          "file": "Ikadron Batroids.png",
+          "width_emu": 2752725,
+          "height_emu": 2752725,
+          "sha256": "47f0ac3379651315d766e38d3447b3ddc81ec26e1c17dc54e96fa0c2e0371638"
+        }
+      ]
+    },
+    {
+      "english_name": "Sartroids: Puzzlers, Cyberplugged Forward Remotes",
+      "images": [
+        {
+          "file": "Sartroids_ Puzzlers, Cyberplugged Forward Remotes.png",
+          "width_emu": 2625725,
+          "height_emu": 2476500,
+          "sha256": "b2f445e651e9bdfceca2a383d2e89fce11dfeec3b419ea4010a3988069442928"
+        }
+      ]
+    },
+    {
+      "english_name": "Sartroids: Ranters, Cyberplugged Attack Remotes",
+      "images": [
+        {
+          "file": "Sartroids_ Ranters, Cyberplugged Attack Remotes.png",
+          "width_emu": 3340100,
+          "height_emu": 2663190,
+          "sha256": "4bcfe269c848e9d8432dc48d830762e55f9f7d5248985f9ab70d59d346b58ac8"
+        }
+      ]
+    },
+    {
+      "english_name": "Tekdrakens: Steeljaws",
+      "images": [
+        {
+          "file": "Tekdrakens_ Steeljaws.png",
+          "width_emu": 3065780,
+          "height_emu": 2489835,
+          "sha256": "8e4a22ee0a9743125f42872c47ec8814dfb7e2b99c11ba969dc5be190165337c"
+        }
+      ]
+    },
+    {
+      "english_name": "Med-Tech Obsidon Medchanoid",
+      "images": [
+        {
+          "file": "Med-Tech Obsidon Medchanoid.png",
+          "width_emu": 1995170,
+          "height_emu": 2436495,
+          "sha256": "ae98a453bb8a21732c4d0469087a81a4c63d1af51b7905b18597cce3849b723e"
+        }
+      ]
+    },
+    {
+      "english_name": "Slave Drones",
+      "images": [
+        {
+          "file": "Slave Drones.png",
+          "width_emu": 2341880,
+          "height_emu": 2037080,
+          "sha256": "300e30153b11c221cd0fa54364d08d45db7e0cb380ea6bade62e2d6e7687daf2"
+        }
+      ]
+    },
+    {
+      "english_name": "Q-Drones",
+      "images": [
+        {
+          "file": "Q-Drones.png",
+          "width_emu": 2962910,
+          "height_emu": 2299970,
+          "sha256": "788c495a9d40072e1f59f545ac12143fcff268a6ddeda05646911645173b1ac7"
+        }
+      ]
+    },
+    {
+      "english_name": "T-Drones",
+      "images": [
+        {
+          "file": "T-Drones.png",
+          "width_emu": 2962910,
+          "height_emu": 2299970,
+          "sha256": "788c495a9d40072e1f59f545ac12143fcff268a6ddeda05646911645173b1ac7"
+        }
+      ]
+    },
+    {
+      "english_name": "E-Drones",
+      "images": [
+        {
+          "file": "E-Drones.png",
+          "width_emu": 2962910,
+          "height_emu": 2299970,
+          "sha256": "788c495a9d40072e1f59f545ac12143fcff268a6ddeda05646911645173b1ac7"
+        }
+      ]
+    },
+    {
+      "english_name": "Glyph Warcors, Ur Hegemony Journalists",
+      "images": [
+        {
+          "file": "Glyph Warcors, Ur Hegemony Journalists.png",
+          "width_emu": 2010410,
+          "height_emu": 2553335,
+          "sha256": "d60aaefc81c74bfc3ce1a8a8ed01abd21c88f441519eb6dc1ad4ed14b3fb4655"
+        }
+      ]
+    },
+    {
+      "english_name": "R-Drones",
+      "images": [
+        {
+          "file": "R-Drones.png",
+          "width_emu": 2962910,
+          "height_emu": 2299970,
+          "sha256": "788c495a9d40072e1f59f545ac12143fcff268a6ddeda05646911645173b1ac7"
+        }
+      ]
+    },
+    {
+      "english_name": "Pandora, Team Achilles' Field Researcher",
+      "images": [
+        {
+          "file": "Pandora, Team Achilles' Field Researcher.png",
+          "width_emu": 2006600,
+          "height_emu": 2581275,
+          "sha256": "5104b85b34b6501a187a5db3767def34a3e72c8673fa3d8e9f643b11fef3c729"
+        }
+      ]
+    },
+    {
+      "english_name": "Teucer, Team Achilles' shooter",
+      "images": [
+        {
+          "file": "Teucer, Team Achilles' shooter.png",
+          "width_emu": 2056765,
+          "height_emu": 2805430,
+          "sha256": "86eb0b1f192a1295881841242a99d7a0b4b38a10b4144719b0382cc5e03b6425"
+        }
+      ]
+    },
+    {
+      "english_name": "Bit",
+      "images": [
+        {
+          "file": "Bit.png",
+          "width_emu": 2433955,
+          "height_emu": 2691130,
+          "sha256": "db6c2614c0f9cce28f5f970f8f65f76fa9f2bce626aa50de9832793dc68a9460"
+        }
+      ]
+    },
+    {
+      "english_name": "Special Operative Ko Dali",
+      "images": [
+        {
+          "file": "Special Operative Ko Dali.png",
+          "width_emu": 2580005,
+          "height_emu": 3193415,
+          "sha256": "8c89cdb94fb73696d3b4398591fbb2e30f5298fde28ce3b4d951a84c4196355f"
+        }
+      ]
+    },
+    {
+      "english_name": "Achilles",
+      "images": [
+        {
+          "file": "Achilles.png",
+          "width_emu": 2602230,
+          "height_emu": 2524125,
+          "sha256": "bd86af90fd68d9062a60845a717be109d44af91acd96c1c878c1c977e28c5290"
+        }
+      ]
+    },
+    {
+      "english_name": "Patroclus, Team Achilles' shadow",
+      "images": [
+        {
+          "file": "Patroclus, Team Achilles' shadow.png",
+          "width_emu": 2319020,
+          "height_emu": 2833370,
+          "sha256": "b9c9a6b5c8d338eafc8d9ba85e50f4098ee3d87f3f1af05ce1329dac2157a535"
+        }
+      ]
+    },
+    {
+      "english_name": "Sāchā, Xenotech Hunters",
+      "images": [
+        {
+          "file": "Sāchā, Xenotech Hunters.png",
+          "width_emu": 3352165,
+          "height_emu": 2442845,
+          "sha256": "21dcf471b8ec8708379bcef6ed3d84db4959832108b7cb667324d4677e90336f"
+        }
+      ]
+    },
+    {
+      "english_name": "Kazurabā Ruby Monday",
+      "images": [
+        {
+          "file": "Kazurabā Ruby Monday.png",
+          "width_emu": 2416175,
+          "height_emu": 1929765,
+          "sha256": "320b56977da6d58faa62bf152475d79aa498861c3c7442ad903e4896ed2c6b08"
+        }
+      ]
+    },
+    {
+      "english_name": "Cube Jäger, Mercenary Recoverers",
+      "images": [
+        {
+          "file": "Cube Jäger, Mercenary Recoverers.png",
+          "width_emu": 1764665,
+          "height_emu": 2764155,
+          "sha256": "afb9710e8bd2ec9394374add3d1eae3cfc4f8a35132ea6252f38beb459d1c8e3"
+        }
+      ]
+    }
+  ]
+}
