@@ -1,0 +1,479 @@
+{
+  "source_docx": "output\\202-cn.docx",
+  "source_json": "samples\\202.json",
+  "tables": [
+    {
+      "english_name": "Kuang Shi",
+      "images": [
+        {
+          "file": "Kuang Shi.png",
+          "width_emu": 2998470,
+          "height_emu": 3028315,
+          "sha256": "014520612d9824641c77b26e8bab28aff82cd1a986ec8720259d9c6ef7a178d9"
+        }
+      ]
+    },
+    {
+      "english_name": "Wu Míng Assault Corps",
+      "images": [
+        {
+          "file": "Wu Míng Assault Corps.png",
+          "width_emu": 3592195,
+          "height_emu": 3093720,
+          "sha256": "1fdcc553f7777582b9fdcd12b690eede39efb48c9cd7b310aedd0c41d8eb4290"
+        }
+      ]
+    },
+    {
+      "english_name": "Jìnwèi, the Forbidden Troops",
+      "images": [
+        {
+          "file": "Jìnwèi, the Forbidden Troops.png",
+          "width_emu": 2633345,
+          "height_emu": 2650490,
+          "sha256": "d702d184d281685a94f8b9cc91a2969ff8ab3c260eb8729c996f91a02fdd7fbe"
+        }
+      ]
+    },
+    {
+      "english_name": "Dikpala Tacbots",
+      "images": [
+        {
+          "file": "Dikpala Tacbots.png",
+          "width_emu": 3027045,
+          "height_emu": 2465705,
+          "sha256": "6a54a75affae77fbf5225f021c5603730044b006af63c969662a5679f3799c8c"
+        }
+      ]
+    },
+    {
+      "english_name": "Celestial Guard",
+      "images": [
+        {
+          "file": "Celestial Guard.png",
+          "width_emu": 3331210,
+          "height_emu": 2603500,
+          "sha256": "ce143ebd2fa53b0fb059286cde9560a56a88e289e7906d494b0d847bcc9f08ac"
+        }
+      ]
+    },
+    {
+      "english_name": "Ninjas",
+      "images": [
+        {
+          "file": "Ninjas.png",
+          "width_emu": 2846070,
+          "height_emu": 2508885,
+          "sha256": "da490be298cad9eb0fdb092f91b2f8f235bb616a1f1f9fca77c605466860ddeb"
+        }
+      ]
+    },
+    {
+      "english_name": "Sù-Jiàn Immediate Action Unit",
+      "images": [
+        {
+          "file": "Sù-Jiàn Immediate Action Unit.png",
+          "width_emu": 2996565,
+          "height_emu": 2662555,
+          "sha256": "edf0013c2437ef3b1e573d88c9c14ed3af7b4eca2cae84c4224ecdf4ae7560d0"
+        }
+      ]
+    },
+    {
+      "english_name": "Bào Troops, Judicial Watch Unit",
+      "images": [
+        {
+          "file": "Bào Troops, Judicial Watch Unit.png",
+          "width_emu": 3077845,
+          "height_emu": 2643505,
+          "sha256": "bded539635ac8d42d3806766080c5b020509830729463dc0b84c0cdd5f735153"
+        }
+      ]
+    },
+    {
+      "english_name": "Kǎnrèn Counter-insurgency Group",
+      "images": [
+        {
+          "file": "Kǎnrèn Counter-insurgency Group.png",
+          "width_emu": 3027045,
+          "height_emu": 2437130,
+          "sha256": "fe3fe6f424a359a8d9a86cb9e25502ac7f1a23b36a2261426882888ce5026839"
+        }
+      ]
+    },
+    {
+      "english_name": "Koga Ninjas",
+      "images": [
+        {
+          "file": "Koga Ninjas.png",
+          "width_emu": 2734310,
+          "height_emu": 2484120,
+          "sha256": "795faebda72c00d6c8a64efcfd0dc68446a0f0775c8d3a3f1b4cf7b6e07ada8f"
+        }
+      ]
+    },
+    {
+      "english_name": "Jinyao Drop Unit",
+      "images": [
+        {
+          "file": "Jinyao Drop Unit.png",
+          "width_emu": 2287905,
+          "height_emu": 2491105,
+          "sha256": "5868f5de79e1e24946cb4d5a594144a65731a3f3e92e74c4646391395802a6a6"
+        }
+      ]
+    },
+    {
+      "english_name": "Bayara Palace Guard",
+      "images": [
+        {
+          "file": "Bayara Palace Guard.png",
+          "width_emu": 2666365,
+          "height_emu": 2395220,
+          "sha256": "e64f7a6a3be2346439b81bdc6df5108323bcda668a7f6e90095e1fbe322b512a"
+        }
+      ]
+    },
+    {
+      "english_name": "Deva Functionaries",
+      "images": [
+        {
+          "file": "Deva Functionaries.png",
+          "width_emu": 2592070,
+          "height_emu": 2504440,
+          "sha256": "b39f9773ae43d9a7318c5f3b0c4d485c0d5e17f744f41d4b9b5b2160abab6aec"
+        }
+      ]
+    },
+    {
+      "english_name": "Shénjī Yíng, Divine Machine Battalion",
+      "images": [
+        {
+          "file": "Shénjī Yíng, Divine Machine Battalion.png",
+          "width_emu": 3267710,
+          "height_emu": 2700020,
+          "sha256": "e1ad6105d368456ab82e85c8fa76d4698acbca75acc30d1caa81b1a5cabbfb74"
+        }
+      ]
+    },
+    {
+      "english_name": "Zhànyīng Imperial Agents",
+      "images": [
+        {
+          "file": "Zhànyīng Imperial Agents.png",
+          "width_emu": 2889885,
+          "height_emu": 2646045,
+          "sha256": "4856508ae7999656ed88e9c3338dda2fc54255e47c0a03210f58d383261ea99e"
+        }
+      ]
+    },
+    {
+      "english_name": "Imperial Vanguard Qiánfēng",
+      "images": [
+        {
+          "file": "Imperial Vanguard Qiánfēng.png",
+          "width_emu": 2257425,
+          "height_emu": 2578735,
+          "sha256": "23a33b70d17dd5ebc54e1ea29032610bfbd5160d2544ec780f7284fed231002c"
+        }
+      ]
+    },
+    {
+      "english_name": "Fēiquán Imperial Tactical Wing",
+      "images": [
+        {
+          "file": "Fēiquán Imperial Tactical Wing.png",
+          "width_emu": 3004820,
+          "height_emu": 3082925,
+          "sha256": "f408e72b59022ae428013f870fd8beb1fb141f4a2cebd9012563ef44a4371574"
+        }
+      ]
+    },
+    {
+      "english_name": "Imperial Agents, Pheasant Rank",
+      "images": [
+        {
+          "file": "Imperial Agents, Pheasant Rank.png",
+          "width_emu": 2880995,
+          "height_emu": 2508885,
+          "sha256": "fe8c7894c94375a3766700b5844786f91d681c96a9d1a0d334d6ed2627ed9d3f"
+        }
+      ]
+    },
+    {
+      "english_name": "Imperial Agents, Crane Rank",
+      "images": [
+        {
+          "file": "Imperial Agents, Crane Rank.png",
+          "width_emu": 3120390,
+          "height_emu": 2744470,
+          "sha256": "e39323925113758e9e211d54dd187a4c74237bb1b25990168182992c76437c73"
+        }
+      ]
+    },
+    {
+      "english_name": "Dragon Lords, Imperial Service Judges",
+      "images": [
+        {
+          "file": "Dragon Lords, Imperial Service Judges.png",
+          "width_emu": 3115945,
+          "height_emu": 2442210,
+          "sha256": "f1f5a6325b037467456848275de2b13a44a8f956efa14a82b81c03cb2cce5000"
+        }
+      ]
+    },
+    {
+      "english_name": "Hsien Warriors",
+      "images": [
+        {
+          "file": "Hsien Warriors.png",
+          "width_emu": 2534285,
+          "height_emu": 2492375,
+          "sha256": "2ef7104ac6cb668e66ce8654c2ed73bbe5027a32a1424a7d3acdf568afa38435"
+        }
+      ]
+    },
+    {
+      "english_name": "Lóngwáng, Imperial TAG Police",
+      "images": [
+        {
+          "file": "Lóngwáng, Imperial TAG Police.png",
+          "width_emu": 2817495,
+          "height_emu": 3230880,
+          "sha256": "5a9be80634e33df359e32abef92101117ecc79e66705b4bac99861f580545e23"
+        }
+      ]
+    },
+    {
+      "english_name": "Yáozăo",
+      "images": [
+        {
+          "file": "Yáozăo.png",
+          "width_emu": 2399030,
+          "height_emu": 1865630,
+          "sha256": "e0df94d34b671e3b205f5f381e23a7f8f23c2763edc15de3203d8a2ea1923a62"
+        }
+      ]
+    },
+    {
+      "english_name": "Wèibīng Yáokòng",
+      "images": [
+        {
+          "file": "Wèibīng Yáokòng.png",
+          "width_emu": 3183255,
+          "height_emu": 2473325,
+          "sha256": "11b2ff491f8b1a1eb7c2d9ae8bf50dbca04b0a3cfa33f98621363650f20de2b0"
+        }
+      ]
+    },
+    {
+      "english_name": "Son-Bae Yáokòng",
+      "images": [
+        {
+          "file": "Son-Bae Yáokòng.png",
+          "width_emu": 3183255,
+          "height_emu": 2473325,
+          "sha256": "11b2ff491f8b1a1eb7c2d9ae8bf50dbca04b0a3cfa33f98621363650f20de2b0"
+        }
+      ]
+    },
+    {
+      "english_name": "Hùsòng Yáokòng",
+      "images": [
+        {
+          "file": "Hùsòng Yáokòng.png",
+          "width_emu": 3183255,
+          "height_emu": 2473325,
+          "sha256": "11b2ff491f8b1a1eb7c2d9ae8bf50dbca04b0a3cfa33f98621363650f20de2b0"
+        }
+      ]
+    },
+    {
+      "english_name": "Yáoxiè Rui Shi",
+      "images": [
+        {
+          "file": "Yáoxiè Rui Shi.png",
+          "width_emu": 2507615,
+          "height_emu": 2252980,
+          "sha256": "d8f55b821a6437b775e0a293017070a8c0d57ce2626a9040571ba53d377a42dd"
+        }
+      ]
+    },
+    {
+      "english_name": "Yáoxiè Lù Duān",
+      "images": [
+        {
+          "file": "Yáoxiè Lù Duān.png",
+          "width_emu": 2925445,
+          "height_emu": 2341880,
+          "sha256": "1e05fd93d0af5466d7bedd027d4b564318d31e39fce616dbf4c0add6f409cb43"
+        }
+      ]
+    },
+    {
+      "english_name": "Chaīyì Yáokòng",
+      "images": [
+        {
+          "file": "Chaīyì Yáokòng.png",
+          "width_emu": 3183255,
+          "height_emu": 2473325,
+          "sha256": "11b2ff491f8b1a1eb7c2d9ae8bf50dbca04b0a3cfa33f98621363650f20de2b0"
+        }
+      ]
+    },
+    {
+      "english_name": "Yáopú Pangguling",
+      "images": [
+        {
+          "file": "Yáopú Pangguling.png",
+          "width_emu": 2918460,
+          "height_emu": 2576195,
+          "sha256": "d068cf76c144b029a4c8d7421e65be2226907e0249fa518f30cb29347534df10"
+        }
+      ]
+    },
+    {
+      "english_name": "Sun Tze",
+      "images": [
+        {
+          "file": "Sun Tze.png",
+          "width_emu": 2638425,
+          "height_emu": 3033395,
+          "sha256": "d28c24e1e8566d74ce264aa2a9823b9896bb434fea61d9b013d1aeebdc2bb9a6"
+        }
+      ]
+    },
+    {
+      "english_name": "Major Lunah, ex-Aristeia! Sniper",
+      "images": [
+        {
+          "file": "Major Lunah, ex-Aristeia! Sniper.png",
+          "width_emu": 2711450,
+          "height_emu": 2139950,
+          "sha256": "d0c89eca4c5a2617c8c50abbd7b30250efaa10d9736927985cb24a44fb9dedbf"
+        }
+      ]
+    },
+    {
+      "english_name": "Miranda Ashcroft, Authorized Bounty Hunter",
+      "images": [
+        {
+          "file": "Miranda Ashcroft, Authorized Bounty Hunter.png",
+          "width_emu": 2527935,
+          "height_emu": 2562225,
+          "sha256": "2002582def1b5ffaca2aba81075e003c97ecf07d2662876819b4e53e1ec7e356"
+        }
+      ]
+    },
+    {
+      "english_name": "Imperial Agent Adil Mehmut (Crane Rank Armor)",
+      "images": [
+        {
+          "file": "Imperial Agent Adil Mehmut (Crane Rank Armor).png",
+          "width_emu": 2444750,
+          "height_emu": 2563495,
+          "sha256": "0769a8006934000d473f4afc8347cc2ac3dc1fffba226f5efd1133ad737a64d0"
+        }
+      ]
+    },
+    {
+      "english_name": "Guǐ Fēng Xi Zhuang",
+      "images": [
+        {
+          "file": "Guǐ Fēng Xi Zhuang.png",
+          "width_emu": 2988945,
+          "height_emu": 2661920,
+          "sha256": "b7add0c141b943b3d9615f009f32aa681b47a26c749624d1c9dd7d64eb51431d"
+        }
+      ]
+    },
+    {
+      "english_name": "Táowù, Mastermind and schemer",
+      "images": [
+        {
+          "file": "Táowù, Mastermind and schemer.png",
+          "width_emu": 2037715,
+          "height_emu": 2496185,
+          "sha256": "332ae308ddaad046af249ca43e31dd1184f88af8db5a04c2843a4da5a077b943"
+        }
+      ]
+    },
+    {
+      "english_name": "Father Lucien Sforza, Authorized Bounty Hunter",
+      "images": [
+        {
+          "file": "Father Lucien Sforza, Authorized Bounty Hunter.png",
+          "width_emu": 2221230,
+          "height_emu": 2929890,
+          "sha256": "9d86794c30b09b7e7fe8775406963401f83c72caf537e9dce06d311a35668fdc"
+        }
+      ]
+    },
+    {
+      "english_name": "Sāchā, Xenotech Hunters",
+      "images": [
+        {
+          "file": "Sāchā, Xenotech Hunters.png",
+          "width_emu": 3644265,
+          "height_emu": 2656205,
+          "sha256": "21dcf471b8ec8708379bcef6ed3d84db4959832108b7cb667324d4677e90336f"
+        }
+      ]
+    },
+    {
+      "english_name": "CSU, Corporate Security Unit",
+      "images": [
+        {
+          "file": "CSU, Corporate Security Unit.png",
+          "width_emu": 1972945,
+          "height_emu": 2368550,
+          "sha256": "267606598d379832db3e45c3fccd47797b0e17581854e700355708dddd2ce0b4"
+        }
+      ]
+    },
+    {
+      "english_name": "Kunai Solutions Ninjas",
+      "images": [
+        {
+          "file": "Kunai Solutions Ninjas.png",
+          "width_emu": 2223135,
+          "height_emu": 2190115,
+          "sha256": "2a5dcd20555cab19264bb69fb03d717215281fdff33965788d1e8af03da51daa"
+        }
+      ]
+    },
+    {
+      "english_name": "Authorized Bounty Hunters",
+      "images": [
+        {
+          "file": "Authorized Bounty Hunters.png",
+          "width_emu": 2043430,
+          "height_emu": 2654935,
+          "sha256": "812043c3e696619464a89088fb79a27bd7aeafd7a922f93a8203471e0676dc66"
+        }
+      ]
+    },
+    {
+      "english_name": "Motorized Bounty Hunters",
+      "images": [
+        {
+          "file": "Motorized Bounty Hunters.png",
+          "width_emu": 2944495,
+          "height_emu": 2430145,
+          "sha256": "f71a0fd60ce4cb7bf616d7ec51c8c2fa8692a6e4136b90a9e51838616a42733c"
+        }
+      ]
+    },
+    {
+      "english_name": "Warcors, War Correspondents",
+      "images": [
+        {
+          "file": "Warcors, War Correspondents.png",
+          "width_emu": 2965450,
+          "height_emu": 2536190,
+          "sha256": "6c6a988e11d72a2b78365b32d2a48186a35aaa7235e26c8a2ea0d7d2edc2ba4b"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,464 @@
+{
+  "source_docx": "output\\502-cn.docx",
+  "source_json": "samples\\502.json",
+  "tables": [
+    {
+      "english_name": "Corregidor Jaguars",
+      "images": [
+        {
+          "file": "Corregidor Jaguars.png",
+          "width_emu": 2780665,
+          "height_emu": 2771140,
+          "sha256": "de9cad7f7d73636cbd6c3dc404b6dcaa4ad228e19a79d46cb2527a3a6ec13f90"
+        }
+      ]
+    },
+    {
+      "english_name": "Corregidor Alguaciles",
+      "images": [
+        {
+          "file": "Corregidor Alguaciles-1.png",
+          "width_emu": 1183005,
+          "height_emu": 1966595,
+          "sha256": "574596bfda6bafd1533cb15450b1bffab2d55f8a049615792b7c0ddef9839381"
+        },
+        {
+          "file": "Corregidor Alguaciles-2.png",
+          "width_emu": 1175385,
+          "height_emu": 1805305,
+          "sha256": "6bfa9c4eceeae24ec7f5e3bc615bf38fc3f5cced99e8fbf5dc601b0f591ac585"
+        },
+        {
+          "file": "Corregidor Alguaciles-3.png",
+          "width_emu": 1118235,
+          "height_emu": 1899920,
+          "sha256": "844219df8159317376cccbad5686f6f230ea1dd7e6e134f5ed42a89c1c656ddb"
+        }
+      ]
+    },
+    {
+      "english_name": "Moran, Maasai Hunter",
+      "images": [
+        {
+          "file": "Moran, Maasai Hunter.png",
+          "width_emu": 3740150,
+          "height_emu": 2440940,
+          "sha256": "9a44b92405768d77665f66a8394f1af8f9bfdec871c2e8f90f2719e9a8e56466"
+        }
+      ]
+    },
+    {
+      "english_name": "Lobos,  Correctional Response Group",
+      "images": [
+        {
+          "file": "Lobos, Correctional Response Group.png",
+          "width_emu": 3096895,
+          "height_emu": 2293620,
+          "sha256": "2b7ed5400e1e3b043986c3451bcbb7bf309582f7e740743a2a3d9f57c487468a"
+        }
+      ]
+    },
+    {
+      "english_name": "Corregidor Bandits",
+      "images": [
+        {
+          "file": "Corregidor Bandits.png",
+          "width_emu": 2242185,
+          "height_emu": 2352040,
+          "sha256": "0e9aa42fb56adc4155d5fd41787a6fa4e55b2a8fc5261e54f1a463c0d957ffc0"
+        }
+      ]
+    },
+    {
+      "english_name": "Coyotes, Recon and Maneuver Team",
+      "images": [
+        {
+          "file": "Coyotes, Recon and Maneuver Team-1.png",
+          "width_emu": 2106295,
+          "height_emu": 2058670,
+          "sha256": "a55b15c337c76cb514379fbdebbb1b984a310bfe44638cfaf5438bef41bd10a6"
+        },
+        {
+          "file": "Coyotes, Recon and Maneuver Team-2.png",
+          "width_emu": 1593850,
+          "height_emu": 2143760,
+          "sha256": "07dc6c6649fa33d2f110f3ff0e19e9cfe10d45eff38872857530d2b13c198e93"
+        }
+      ]
+    },
+    {
+      "english_name": "The Diablos of D-Block",
+      "images": [
+        {
+          "file": "The Diablos of D-Block.png",
+          "width_emu": 2425065,
+          "height_emu": 2639695,
+          "sha256": "e15d814688d351780bb10c4df22100679675cd6bc5251a9e2aaf332bcf79e664"
+        }
+      ]
+    },
+    {
+      "english_name": "Tomcats",
+      "images": [
+        {
+          "file": "Tomcats.png",
+          "width_emu": 2876550,
+          "height_emu": 2067560,
+          "sha256": "3cf1e5395b19d04d2aab0839d0cf4b803ac826aa3f6cf02c8a495dc10420caeb"
+        }
+      ]
+    },
+    {
+      "english_name": "Vigilantes, Tactical Support and Surveillance Special Group",
+      "images": [
+        {
+          "file": "Vigilantes, Tactical Support and Surveillance Special Group.png",
+          "width_emu": 1844040,
+          "height_emu": 2307590,
+          "sha256": "144bb1972467f8d4f852798a29b612a4775a3209005178c2bbb83f4f26ac7b00"
+        }
+      ]
+    },
+    {
+      "english_name": "Sombras, Forward Interdiction Team",
+      "images": [
+        {
+          "file": "Sombras, Forward Interdiction Team.png",
+          "width_emu": 1950085,
+          "height_emu": 2309495,
+          "sha256": "1b0399b2539ada92f876baa7466b8cca131eb8f6d5535dd00a554308ceec35e3"
+        }
+      ]
+    },
+    {
+      "english_name": "Shifta Insertion Group",
+      "images": [
+        {
+          "file": "Shifta Insertion Group.png",
+          "width_emu": 1371600,
+          "height_emu": 2338070,
+          "sha256": "6c64bc5b761c4b5ab740013e8ce12043367a9796c3875490ee21e7bd656588b0"
+        }
+      ]
+    },
+    {
+      "english_name": "Bearcats, Airborne Heavy Regiment",
+      "images": [
+        {
+          "file": "Bearcats, Airborne Heavy Regiment.png",
+          "width_emu": 1657350,
+          "height_emu": 3120390,
+          "sha256": "2f3d299c09f3378b81499c6a83389b7937880e2e6515d0a26b8d1820ec4f9c62"
+        }
+      ]
+    },
+    {
+      "english_name": "Evaders, EVA Tactical Group",
+      "images": [
+        {
+          "file": "Evaders, EVA Tactical Group.png",
+          "width_emu": 3452495,
+          "height_emu": 2510790,
+          "sha256": "9822b6e2e7d470a046811a6fef54ed78ff13bc237b604a559f5fb110584fe162"
+        }
+      ]
+    },
+    {
+      "english_name": "Wildcats, Polyvalent Tactical Unit",
+      "images": [
+        {
+          "file": "Wildcats, Polyvalent Tactical Unit.png",
+          "width_emu": 3069590,
+          "height_emu": 2483485,
+          "sha256": "7d9cc09ac10b1a2f928b6a9e1452774d7d4a052f86bab90266f38c3844873ce5"
+        }
+      ]
+    },
+    {
+      "english_name": "Mobile Brigada",
+      "images": [
+        {
+          "file": "Mobile Brigada.png",
+          "width_emu": 4208145,
+          "height_emu": 2429510,
+          "sha256": "a665bf02ccceca8726a941949137f69368e079a846ce52d176d2432d5082400c"
+        }
+      ]
+    },
+    {
+      "english_name": "Territorials, Territorial Domination Unit",
+      "images": [
+        {
+          "file": "Territorials, Territorial Domination Unit.png",
+          "width_emu": 1799590,
+          "height_emu": 2890520,
+          "sha256": "579699c39a94daf3b49af4392e8a25cb9601b4553e72440debc702a2be066aee"
+        }
+      ]
+    },
+    {
+      "english_name": "Intruders",
+      "images": [
+        {
+          "file": "Intruders.png",
+          "width_emu": 1894840,
+          "height_emu": 2379345,
+          "sha256": "084042ce71359a7740e5620c300f464c86b07438d091b269d734768e33f1b83b"
+        }
+      ]
+    },
+    {
+      "english_name": "Hellcats",
+      "images": [
+        {
+          "file": "Hellcats.png",
+          "width_emu": 1738630,
+          "height_emu": 2350770,
+          "sha256": "cb5599506fcb17ea1f6afa6aad45ec6174f5ae481acf8f7aa01413503909cb80"
+        }
+      ]
+    },
+    {
+      "english_name": "'Gecko' Squad",
+      "images": [
+        {
+          "file": "'Gecko' Squad.png",
+          "width_emu": 3927475,
+          "height_emu": 3095625,
+          "sha256": "b2fad7a23ff042e0a7807fd097e8794469916bd00967d868c3017a19fd9d0a7e"
+        }
+      ]
+    },
+    {
+      "english_name": "'Iguana' Squadron",
+      "images": [
+        {
+          "file": "'Iguana' Squadron.png",
+          "width_emu": 4141470,
+          "height_emu": 3313430,
+          "sha256": "09a732df573aaeede3f682fe89705da0d5f63f06d03e97dc02f47f70a69c072d"
+        }
+      ]
+    },
+    {
+      "english_name": "'Gator' Squadron",
+      "images": [
+        {
+          "file": "'Gator' Squadron.png",
+          "width_emu": 4128135,
+          "height_emu": 3124200,
+          "sha256": "c6caff05bc80305eae3082b9e4b44daacd9f432c128233f4731a26d79af94d26"
+        }
+      ]
+    },
+    {
+      "english_name": "Reaktion Zonds",
+      "images": [
+        {
+          "file": "Reaktion Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1907540,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Salyut Zonds",
+      "images": [
+        {
+          "file": "Salyut Zonds.png",
+          "width_emu": 2740660,
+          "height_emu": 2212340,
+          "sha256": "30440ee168dc1652714ae25fd1a157aad1c116a738b7ae47bb5f309c667bc87a"
+        }
+      ]
+    },
+    {
+      "english_name": "Meteor Zonds",
+      "images": [
+        {
+          "file": "Meteor Zonds.png",
+          "width_emu": 2412365,
+          "height_emu": 2545715,
+          "sha256": "4603718e9472a2ed3fe26b85fe4f5fac9241598d9a2d0617f695d9c45d55b8e6"
+        }
+      ]
+    },
+    {
+      "english_name": "Clockmakers",
+      "images": [
+        {
+          "file": "Clockmakers.png",
+          "width_emu": 1598295,
+          "height_emu": 2507615,
+          "sha256": "321ad38fd7a2dc784bd20f83a90fd555f53b3ef9bf9db131ae81998df018d4ed"
+        }
+      ]
+    },
+    {
+      "english_name": "Zondbots",
+      "images": [
+        {
+          "file": "Zondbots.png",
+          "width_emu": 2170430,
+          "height_emu": 1878965,
+          "sha256": "537e56431c7a0db7491aba2a8fc99b054620ce70796bd7f4ca5f8d1a8b478aa1"
+        }
+      ]
+    },
+    {
+      "english_name": "Daktaris",
+      "images": [
+        {
+          "file": "Daktaris.png",
+          "width_emu": 1630045,
+          "height_emu": 2347595,
+          "sha256": "12af5633bf29bba2b1f3da2216f8c475079e1907ea03f011b59e3d3212dcf03d"
+        }
+      ]
+    },
+    {
+      "english_name": "Vertigo Zonds",
+      "images": [
+        {
+          "file": "Vertigo Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1907540,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Transductor Zonds",
+      "images": [
+        {
+          "file": "Transductor Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1907540,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Stempler Zonds",
+      "images": [
+        {
+          "file": "Stempler Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1907540,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Vostok Sputniks ",
+      "images": [
+        {
+          "file": "Vostok Sputniks.png",
+          "width_emu": 2439670,
+          "height_emu": 1840865,
+          "sha256": "261327c103f8f763aac0fb8246e815df33b21fc9e59b24ee277a172e49e6b0f3"
+        }
+      ]
+    },
+    {
+      "english_name": "Jazz&Billie, Tactical Hacking Team",
+      "images": [
+        {
+          "file": "Jazz&Billie, Tactical Hacking Team.png",
+          "width_emu": 2362200,
+          "height_emu": 2134870,
+          "sha256": "3bbd762ecb294ae4f159db68e44c0375cca5c41e04bdb5184e7da32ae0f5e83c"
+        }
+      ]
+    },
+    {
+      "english_name": "Señor Massacre",
+      "images": [
+        {
+          "file": "Señor Massacre.png",
+          "width_emu": 2023745,
+          "height_emu": 2548890,
+          "sha256": "90678ab6992d1a62db7ab37a3cf4005e905c198f2587628f4f83a3a2ac520a3f"
+        }
+      ]
+    },
+    {
+      "english_name": "Valerya Gromoz, Mercenary Hacker",
+      "images": [
+        {
+          "file": "Valerya Gromoz, Mercenary Hacker.png",
+          "width_emu": 1658620,
+          "height_emu": 2608580,
+          "sha256": "eddd6e7cea99f23035d637bfc6a6880f76ad2d002111732505bc54639b5bfe2c"
+        }
+      ]
+    },
+    {
+      "english_name": "McMurrough, Mercenary Dog-Warrior",
+      "images": [
+        {
+          "file": "McMurrough, Mercenary Dog-Warrior.png",
+          "width_emu": 2703830,
+          "height_emu": 2794635,
+          "sha256": "b1ae53ba229578d6596f48f235c7aa9451ae57deb93f78d24978838415d6aa3e"
+        }
+      ]
+    },
+    {
+      "english_name": "Alguacil Vortex Lupe Balboa",
+      "images": [
+        {
+          "file": "Alguacil Vortex Lupe Balboa.png",
+          "width_emu": 1979930,
+          "height_emu": 2512060,
+          "sha256": "2be602d82f214ce1b7092d6d17eb05107c2d8b80c6eb4f2a5f40e423de3404d2"
+        }
+      ]
+    },
+    {
+      "english_name": "Carlota Kowalsky, Tomcats Sergeant",
+      "images": [
+        {
+          "file": "Carlota Kowalsky, Tomcats Sergeant.png",
+          "width_emu": 2537460,
+          "height_emu": 2491105,
+          "sha256": "d1ad3ccf89e850e3d40aa3044f4bee2d77a6a9826e1504cf9aae3f0bd3bf0a9c"
+        }
+      ]
+    },
+    {
+      "english_name": "Kazurabā Ruby Monday",
+      "images": [
+        {
+          "file": "Kazurabā Ruby Monday.png",
+          "width_emu": 1743710,
+          "height_emu": 1780540,
+          "sha256": "c0627abe2fd85cc0712ec89fe39f6017e7e0deca8434639e946e248b1e0a4730"
+        }
+      ]
+    },
+    {
+      "english_name": "Warcors, War Correspondents",
+      "images": [
+        {
+          "file": "Warcors, War Correspondents.png",
+          "width_emu": 2279015,
+          "height_emu": 2268220,
+          "sha256": "c7e6811e843661509d239e7c9da4c427f8dd97841100bf18bf193018a183484e"
+        }
+      ]
+    },
+    {
+      "english_name": "Sāchā, Xenotech Hunters",
+      "images": [
+        {
+          "file": "Sāchā, Xenotech Hunters.png",
+          "width_emu": 1556385,
+          "height_emu": 2682240,
+          "sha256": "9e1c5c2e84b0e466350a229d1561497a927f09026f2764682fd1fe6be7e5e04b"
+        }
+      ]
+    }
+  ]
+}
