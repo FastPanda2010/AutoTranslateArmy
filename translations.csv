@@ -1786,3 +1786,49 @@ profile,SARTROIDS: PUZZLERS - AUTONOMOUS PROFILE,萨特机兵：迷惑者 - 自�
 profile,SARTROIDS: PUZZLERS - CONNECTED PROFILE,萨特机兵：迷惑者 - 链接操控
 profile,SARTROIDS: RANTERS - AUTONOMOUS PROFILE,萨特机兵：咆哮者 - 自主行动
 profile,SARTROIDS: RANTERS - CONNECTED PROFILE,萨特机兵：咆哮者 - 链接操控
+extra,Control,控制
+extra,UPGRADE: Trinity (-3),升级：三位一体(-3)
+extra,UPGRADE: Trinity (AP),升级：三位一体(穿甲)
+extra,WIP,WIP
+faction,Jurisdictional Command of Tunguska,通古斯卡管辖司令部
+faction,Nomads,流浪者
+fireteam,Hollow Men Fireteams,
+fireteam,Nayemnik,佣兵
+fireteam,Nayemnik (Mercenary) Fireteams,佣兵火力组
+fireteam,Securitate Fireteams,秘密警察火力组
+fireteam,Spetskorp,特警
+fireteam,Spetskorp (Special Corps) Fireteams,特警火力组
+fireteam,VATRA Fireteams,故土守卫火力组
+note,"A Mounted Zondnautica unit is composed of a Mounted Zondnaut and the Zondmate is considered to be its AI Motorcycle. On the other hand, when the Zondnaut dismounts, the unit is composed of a Dismounted Zondnaut and a Zondmate.",通常状态下，探机骑士骑在一辆人工智能摩托上，当他下车时，他会变成下车（S2）状态，摩托会变形成探机搭档（S5遥控机）
+profile,BATTLE RAVAGED,战斗损毁
+profile,DENMA CONNOLLY,丹马·康诺利
+profile,ENHANCED PROFILE,强化
+profile,Fiddler FTO,提琴手FTO
+profile,GO-BOT,速攻僚机
+profile,GO-POD,速攻艇
+profile,KULAK,重拳
+profile,PUPPETBOTS FULL POWER,傀儡机器人 - 完整
+profile,ROUNDER,赌徒
+profile,SPECTOR FTO,斯派克特FTO
+profile,SWITCHER,切换者
+profile,SWITCHER FTO,切换者FTO
+profile,SWITCHERS GRUPPA,切换者小组
+profile,TRIGGERMEN,枪手
+profile,TSYKLON FTO,旋风FTO
+profile,ZELLENKRIEGER,牢笼斗士
+profile,ZONDNAUT-A,探机骑士-A
+profile,ZONDNAUT-B,探机骑士-B
+profile,ZONDNAUT-C,探机骑士-C
+profile,ZONDNAUTICA-A,探机骑士-A
+profile,ZONDNAUTICA-B,探机骑士-B
+profile,ZONDNAUTICA-C,探机骑士-C
+unit,Casino Security Rounders,赌徒，赌场保安部队
+unit,"Denma Connolly, Caledonian Zellenkrieger",丹马·康诺利，卡莱多尼亚人牢笼斗士
+unit,"Fiddler, Aristeia!'s ex-toymaker",提琴手，前竞技场玩具制造者
+unit,Kulak Payback Unit,重拳报复部队
+unit,Tunguska Triggermen,通古斯卡枪手
+unit,"Wolfgang Amadeus Wolff, Wulver Bounty Hunter",沃尔夫冈·阿玛迪乌斯·伍尔夫，狼人赏金猎人
+unit,Zellenkrieger,牢笼斗士
+unit,Go-Bot,速攻僚机
+unit,Go-Pod,速攻艇
+unit,Switchers Gruppa,切换者小组

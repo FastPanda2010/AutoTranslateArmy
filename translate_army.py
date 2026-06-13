@@ -18,11 +18,14 @@ from docx.enum.table import WD_TABLE_ALIGNMENT, WD_CELL_VERTICAL_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from docx.shared import Cm, Emu, Pt, RGBColor
 
 
 DOC_FONT = "Microsoft YaHei Light"
 LOGO_WIDTH = Cm(2.0)
+FACTION_COVER_LOGO_WIDTH = Cm(4.0)
+FACTION_COVER_LOGO_RENDER_ZOOM = 4
 ASSET_DIR = Path("Asset")
 LOGO_CACHE_DIR = Path(".cache") / "logos"
 UNIT_IMAGE_DIR = ASSET_DIR / "unit_images"
@@ -445,6 +448,26 @@ def infer_faction_id(json_path: Path, data: dict[str, Any]) -> int | None:
     return max(counts, key=counts.get) if counts else None
 
 
+def load_faction_metadata(json_path: Path) -> dict[int, dict[str, Any]]:
+    metadata_path = json_path.parent / "metadata.json"
+    if not metadata_path.exists():
+        return {}
+
+    try:
+        raw = json.loads(metadata_path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+    factions: dict[int, dict[str, Any]] = {}
+    for faction in raw.get("factions", []) or []:
+        try:
+            faction_id = int(faction.get("id"))
+        except (TypeError, ValueError):
+            continue
+        factions[faction_id] = faction
+    return factions
+
+
 def should_include_unit(unit: dict[str, Any], faction_id: int | None) -> bool:
     """只输出属于当前军表的单位；factions=[] 的佣兵池单位不输出。"""
     factions = unit.get("factions") or []
@@ -537,7 +560,7 @@ def set_order_icons_cell(cell, orders: list[dict[str, Any]], *, italic: bool = F
 
 
 @lru_cache(maxsize=256)
-def fetch_logo_png(logo_url: str) -> bytes | None:
+def fetch_logo_png(logo_url: str, render_zoom: float | None = None) -> bytes | None:
     """下载官方 SVG logo，并转换成 python-docx 可插入的 PNG。
 
     官方 JSON 里的 logo 通常是 SVG 链接。python-docx 对 SVG 支持不好，
@@ -545,7 +568,8 @@ def fetch_logo_png(logo_url: str) -> bytes | None:
     """
     if not logo_url:
         return None
-    cache_path = LOGO_CACHE_DIR / f"{hashlib.sha256(logo_url.encode('utf-8')).hexdigest()}.png"
+    cache_key = logo_url if render_zoom is None else f"{logo_url}|z={render_zoom:g}"
+    cache_path = LOGO_CACHE_DIR / f"{hashlib.sha256(cache_key.encode('utf-8')).hexdigest()}.png"
     if cache_path.exists():
         try:
             return cache_path.read_bytes()
@@ -560,7 +584,7 @@ def fetch_logo_png(logo_url: str) -> bytes | None:
     try:
         import resvg_py
 
-        png_bytes = resvg_py.svg_to_bytes(svg_bytes.decode("utf-8"))
+        png_bytes = resvg_py.svg_to_bytes(svg_bytes.decode("utf-8"), zoom=render_zoom)
     except Exception:
         return None
 
@@ -587,6 +611,125 @@ def set_logo_cell(cell, logo_url: str | None) -> None:
     cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
 
+def add_centered_logo_paragraph(doc: Document, logo_url: str | None, width=LOGO_WIDTH, render_zoom: float | None = None) -> None:
+    paragraph = doc.add_paragraph()
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    paragraph.paragraph_format.space_after = Pt(6)
+
+    logo_png = fetch_logo_png(logo_url or "", render_zoom)
+    if logo_png is None and render_zoom is not None:
+        logo_png = fetch_logo_png(logo_url or "")
+    if logo_png:
+        run = paragraph.add_run()
+        run.add_picture(io.BytesIO(logo_png), width=width)
+
+
+def add_centered_text_paragraph(doc: Document, text: str, *, size: float = 24, space_after: float = 0) -> None:
+    paragraph = doc.add_paragraph()
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    paragraph.paragraph_format.space_after = Pt(space_after)
+    run = paragraph.add_run(text)
+    run.bold = True
+    apply_doc_font(run)
+    run.font.size = Pt(size)
+
+
+def add_hyperlink(paragraph, text: str, url: str, *, size: float = 10) -> None:
+    part = paragraph.part
+    relationship_id = part.relate_to(url, RT.HYPERLINK, is_external=True)
+    hyperlink = OxmlElement("w:hyperlink")
+    hyperlink.set(qn("r:id"), relationship_id)
+
+    run = OxmlElement("w:r")
+    r_pr = OxmlElement("w:rPr")
+
+    r_fonts = OxmlElement("w:rFonts")
+    r_fonts.set(qn("w:ascii"), DOC_FONT)
+    r_fonts.set(qn("w:hAnsi"), DOC_FONT)
+    r_fonts.set(qn("w:eastAsia"), DOC_FONT)
+    r_pr.append(r_fonts)
+
+    sz = OxmlElement("w:sz")
+    sz.set(qn("w:val"), str(int(size * 2)))
+    r_pr.append(sz)
+
+    color = OxmlElement("w:color")
+    color.set(qn("w:val"), "0563C1")
+    r_pr.append(color)
+
+    underline = OxmlElement("w:u")
+    underline.set(qn("w:val"), "single")
+    r_pr.append(underline)
+
+    run.append(r_pr)
+    text_node = OxmlElement("w:t")
+    text_node.text = text
+    run.append(text_node)
+    hyperlink.append(run)
+    paragraph._p.append(hyperlink)
+
+
+def add_cover_notice(doc: Document) -> None:
+    spacer = doc.add_paragraph()
+    spacer.paragraph_format.space_after = Pt(24)
+
+    notice = doc.add_paragraph()
+    notice.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    notice.paragraph_format.space_after = Pt(6)
+    run = notice.add_run("因为 CB 军表更新频繁，可能此表中信息以过时，请以官方写表器为准。")
+    apply_doc_font(run)
+    run.font.size = Pt(10)
+
+    army_link = doc.add_paragraph()
+    army_link.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    army_link.paragraph_format.space_after = Pt(12)
+    add_hyperlink(army_link, "https://infinitytheuniverse.com/army/infinity", "https://infinitytheuniverse.com/army/infinity")
+
+    wiki_notice = doc.add_paragraph()
+    wiki_notice.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    wiki_notice.paragraph_format.space_after = Pt(6)
+    run = wiki_notice.add_run("更多兵种介绍、背景请参阅 infinity 中文维基")
+    apply_doc_font(run)
+    run.font.size = Pt(10)
+
+    wiki_link = doc.add_paragraph()
+    wiki_link.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    wiki_link.paragraph_format.space_after = Pt(0)
+    add_hyperlink(wiki_link, "https://infinity.huijiwiki.com/", "https://infinity.huijiwiki.com/")
+
+
+def translated_faction_name(faction: dict[str, Any] | None, tr: Translator) -> str:
+    if not faction:
+        return ""
+    name = normalize(faction.get("name", ""))
+    return tr.translate("faction", name) if name else ""
+
+
+def add_faction_cover_page(doc: Document, factions: dict[int, dict[str, Any]], faction_id: int | None, tr: Translator) -> bool:
+    if faction_id is None:
+        return False
+
+    faction = factions.get(faction_id)
+    if not faction:
+        return False
+
+    try:
+        parent_id = int(faction.get("parent"))
+    except (TypeError, ValueError):
+        parent_id = faction_id
+    parent = factions.get(parent_id, faction)
+
+    doc.add_paragraph().paragraph_format.space_after = Pt(36)
+    add_centered_logo_paragraph(doc, parent.get("logo"), width=FACTION_COVER_LOGO_WIDTH, render_zoom=FACTION_COVER_LOGO_RENDER_ZOOM)
+    add_centered_text_paragraph(doc, translated_faction_name(parent, tr), size=24, space_after=0 if parent_id == faction_id else 36)
+    if parent_id != faction_id:
+        add_centered_logo_paragraph(doc, faction.get("logo"), width=FACTION_COVER_LOGO_WIDTH, render_zoom=FACTION_COVER_LOGO_RENDER_ZOOM)
+        add_centered_text_paragraph(doc, translated_faction_name(faction, tr), size=24, space_after=0)
+    add_cover_notice(doc)
+    doc.add_page_break()
+    return True
+
+
 def sanitize_unit_image_name(name: str) -> str:
     """Return a stable Windows-safe filename stem for extracted unit images."""
     stem = re.sub(r'[<>:"/\\|?*\x00-\x1f]', "_", normalize(name))
@@ -605,40 +748,70 @@ def _unit_image_entry(image_dir: Path, entry: dict[str, Any]) -> dict[str, Any] 
     }
 
 
-def load_unit_images(image_set: str) -> dict[str, list[list[dict[str, Any]]]]:
-    image_dir = UNIT_IMAGE_DIR / image_set
-    manifest_path = image_dir / "manifest.json"
-    if not manifest_path.exists():
-        return {}
+def normalize_unit_image_key(name: str) -> str:
+    return re.sub(r"\s+", " ", normalize(name))
 
-    raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+def unit_image_source_dirs(image_set: str) -> list[Path]:
+    if not UNIT_IMAGE_DIR.exists():
+        return []
+
+    dirs = [
+        path
+        for path in UNIT_IMAGE_DIR.iterdir()
+        if path.is_dir() and (path / "manifest.json").exists()
+    ]
+    dirs.sort(key=lambda path: path.name.lower())
+
+    preferred = UNIT_IMAGE_DIR / image_set
+    if preferred in dirs:
+        return [preferred, *[path for path in dirs if path != preferred]]
+    return dirs
+
+
+def add_unit_image_group(
+    result: dict[str, list[list[dict[str, Any]]]],
+    english_name: str,
+    entries: list[dict[str, Any]],
+) -> None:
+    if not english_name or not entries:
+        return
+
+    keys = list(dict.fromkeys([english_name, normalize_unit_image_key(english_name)]))
+    for key in keys:
+        result.setdefault(key, []).append(entries)
+
+
+def load_unit_images(image_set: str) -> dict[str, list[list[dict[str, Any]]]]:
     result: dict[str, list[list[dict[str, Any]]]] = {}
 
-    if raw.get("tables"):
-        for table in raw.get("tables", []):
-            english_name = table.get("english_name", "")
+    for image_dir in unit_image_source_dirs(image_set):
+        manifest_path = image_dir / "manifest.json"
+        raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+        if raw.get("tables"):
+            for table in raw.get("tables", []):
+                english_name = table.get("english_name", "")
+                valid_entries = [
+                    parsed
+                    for entry in table.get("images", [])
+                    if (parsed := _unit_image_entry(image_dir, entry)) is not None
+                ]
+                add_unit_image_group(result, english_name, valid_entries)
+            continue
+
+        for english_name, entries in raw.get("units", {}).items():
             valid_entries = [
                 parsed
-                for entry in table.get("images", [])
+                for entry in entries
                 if (parsed := _unit_image_entry(image_dir, entry)) is not None
             ]
-            if english_name and valid_entries:
-                result.setdefault(english_name, []).append(valid_entries)
-        return result
-
-    for english_name, entries in raw.get("units", {}).items():
-        valid_entries = [
-            parsed
-            for entry in entries
-            if (parsed := _unit_image_entry(image_dir, entry)) is not None
-        ]
-        if valid_entries:
-            result[english_name] = [valid_entries]
+            add_unit_image_group(result, english_name, valid_entries)
     return result
 
 
 def next_unit_images(unit_images: dict[str, list[list[dict[str, Any]]]] | None, english_name: str) -> list[dict[str, Any]]:
-    groups = (unit_images or {}).get(english_name)
+    groups = (unit_images or {}).get(english_name) or (unit_images or {}).get(normalize_unit_image_key(english_name))
     if not groups:
         return []
     return groups.pop(0)
@@ -858,14 +1031,17 @@ def fireteam_min_text(unit: dict[str, Any]) -> str:
     return str(minimum)
 
 
-def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translator) -> None:
+def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translator, title_prefix: str = "") -> None:
     """在单位表之前生成 fireteamChart 火力组表；reinforcements 不参与生成。"""
     if not chart or not chart.get("teams"):
         return
 
     heading = doc.add_paragraph()
     heading.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = heading.add_run("火力组")
+    title = "火力组"
+    if title_prefix:
+        title = f"{title_prefix}{title}"
+    run = heading.add_run(title)
     run.bold = True
     run.font.size = Pt(14)
     run.font.name = DOC_FONT
@@ -1185,7 +1361,7 @@ def split_weapons(weapons: list[dict[str, Any]], maps: dict[str, dict[int, dict[
     return bs, cc
 
 
-def setup_document(doc: Document, title: str) -> None:
+def setup_document(doc: Document, title: str | None = None) -> None:
     """设置整份 Word 文档的页面方向、边距、默认字体和标题。"""
     section = doc.sections[0]
     # section.orientation = WD_ORIENT.LANDSCAPE
@@ -1198,6 +1374,11 @@ def setup_document(doc: Document, title: str) -> None:
     styles = doc.styles
     apply_style_font(styles["Normal"])
     styles["Normal"].font.size = Pt(10)
+    if title:
+        add_document_title(doc, title)
+
+
+def add_document_title(doc: Document, title: str) -> None:
     heading = doc.add_paragraph()
     heading.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = heading.add_run(title)
@@ -1217,12 +1398,16 @@ def generate_docx(
     """完整生成流程：读 JSON -> 读词汇表 -> 建索引 -> 写 Word -> 导出缺词表。"""
     data = json.loads(json_path.read_text(encoding="utf-8"))
     faction_id = infer_faction_id(json_path, data)
+    faction_metadata = load_faction_metadata(json_path)
     tr = Translator.from_path(glossary_path)
+    army_name = translated_faction_name(faction_metadata.get(faction_id), tr)
     maps = build_filter_maps(data)
     unit_images = load_unit_images(json_path.stem)
     doc = Document()
-    setup_document(doc, f"Infinity 中文军表 {data.get('version', '')}".strip())
-    add_fireteam_chart(doc, data.get("fireteamChart"), tr)
+    setup_document(doc)
+    add_faction_cover_page(doc, faction_metadata, faction_id, tr)
+    setup_document(doc, f"Infinity Army版本 {data.get('version', '')}".strip())
+    add_fireteam_chart(doc, data.get("fireteamChart"), tr, army_name)
     if data.get("fireteamChart", {}).get("teams"):
         doc.add_page_break()
 
