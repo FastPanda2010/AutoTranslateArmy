@@ -153,13 +153,13 @@ class Translator:
         if not text:
             return ""
         key = normalize(text)
-        for cat in (category, "*"):
-            entry_key = (cat, key)
-            if entry_key in self.entries:
-                return self.entries[entry_key]
-            entry_key_lower = (cat, key.lower())
-            if entry_key_lower in self.entries:
-                return self.entries[entry_key_lower]
+        found = self._lookup_entry(category, key)
+        if found is not None:
+            return found
+        for candidate in inflection_candidates(key):
+            found = self._lookup_entry(category, candidate)
+            if found is not None:
+                return found
         guessed = self._rule_translate(category, text)
         if guessed != text:
             return guessed
@@ -167,6 +167,16 @@ class Translator:
             # 没命中的词保留英文，并记录到 missing.csv 方便以后补词。
             self.record_missing(category, text)
         return text
+
+    def _lookup_entry(self, category: str, key: str) -> str | None:
+        for cat in (category, "*"):
+            entry_key = (cat, key)
+            if entry_key in self.entries:
+                return self.entries[entry_key]
+            entry_key_lower = (cat, key.lower())
+            if entry_key_lower in self.entries:
+                return self.entries[entry_key_lower]
+        return None
 
     def record_missing(self, category: str, source: str) -> None:
         """大小写不敏感地记录缺词，避免同一术语输出大小写两份。"""
@@ -196,6 +206,44 @@ class Translator:
 def normalize(text: Any) -> str:
     """统一文本格式，避免同一个词因为特殊空格导致匹配失败。"""
     return str(text).replace(NBSP, " ").strip()
+
+
+def inflection_candidates(text: str) -> list[str]:
+    words = text.split()
+    if not words:
+        return []
+
+    last = words[-1]
+    lower = last.lower()
+    candidates: list[str] = []
+
+    def add_last(replacement: str) -> None:
+        if replacement and replacement.lower() != lower:
+            candidates.append(" ".join([*words[:-1], match_case(last, replacement)]))
+
+    if len(last) > 3 and lower.endswith("ies"):
+        add_last(last[:-3] + "y")
+    elif len(last) > 4 and re.search(r"(ches|shes|xes|zes|ses)$", lower):
+        add_last(last[:-2])
+    elif len(last) > 3 and lower.endswith("s") and not lower.endswith(("ss", "us")):
+        add_last(last[:-1])
+    elif len(last) > 1:
+        if lower.endswith("y") and len(last) > 2 and lower[-2] not in "aeiou":
+            add_last(last[:-1] + "ies")
+        elif re.search(r"(ch|sh|x|z|s)$", lower):
+            add_last(last + "es")
+        else:
+            add_last(last + "s")
+
+    return list(dict.fromkeys(candidates))
+
+
+def match_case(source: str, replacement: str) -> str:
+    if source.isupper():
+        return replacement.upper()
+    if source[:1].isupper() and source[1:].islower():
+        return replacement.capitalize()
+    return replacement
 
 
 def missing_source_score(source: str) -> tuple[int, int]:
@@ -665,7 +713,7 @@ def add_note_paragraph(doc: Document, note: str | None, tr: Translator, *, label
     label_run.bold = True
     apply_doc_font(label_run)
     label_run.font.size = Pt(9)
-    text_run = paragraph.add_run(tr.translate("note", note_text, record_missing=False))
+    text_run = paragraph.add_run(tr.translate("note", note_text))
     apply_doc_font(text_run)
     text_run.font.size = Pt(9)
 
@@ -1032,8 +1080,7 @@ def add_option_row(row, option: dict[str, Any], maps: dict[str, dict[int, dict[s
     """写入一条 option 配置行。"""
     row_italic = bool(option.get("disabled"))
 
-    # option.name 是这一行配置的名字；如果 orders 里有 LIEUTENANT，
-    # option_display_name 会在名字后追加“指挥官”标记。
+    # option.name 是这一行配置的名字；尉官等技能由 option.skills 自己输出。
     option_name = option_display_name(option, tr)
 
     # 官方把全部武器放在 option.weapons 中；这里按 filters.weapons[type]
@@ -1078,10 +1125,8 @@ def split_equip_by_type(equip_refs: list[dict[str, Any]], maps: dict[str, dict[i
 
 
 def option_display_name(option: dict[str, Any], tr: Translator) -> str:
-    """配置名称；如果该配置是 Lieutenant，就在名称后追加指挥官标记。"""
-    name = tr.translate("profile", option.get("name", ""))
-    orders = [tr.translate("order", o.get("type", "")) for o in option.get("orders", []) if o.get("type") == "LIEUTENANT"]
-    return f"{name}（{'，'.join(orders)}）" if orders else name
+    """配置名称。"""
+    return tr.translate("profile", option.get("name", ""))
 
 
 def split_weapons(weapons: list[dict[str, Any]], maps: dict[str, dict[int, dict[str, Any]]]) -> tuple[list[Any], list[Any]]:

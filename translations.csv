@@ -8,11 +8,10 @@ fireteam,OPTIMATES Fireteam,至善火力组
 fireteam,Wildcards,自由人 （可以加入任何火力组，但不能超过火力组人数限制）
 fireteam,Dikpala,方位护法
 fireteam,Samarthan,支援
-fireteam,Asura,阿修罗
+*,Asura,阿修罗
 fireteam,Bounty Hunter,赏金猎人
 fireteam,Max-Op,MAX-OP
 fireteam,Optimate,至善
-fireteam,Optimates,至善
 fireteam,Yadu Troops,雅度
 profile,DIKPALA,方位护法
 profile,SHARVARA,奢婆罗
@@ -55,17 +54,12 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Staldron Remote Ancillary Unit,希塔德隆，远程辅助单位
 *,The Shrouded,隐秘者
 *,Malignos,恶魔
-*,Speculo Killers,镜像杀手
 *,Dāturazi Witch-Soldiers,达图拉齐巫术战士
 *,The Hungries-'Gakis',饥饿者-恶鬼
 *,The Hungries: 'Gakis',饥饿者-恶鬼
 *,The Hungries-'Pretas',饥饿者-幽灵
 *,The Hungries: 'Pretas',饥饿者-幽灵
 *,Med-Tech Obsidon Medchanoid,黑曜石医疗维修体
-*,M-Drones,M型无人机
-*,Q-Drones,Q型无人机
-*,T-Drones,T型无人机
-*,R-Drones,R型无人机
 *,Shasvastii Seed-Soldiers,夏斯瓦提育种战士
 *,Shasvastii Cadmus,夏斯瓦提龙芽战士
 *,Shasvastii Haiduks,夏斯瓦提黑盗客
@@ -73,13 +67,11 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Kurgat Reg. of Assault Engineers,库加特突击工程兵团
 *,Yaogat Strike Infantry,姚加特突击部队
 *,Rasyat Diplomatic Division,拉斯亚特外交分队
-*,Skiávoros,暗影吞噬者
 *,Sogarat Tempest Regiment,索加拉特风暴军团
 *,The Anathematics,憎恶
 *,Shasvastii Special Armored Corp Sphinx,斯芬克斯，夏斯瓦提特种装甲部队
 *,Scindron Ancillary Remote Unit,希恩德隆，远程辅助单位
 *,Zerat Special Missions Regiment,泽拉特特遣队
-*,Slave Drones,奴隶工蜂
 *,Ímetron,伊米隆信标
 *,Libertos Freedom Fighters,自由战士
 *,Shasvastii Sabotage and Destruction Unit Caliban,“海怪”夏斯瓦提破坏摧毁单位
@@ -92,8 +84,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,"Kornak Gazarot, Superior Warrior-Officer",科纳克·加扎罗，莫拉特高级士官
 *,Treitak Anyat,崔塔克·安娅特
 *,Shasvastii Corax Hasht,夏斯瓦提渡鸦部队 哈希特
-*,E-Drones,E型无人机
-*,Umbra Samaritans,暗影守卫
 *,Nexus Operatives,连接密探
 *,Xeodron Batroids,极欧隆战斗机兵
 *,Overdron Batroids,欧文隆战斗机兵
@@ -116,7 +106,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,MORAT VANGUARD,莫拉特先锋
 *,UNIDRON,尤尼隆
 *,FRAACTA,弗莱塔
-*,UMBRA LEGATE,暗影
 *,MAAKREP TRACKER,马克莱普追踪者
 *,RODOK,锐达克
 *,CHARONTID,引魂者
@@ -150,7 +139,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,CALIBAN,海怪
 *,RAKTORAK,拉托拉克
 *,SURYAT,索亚特
-*,SURYATS,索亚特
 *,OZNAT,奥兹纳特
 *,IKADRON,伊卡德龙
 *,SHESKIIN BOARDING,沙司金 登舰装备
@@ -177,7 +165,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,SARGOSH,沙加什
 *,KO DALI,寇达莉
 *,DROPSUIT TARYOT,塔姚特，突降服
-*,Fusiliers,燧发枪手
 *,"Akalis, Sikh Commandos",永恒之子，锡克突击队
 *,Nisses,精灵
 *,Neoterra Bolts,新地星闪击队
@@ -190,8 +177,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,"Dragões, Acontecimento Dragoons",火龙，机遇星龙骑兵
 *,"Cutters, Varuna Naval Chasseurs",快艇，水神星海军猎骑兵
 *,Croc Men,鳄人
-*,Trauma-Docs,外伤医师
-*,Machinists,机械师
 *,Pathfinder Dronbot,开拓者遥控机
 *,Sierra Dronbot,群山遥控机
 *,Clipper Dronbot,清扫者遥控机
@@ -202,27 +187,20 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Auxilia,辅助军
 *,AUXBOT,辅助遥控机
 *,"Hexas, Strategic Security Division",六面体，战略安全部
-*,Order Sergeants,修会军士
 *,Bagh-Mari Unit,猎虎者部队
 *,Guarda de Assalto,突击守卫
 *,Knights of Santiago,圣地亚哥骑士
 *,Knights of the Holy Sepulchre,圣陵骑士
-*,Teutonic Knights,条顿骑士
 *,Magister Knights,导师骑士
 *,Clausewitz Uhlans,克劳塞维茨枪骑兵
 *,"Tikbalangs, Armored Chasseurs of Acontecimento",马头猿，机遇星装甲猎骑兵
 *,"TIKBALANGS, Armoured Chasseurs of Acontecimento",马头猿，机遇星装甲猎骑兵
-*,Seraphs,炽天使
 *,Armbots: Bulleteer,武装遥控机：弹眼
 *,Armbots: Peacemakers,武装遥控机：和平缔造者
-*,Palbots,伺服遥控机
-*,Mulebots,骡式遥控机
 *,"Kirpal Singh, Akalis Sergeant",基帕尔·辛格，永恒之子军士
 *,Father-Officer Gabriele De Fersen,神父军官，加布里埃尔·德菲尔逊
 *,Crusader Brethren,十字军兄弟会
 *,Jotums. Svalarheima Armoured Cuirassiers Regiment,约顿巨人，冰原星重装骑兵团
-*,Jotums. Svalarheima Armoured Cuirassiers,约顿巨人，冰原星重装骑兵团
-*,Jotums,约顿巨人
 *,"Lt. Stephen Rao, Bagh-Mari Unit",斯蒂文·饶，猎虎者尉官
 *,"LIEUTENANT STEPHEN RAO, Bagh-Mari Unit",斯蒂文·饶，猎虎者尉官
 *,Fusilier Indigo Bipandra,靛蓝燧发枪手比班德拉
@@ -256,7 +234,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,AQUILA,天鹰
 *,SWISS GUARD,瑞士守卫
 *,SQUALO,鲨鱼
-*,SQUALOS,鲨鱼
 *,CRABBOT,蟹式辅助遥控机
 *,Dragões,火龙
 *,DRÃGAO,火龙
@@ -279,10 +256,8 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,KNIGHT OF SANTIAGO,圣地亚哥骑士
 *,KNIGHT OF THE HOLY SEPULCHRE,圣陵骑士
 *,TEUTONIC KNIGHT,条顿骑士
-*,MAGISTER KNIGHT,导师骑士
 *,UHLAN,枪骑兵
 *,TIKBALANG,马头猿
-*,TIKBALANGS,马头猿
 *,SERAPH,炽天使
 *,BULLETEER,弹眼
 *,PALBOT,伺服遥控机
@@ -291,7 +266,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Gabriele DE FERSEN,加布里埃尔·德菲尔逊
 *,DE FERSEN,德菲尔逊
 *,CRUSADER,十字军
-*,JOTUM,约顿
+*,JOTUM,约顿巨人
 *,LT. STEPHEN RAO,尉官 斯蒂文·饶
 *,BIPANDRA,比班德拉
 *,BROTHER KONSTANTINOS,康斯坦丁修士
@@ -299,7 +274,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,LOCUST,蝗虫
 *,BLACK FRIAR,黑衣修士
 *,TECH-BEE,科技蜂
-*,TECH-BEES,科技蜂
 *,KNIGHT OF MONTESA,蒙特莎骑士
 *,ECHO-BRAVO,回音杀手
 *,ZULU-COBRA,祖鲁眼镜蛇
@@ -317,13 +291,11 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,BØYG,蛇魔
 *,GUNNAR Lundmark,冈纳·伦德马克
 *,GUNNAR,冈纳
-*,Guijia Squadrons,龟甲，四灵中队
 *,GŪIJIĂ Squadrons,龟甲，四灵中队
 *,GŪIJIĂ,龟甲
 *,"YĀN HUǑ Invincibles, Fire Support Heavy Regiment",烟火无敌军
 *,YĀN HUǑ Invincibles,烟火无敌军
 *,YĀN HUǑ,烟火
-*,SHÀNG JÍ INVINCIBLES,上级无敌军
 *,Shàng Jí Invincibles,上级无敌军
 *,SHÀNG JÍ,上级
 *,ZHĒNCHÁ,侦察
@@ -335,7 +307,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,DĀOYĪNG Operative Control Unit,刀鹰行动控制单位
 *,DĀOYĪNG,刀鹰
 *,TIGER SOLDIERS,虎战士
-*,"Zúyŏng Invincibles, Terra-cotta Soldiers",卒俑无敌军
 *,"ZÚYǑNG Invincibles, Terra-cotta Soldiers",卒俑无敌军
 *,ZÚYǑNG Invincibles,卒俑无敌军
 *,ZÚYǑNG,卒俑
@@ -346,9 +317,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,DÀOFĚI,盗匪
 *,HAC TAO Special Unit,诡道特种部队
 *,HAC TAO,诡道
-*,HSIEN Warriors,永仙御前卫
 *,HSIEN,永仙
-*,Guiláng Skirmishers,鬼狼前卫
 *,GŬILÁNG Skirmishers,鬼狼前卫
 *,GŬILÁNG,鬼狼前卫
 *,KUNAI Solutions NINJAs,解决策
@@ -356,21 +325,12 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,SHAOLIN Warrior Monks,少林武僧
 *,SHAOLIN,少林武僧
 *,Zhanshi Yisheng,战士医生
-*,Zhanshi YĪSHĒNG,战士医生
 *,MECH-ENGINEER,战地工程师
-*,MECH-ENGINEERS,战地工程师
 *,Gōngchéng,工程师
-*,Wèibīng Yáokòng,卫兵遥控机
-*,WÈIBĪNG Yaókòng,卫兵遥控机
 *,MONSTRUCKER,怪兽卡车员
-*,Hùsòng Yáokòng,护送遥控机
-*,HÙSÒNG Yáokòng,护送遥控机
-*,HÙSÒNG Yaókòng,护送遥控机
 *,"ARMAND 'LE MUET', FREELANCE KILLER",“沉默者”阿曼德，自由杀手
 *,Inactive Symbiont Armor,共生甲
 *,ARMAND,阿曼德
-*,Chaīyì Yáokòng,差役遥控机
-*,CHAĪYÌ Yaókòng,差役遥控机
 *,"KNAUF, Outlaw Sniper",克瑙夫，亡命狙击手
 *,KNAUF,克瑙夫
 *,HIGH MOBILITY FORM,高机动模式
@@ -384,7 +344,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Yáopú PANGGULING,遥仆 穿山甲
 *,PANGGULING,穿山甲
 *,Legendary Gunslinger,传奇枪客
-*,WILD BILL,狂野比尔
 *,"Bào Troops, Judicial Watch Unit",豹兵，司法监察单位
 *,BOUNTY HUNTER,赏金猎人
 *,"WARCORS, WAR CORRESPONDENTS",战地记者
@@ -395,18 +354,12 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,MIRANDA ASHCROFT,米兰达·阿什克罗夫特
 *,KǍNRÈN Counter-insurgency Group,侃刃平叛行动组
 *,KǍNRÈN,侃刃
-*,Krakot Renegades,科拉克特叛军
-*,Guǐ Fēng,鬼风
-*,XI ZHUANG,习壵
-*,MAJOR LUNAH,卢娜少校
-*,ex-Aristeia! Sniper,前竞技场狙击手
 *,CUBE JÄGER,立方猎手
 *,HǍIDÀO Special Support Group,海盗特殊支援部队
 *,HǍIDÀO,海盗
 *,LIÚ XĪNG Jump Infantry,流星突降步兵
 *,LIÚ XĪNG,流星
 *,MÓWÁNG TROOP,魔王部队
-*,MÓWÁNG TROOPS,魔王部队
 *,MÓWÁNG,魔王
 *,HÚLÁNG Shocktroopers,狐狼突击队
 *,HÚLÁNG,狐狼
@@ -435,7 +388,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,OKTAVIA GRÍMSDÓTTIR,屋大维娅·格里姆斯多蒂尔
 *,Icebreaker's Harpooner,破冰船鱼叉手
 *,OKTAVIA,屋大维娅
-*,REM RACERS,遥控机竞速手
 *,Mercenary Hacker-Pilots,佣兵黑客驾驶员
 *,REM RACER,遥控机竞速手
 *,"Imperial Agent ADIL MEHMUT, Special Division",阿迪力·麦合木提
@@ -454,26 +406,18 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,SUN TZE,孙子
 *,YÁOZĂO,遥蚤
 *,NINJA,忍者
-*,Line Kazaks,哥萨克前线部队
-*,Para-Commandos,第1空降突击团
+*,Para-Commandos,空降突击团
 *,Dynamo Reg. of Kazak Light Cavalry,迪纳摩哥萨克轻骑兵团
 *,Kazak Spetsnazs,哥萨克特种部队
 *,"USAriadna Grunts, Line Rangers Regiments",阿里亚德娜合众国步兵，前线游骑兵团
 *,USAriadna Grunts,阿里亚德娜合众国步兵
 *,"FRONTOVIKS, Separate Assault Bat.",先锋老兵，独立突击营
-*,TankHunters,坦克猎手
 *,Minutemen,义勇军
-*,Moblots,国民别动队
-*,Veteran Kazaks,哥萨克老兵
 *,Foxtrot Rangers,狐步游骑兵
 *,"Hardcases, 2nd Irregular Frontiersmen Battalion",第2非正规拓荒者营“硬汉”
 *,Hardcases,硬汉
-*,Scouts,侦察兵
 *,45th Highlanders Rifles,第45高地步枪兵团
-*,Irmandinhos,伊尔曼迪诺，水上监察志愿兵兄弟会
 *,Antipode Assault Pack,裂生恐狼突击兽群
-*,Varangian Guard,瓦蓝守卫
-*,Dog-Warriors,巨犬战士
 *,Kazak Doktor,哈萨克军医
 *,"VASSILY Plushenko, TankHunters Officer",瓦西里·普鲁申科，坦克猎手军官
 *,Van Zant,范詹特
@@ -483,11 +427,8 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,TROUPES MÉTROPOLITAINES,梅洛温卫国军
 *,Loup-Garous,狼人疾行特战队
 *,Highlander Caterans,高地游侠
-*,Zouaves,佐夫连队
 *,3rd Highlander Grey Rifles,第3灰骑兵高地步枪兵团
 *,3rd Highlander Greys,第3灰骑兵高地步枪兵团
-*,Caledonian Mormaers,卡利登总督卫军
-*,Chasseurs,第4猎兵大队
 *,9th Wulver Grenadiers,第9狼人掷弹兵军团
 *,2nd Irregular Cameronians Reg.,第2非正规巨狼军团
 *,"Dozers, Field Engineers",“推土机”，战地工程师
@@ -524,7 +465,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,"Cadin FirstStrike Donn, Point-man of the Grenadiers Reg.",卡丁·“先攻”多恩，掷弹兵军团尖兵
 *,"Cadin ""FirstStrike"" Donn",卡丁·“先攻”多恩，掷弹兵军团尖兵
 *,LINE KAZAK,哥萨克前线部队
-*,PARA-COMMANDO,空降突击团
 *,DYNAMO,迪纳摩
 *,SPETSNAZ,特种兵
 *,GRUNT,步兵
@@ -538,7 +478,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,SCOUT,侦察兵
 *,IRMANDINHO,伊尔曼迪诺
 *,HANDLER,驯兽师
-*,VARANGIAN,瓦蓝
 *,DOG-WARRIOR,巨犬战士
 *,KAZAK DOKTOR,哈萨克军医
 *,VASSILY,瓦西里
@@ -559,7 +498,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,MARGOT,玛格
 *,DUROC,杜洛克
 *,WALLACE,华莱士
-*,BRISCARDS,老兵
 *,BRISCARD,老兵
 *,Scot,苏格兰士兵
 *,BRIGADIER BRUANT,布鲁安下士
@@ -567,39 +505,24 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,ISOBEL McGREGOR,伊泽贝尔·玛格丽格
 *,WARDRIVER,战争驱动
 *,MAVERICK,独行者
-*,MAVERICKs,独行者
 *,MARAUDER,掠夺者
 *,DEVIL DOG Teams,地狱犬小组
 *,DEVIL DOG,地狱犬
 *,AIRBORNE RANGER,空降游骑兵
 *,DESPERADO,亡命徒
 *,COLONEL VORONIN,沃罗宁上校
-*,BLACKJACKS,黑杰克
 *,BLACKJACK,黑杰克
 *,UNKNOWN RANGER,无名游骑兵
 *,ROSIE,萝茜
-*,STRELOKs,斯特列洛克
 *,STRELOK,斯特列洛克
 *,RATNIK,勇士
 *,112 (Motorized),112(摩托化）
 *,FIRSTSTRIKE DONN,“先攻”多恩
-*,Asuras,阿修罗
-*,Maruts,暴风神
 *,Karkata Ancillary Remote Unit,巨蟹远程辅助单位
 *,Dasyus,暗魔
-*,Nagas,娜迦
-*,Myrmidons,追随战士
 *,Deva Functionaries,天人专员
 *,Devabot,天人机器人
 *,Garuda Tacbots,迦楼罗战术机器人
-*,Daleth Rebots,远望遥控机
-*,Dakini Tacbots,空行母战术机器人
-*,Zayin Rebots,利剑遥控机
-*,Samekh Rebots,强援遥控机
-*,Sophotects,创智者
-*,Lamedh Rebots,先遣遥控机
-*,Netrods,网络节点
-*,Probots,原型机
 *,PROXY Mk.1,代理人1型
 *,PROXY Mk.2,代理人2型
 *,PROXY Mk.3,代理人3型
@@ -607,7 +530,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,PROXY Mk.5,代理人5型
 *,Posthumans,后人类
 *,Yadu Officer Shakti,沙克蒂，雅度军官
-*,Yudbots,助手机器人
 *,Agêma Marksmen,皇家卫队射手
 *,"Nesaie Alkê, Thorakitai Warrant Officer",妮莎依•阿尔刻，装甲枪手准尉
 *,Nesaie Alkê,妮莎依•阿尔刻
@@ -632,14 +554,12 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Achilles,阿喀琉斯
 *,"Hector, Homerid Champion",赫克托耳，荷马冠军
 *,"Andromeda, Sophistes of the Steel Phalanx",安德洛墨达，钢铁方阵智者
-*,"Krakot Renegades, Morat Fugitives",肯德拉特，科拉克特叛军
 *,Danavas Hackers,檀那婆黑客
 *,Shukra Consultants,苏羯罗顾问团
 *,"Yadu Troopers, Tactical Assault Teams",雅度战士，战术突击小组
 *,"Dart, Optimate Huntress",达特，至善女猎手
 *,Arjuna Troops,阿周那部队
 *,Arjuna Unit,阿周那部队
-*,KiranBots,基罗多机器人
 *,Ekdromoi,游击散兵
 *,Chandra Specialist Operative Trisha N33,月神别动队专家行动员，特丽莎 N33
 *,ASURA,阿修罗
@@ -649,14 +569,11 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,NAGA,娜迦
 *,DEVA,天人
 *,DEVABOT,天人机器人
-*,GARUDA Tacbot,迦楼罗
 *,DALETH Rebot,远望遥控机
-*,DAKINI Tacbot,空行母
 *,ZAYIN Rebot,利剑遥控机
 *,SAMEKH Rebot,强援遥控机
 *,SOPHOTECT,创智者
 *,LAMEDH Rebot,先遣遥控机
-*,Dactyls,锻造精灵
 *,DACTYL,锻造精灵
 *,NETROD,网络节点
 *,PROBOT,原型机
@@ -681,7 +598,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,THAMYRIS,塔米里斯
 *,ACHILLES,阿喀琉斯
 *,PATROCLUS,帕特洛克罗斯
-*,AÏDA SWANSON,艾达·斯旺森
 *,THRASYMEDES,特拉叙墨德斯
 *,TEUCER,透克罗斯
 *,Thorakitai,装甲枪手
@@ -692,12 +608,10 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,ACMON,阿克门
 *,HECTOR,赫克托耳
 *,ANDROMEDA,安德洛墨达
-*,KRAKOT RENEGADE,肯德拉特
 *,DANAVAS,檀那婆
 *,SHUKRA,苏羯罗
 *,YADU,雅度
 *,DART,达特
-*,APSARA,阿部沙罗斯
 *,ARJUNA,阿周那
 *,KIRANBOT,基罗多机器人
 *,TRISHA,特丽莎
@@ -710,8 +624,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Clipsos Infiltrators,虚无渗透者
 *,Makaul Troops,救赎者部队
 *,Kumotail Bioingeneers,唯律者，生物工程师
-*,Chaksa Auxiliars,查卡萨辅助军
-*,Chaksa Servants,查卡萨仆从
 *,"Neema Saatar, Ectros Regiment Officer",妮玛·萨塔尔，常胜军团军官
 *,Ectros Regiment,常胜军团
 *,Neema Saatar,妮玛·萨塔尔
@@ -723,7 +635,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Kaeltar Specialists,危情处理专家
 *,Kosuil Assault Pioneers,惩戒营突击工兵
 *,Sukeul Commandos,正义之剑突击队
-*,Kaauri Sentinels,卡乌里哨兵
 *,Taqeul Officers,指挥之剑军官
 *,Taagma Schemers,塔格玛阴谋家
 *,Kiel-Saan Covert Assault Unit,常胜无形潜伏突击单位
@@ -731,13 +642,11 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Kriigel Agents,克里格特工
 *,Reex Escorts,77护卫
 *,Kiiutan Imposters,基尤坦诈欺者
-*,Chaksa Longarms,查卡萨射手
 *,Rasail Boarding Team,狂怒者跳帮队
 *,KERAIL Preceptors,战兽导师
 *,Surda SymbioBeasts,共生猎兽-毒刃
 *,Mutan SymbioBeasts,共生猎兽-枪斗
 *,Jaan Staar Kiiutan Imposter,詹·斯塔基尤坦诈欺者
-*,"Kendrat, Krakot Renegade",肯德拉特，科拉克特叛军
 *,KAMAEL,英烈
 *,SAKIEL,不屈
 *,GAO-RAEL,敏锐猎手
@@ -770,11 +679,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,CHAKSA LONGARM,查卡萨射手
 *,RASAIL,狂怒者
 *,CHAKSA PERIFERICAL,查卡萨护卫
-*,KERAIL PRECEPTOR,战兽导师
-*,SURDA SYMBIOBEAST,共生猎兽-毒刃
-*,MUTAN SYMBIOBEAST,共生猎兽-枪斗
 *,JAAN STAAR,詹·斯塔
-*,KENDRAT,肯德拉特
 *,Kappa Unit,卡帕部队
 *,Alpha Unit,阿尔法部队
 *,Lynx Unit,山猫部队
@@ -799,14 +704,10 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Millicent Copperbots,米莉森特遥控机
 *,Kyttä Copperbots,探子遥控机
 *,Kyttä  Copperbots,探子遥控机
-*,FuzzBots,警员遥控机
 *,"Cuervo Goldstein, Basilisk Level Delta",库尔沃·戈德斯坦，毒蜥级德尔塔
-*,PSI-Cops,普赛特工
 *,"Crushers, Special Naval Demolition Team",粉碎者，海军特别爆破队
-*,Crushers,粉碎者，海军特别爆破队
 *,"Ensign Katherine Cho, Psi Unit",少尉凯瑟琳·周，普赛部队
 *,"Bluecoats, Naval Security Detachments",蓝袍，海军安全部
-*,Bluecoats,蓝袍，海军安全部
 *,"Lawkeepers, Badlands Patrol",维序者，荒地巡逻队
 *,SideBot,跟班机器人
 *,Nyoka Assault Troops,毒蛇突击队
@@ -827,13 +728,12 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,EPSILON,埃普西隆
 *,OMEGA,欧米伽
 *,BETATROOPER,贝塔机兵
-*,BETATROOPERS,贝塔机兵
 *,GAMMA,伽玛
 *,ZETA,泽塔
 *,ZETBOT,泽塔机器人
 *,RAZOR,剃刀
 *,GANGBUSTER,匪帮克星
-*,VARANGIAN,瓦兰吉人
+*,VARANGIAN,瓦兰吉
 *,CYBERGHOSTS,赛博幽灵
 *,LAMBDA,拉姆达
 *,OKO,天眼
@@ -855,7 +755,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,SHONA CARANO,邵娜·卡拉诺
 *,Ghulam Infantry,青年军
 *,Naffatûn,掷火兵
-*,Khawarijs,红巾军
 *,Hassassin Govads,哈萨辛风神
 *,Zhayedan Intervention Troops,不朽者干预部队
 *,Djanbazan Tactical Group,驯兽师战术部队
@@ -863,23 +762,14 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Janissaires,禁卫军
 *,Maghariba Guard,西方守卫
 *,MAGHARIBA PILOT,西方守卫驾驶员
-*,Hunzakuts,罕撒人
 *,Murabids Tuareg,沙村牧人
 *,Druze Shock Teams,德鲁兹突击队
 *,Hassassin Fiday,哈萨辛死士
 *,Kum Motorized Troops,库姆摩托部队
-*,Najjarun Engineers,木器匠工兵
-*,Rafiq Remotes,向导遥控机
-*,Shihab Remotes,陨星遥控机
-*,Monstruckers,怪兽卡车
-*,Shaytaniyah Remotes,恶魔遥控机
-*,Fanous Remotes,射灯遥控机
 *,"Tarik Mansuri, Khawarij Amir",塔里克·曼苏里， 红巾军领袖
 *,"Nazarova Twins, Kum Enforcers. Zamira Nazarova",娜扎罗娃姐妹，库姆执行人
 *,"Nazarova Twins, Kum Enforcers. Zuleyka Nazarova",娜扎罗娃姐妹，库姆执行人
 *,Daylami Infantry,德拉米步兵
-*,Odalisques,侍女
-*,Bashi Bazouks,先驱捕手
 *,Hafza Unit,守护天使部队
 *,Hassassin Muyibs,哈萨辛回应者
 *,Hassassin Lasiqs,哈萨辛执行者
@@ -963,7 +853,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,ÁYYĀR,独行者
 *,LEILA SHARIF,蕾拉·沙里夫
 *,HAKIM,哈基姆
-*,HAKIMs,哈基姆
 *,NASMAT A2,援护遥控机A2
 *,MUKHTAR,获选者
 *,NAHAB,掠食者
@@ -976,56 +865,35 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,YARA HADDAD,亚拉·哈达德
 *,ROUHANI,鲁哈尼
 *,"Grenzers, Grenz Security Team",边防队，国土安全组
-*,Hellcats,地狱猫
 *,Zondnautica Rapid Offensive Unit,探机骑士，快速侵攻部队
 *,ZondMate,探机搭档
-*,Intruders,入侵者
 *,"The Hollow Men, Tactical Assault Team",空壳人 战术突击小队
-*,Reverend Moiras,天命牧师
-*,Reverend Healers,圣愈牧师
-*,Hecklers,嘲笑者
 *,'Lizard' Squad,蜥蜴连队
 *,'Lizard' Pilot,蜥蜴驾驶员
 *,Corregidor Bandits,科雷吉多匪徒
 *,Puppet Masters,傀儡大师
-*,PuppetBots,战术傀儡
 *,Puppetactica Company,战术傀儡连队
-*,Zeros,零号
 *,Corregidor Alguaciles,科雷吉多法警
 *,"Mary Problems, Tactical ÜberHacker",问题玛丽，战术黑客
-*,Spektrs,幽灵
 *,Die Morlock Gruppe,莫洛克大队
 *,Corregidor Jaguars,科雷吉多美洲虎
 *,"Perseus, Rogue Myrmidon",珀尔修斯，叛逃追随者
-*,Daktaris,达克塔利
-*,Clockmakers,钟表匠
 *,Mobile Brigada,机动旅
 *,Tunguska Interventors,通古斯卡干涉者
 *,'Iguana' Squadron,鬣蜥中队
 *,'Iguana' Operator,鬣蜥操作员
-*,Stempler Zonds,攀爬探机
-*,Reaktion Zonds,反应探机
-*,Vertigo Zonds,眩晕探机
-*,Meteor Zonds,流星探机
-*,Transductor Zonds,电抗探机
 *,ZOE,佐伊
 *,PI-WELL,派维
 *,"Zoe & Π-Well, Special Clockmakers Team",佐伊&派维，钟表匠特别小组
 *,Moderators from Bakunin,巴枯宁仲裁者
-*,Tomcats,雄猫
-*,Zondcats,探测猫
-*,Reverend Custodiers,监察牧师
-*,Prowlers,徘徊者
 *,Sin-Eater Observants,食罪修士
 *,Szalamandra Squad,火蜥蜴中队
 *,'SZALAMANDRA' PILOT,火蜥蜴驾驶员
 *,"Moran, Maasai Hunter",莫兰，马赛猎手
 *,Chimera,奇美拉
-*,Pupniks,犬卫
 *,Bakunin Überfallkommando,巴枯宁防暴机动组
 *,Tsyklon Sputniks,旋风护卫机
 *,Lunokhod Sputniks,月行者护卫机
-*,Zondbots,探测机器人
 *,"Aïda Swanson, Submondo Smuggler",阿依达·斯旺森，地下世界走私客
 *,Salyut Zonds,礼炮探机
 *,"Carlota Kowalsky, Tomcats Sergeant",卡洛塔·科瓦尔斯基，雄猫军士长
@@ -1033,7 +901,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,"Bran do Castro, Triple Zero",布兰·度·卡斯特罗，三重零号
 *,Reverend Superior Cassandra Kusanagi,资深牧师卡珊德拉·草薙
 *,"Wildcats, Polyvalent Tactical Unit",野猫，多用途战术部队
-*,Riot Grrls,叛逆女孩
 *,'Gecko' Squad,壁虎中队
 *,'Gecko' Pilot,壁虎驾驶员
 *,Alguacil Vortex Lupe Balboa,漩涡部队法警 卢佩·巴博亚
@@ -1105,7 +972,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,BRAN DO CASTRO,布兰·度·卡斯特罗
 *,Cassandra KUSANAGI,卡珊德拉·草薙
 *,KUSANAGI,草薙
-*,WILDCATS,野猫
 *,WILDCAT,野猫
 *,JELENA KOVAČ,叶莲娜·科瓦奇
 *,RIOT GRRL,叛逆女孩
@@ -1244,14 +1110,10 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,MULTI MARKSMAN RIFLE,多用途神射手步枪
 *,SHOCK MARKSMAN RIFLE,冲击神射手步枪
 *,T2 MARKSMAN RIFLE,T2 神射手步枪
-*,AP MINES,穿甲地雷
 *,CHEST MINES,胸雷
-*,CYBERMINES,赛博地雷
 *,DROP BEARS,树袋熊炸弹
-*,E/M MINES,电磁地雷
 *,MINE DISPENSER,地雷抛射器
 *,MONOFILAMENT MINES,单分子地雷
-*,SHOCK MINES,冲击地雷
 *,VIRAL MINES,病毒地雷
 *,WILDPARROT,野鹦鹉
 *,AP HEAVY PISTOL,重型穿甲手枪
@@ -1336,13 +1198,10 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,GUIDED,制导
 *,Reroll,重投
 *,Hidden Deployment,隐匿部署
-*,ITS BIKE RECON Motorized Bounty Hunters,ITS赛季摩托赏金猎人
-*,Motorized Bounty Hunters,摩托化赏金猎人
 *,Sergeant So-ra Kwon,权素拉中士
 *,"Sergeant SO-RA KWON, JUJAK Regiment",权素拉中士，朱雀团
 *,So-ra Kwon,权素拉
 *,Beasthunters Free Guild,野兽猎人自由行会
-*,Beasthunters,野兽猎人
 *,Beasthunter,野兽猎人
 *,"DIGGERS, Armed Prospectors",矿工，武装探矿者
 *,DIGGER,矿工
@@ -1364,7 +1223,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,RAVENEYE,鸦眼
 *,RAVENEYE Officers,鸦眼官员
 *,ROKOT,火箭兵
-*,ROKOTS,火箭兵志愿防御部队
 *,ZENIT-7 Detachment,天顶-7分遣队
 *,ZENIT-7,天顶-7
 *,VOLKOLAK Assault Troopers,狼皮突击兵
@@ -1382,7 +1240,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Remontnikbot V-5 ELEKTRONIK,电控遥控机器人v-5
 *,ELEKTRONIK,电控遥控机器人
 *,MEKHANIK,机械师
-*,MEKHANIKS,机械师
 *,Flight Engineers Corps,飞航工程师军团
 *,STRANNIK Outer Patrol,漫游者外部巡逻队
 *,STRANNIK,漫游者
@@ -1490,7 +1347,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,PEACEMAKER,和平缔造者
 *,Regular,正规军
 *,Irregular,非正规军
-*,Impetuous,狂暴
+*,Impetuous,鲁莽
 *,Not Impetuous,
 *,Hackable,可入侵
 *,Non Hackable,不可入侵
@@ -1517,9 +1374,6 @@ category,Mechanized Troops,机械化部队
 category,Support Troops,支援部队
 category,Character,人物
 category,Mercenary Troops,雇佣兵
-order,REGULAR,正规
-order,IRREGULAR,非正规
-order,TACTICAL,战术感知
 skill,Courage,勇气
 skill,Mimetism,拟态
 skill,Camouflage,迷彩
@@ -1552,7 +1406,7 @@ weapon,Nanopulser,纳米脉冲器
 weapon,Pulzar,脉冲星
 weapon,E/Mitter,电磁发射器
 weapon,D-Charges,爆破装置
-weapon,E/M Mine,电磁地雷
+*,E/M Mine,电磁地雷
 weapon,Mines,地雷
 extra,-3,-3
 extra,-6,-6
@@ -1583,8 +1437,7 @@ extra,Ancillary,辅助
 extra,Combi R.,复合步枪
 extra,Critical,暴击
 extra,Dep. Zone,部署区
-extra,Diablos,恶魔
-extra,"Dodge (PH+3), GizmoKit (PH+1)",闪避(PH+3),修理装置(PH+1)
+extra,"Dodge (PH+3), GizmoKit (PH+1)",闪避(PH+3)
 extra,Escape System -3,逃生装置-3
 extra,IMM-B,不可移动-B
 extra,Jet Propulsion,喷射推进
@@ -1614,7 +1467,6 @@ fireteam,Corregidor Deepspace Fireteams,克雷吉多深空火力组
 fireteam,Corregidor Surface Fireteams,克雷吉多地表火力组
 fireteam,Deepspace  Armored Fireteams,深空装甲火力组
 fireteam,FTO,FTO
-fireteam,Geckos,壁虎
 fireteam,Geckos Deepspace Fireteams,壁虎深空火力组
 fireteam,Geckos Surface Fireteams,壁虎地表火力组
 fireteam,Surface Armored Fireteams,地表装甲火力组
@@ -1672,19 +1524,19 @@ unit,"TOMCATS, Emergency and Rescue Special Team",雄猫，应急救援特勤组
 unit,"Territorials, Territorial Domination Unit",护疆者，领土管控部队
 unit,"Vigilantes, Tactical Support and Surveillance Special Group",义警，战术支援与监视特别大队
 weapon,AP + DA CC Weapon,穿甲+双重作用近战武器
-weapon,AP Mine,穿甲地雷
+*,AP Mine,穿甲地雷
 weapon,Adhesive Launcher Rifle,黏胶步枪
 weapon,Armed Turret,武装炮塔
 weapon,Armed Turret (Combi R.),武装炮塔(复合步枪)
 weapon,Boarding Pistol,登舰手枪
-weapon,Cybermine,赛博地雷
+*,Cybermine,赛博地雷
 weapon,Disco Baller,迪斯客
 weapon,E/M Carbine,电磁卡宾枪
 weapon,Kobra Pistol,眼镜蛇手枪
 weapon,Mk12,Mk12
 weapon,PARA Mine,瘫痪地雷
 weapon,Redfury AP,穿甲红怒机枪
-weapon,Shock Mine,冲击地雷
+*,Shock Mine,冲击地雷
 weapon,Thunderbolt,雷霆
 char,Mechanical Transmutation,机械变形
 extra,+1 Command Token,+1指挥点
@@ -1701,7 +1553,7 @@ extra,T2,T2
 extra,UPGRADE: Cybermask,升级：电子伪装
 extra,WIP=14,WIP=14
 fireteam,ALEPH's Support Fireteams,阿勒夫支援火力组
-fireteam,CSU,CSU
+*,CSU,CSU
 fireteam,Celestial Guard Fireteams,天卫火力组
 fireteam,Dakini,空行母
 fireteam,Fast Attack Fireteams,快攻火力组
@@ -1713,12 +1565,11 @@ fireteam,Zhian,治安
 fireteam,Zhian (Law&Order) Fireteams,治安火力组
 profile,--,--
 profile,BAYARA,巴牙喇
-profile,CSU,CSU
 profile,DRAGON LORD,龙领主
 profile,FĒIQUÁN,飞拳
 profile,JÌNWÈI,禁卫
 profile,JĪNYÀO,金鹞
-profile,KOGA NINJA,甲贺忍者
+*,KOGA NINJA,甲贺忍者
 profile,LONGWANG PILOT,龙王驾驶员
 profile,LÓNGWÁNG,龙王
 profile,PANGGULING FTO,穿山甲FTO
@@ -1730,7 +1581,7 @@ profile,SHÉNJI,神机
 profile,Yáokòng SON-BAE FTO,遥控 老兵FTO
 skill,Aerial,滞空
 skill,Limited Cover,有限掩体
-skill,Tech-recovery,技术复原
+skill,Tech-recovery,技术维护
 unit,Authorized Bounty Hunters,授权赏金猎人
 unit,Bayara Palace Guard,巴牙喇宫廷卫
 unit,CHAĪYÌ Yáokòng (Messenger Remote),遥控 差役
@@ -1745,7 +1596,6 @@ unit,"IMPERIAL AGENTS, Crane Rank (Xiān Hè)",鹤阶帝国特工
 unit,Imperial Vanguard Qiánfēng,前锋
 unit,Jinyao Drop Unit,金鹞空降部队
 unit,"Jìnwèi, the Forbidden Troops",禁卫
-unit,Koga Ninjas,甲贺忍者
 unit,"Lóngwáng, Imperial TAG Police",龙王，帝国机甲警察
 unit,"Major Lunah, ex-Aristeia! Sniper",卢娜少校，前竞技场狙击手
 unit,"Qíshì, StateEmpire TAG Support Pilots",骑士，帝国机甲支援驾驶员
@@ -1757,9 +1607,8 @@ unit,WÈIBĪNG Yáokòng (Guardian Remote),遥控 卫兵
 unit,WÚ MÍNG Assault Corps (Those Without Name),无名突击队
 weapon,Silenced Pistol,消音手枪
 profile,JAZZ Hacker & BILLIE,爵士黑客&比莉
-extra,Kuang Shi,僵尸
-fireteam,Celestial Guard,天卫
-fireteam,Kuang Shi,僵尸
+*,Kuang Shi,僵尸
+*,Celestial Guard,天卫
 profile,BÀO TROOP,豹兵
 profile,CELESTIAL GUARD,天卫
 profile,CELESTIAL GUARD Monitor,天卫监军
@@ -1769,14 +1618,91 @@ profile,PHEASANT IMPERIAL AGENT,雉阶特工
 profile,SON-BAE Yaókòng,遥控 老兵
 profile,SÙ-JIÀN,速剑
 profile,ZHÀNYING,战鹰
-unit,Celestial Guard,天卫
 unit,Celestial Guard Monitor,天卫监军
 unit,Dikpala Tacbots,方位护法战术机器人
 unit,"Imperial Agents, Crane Rank",鹤阶帝国特工
 unit,"Imperial Agents, Pheasant Rank",雉阶帝国特工
 unit,JĪNYÀO Drop Unit,金鹞空降部队
-unit,Kuang Shi,僵尸
-unit,Ninjas,忍者
 unit,"SHÉNJI YÍNG, Divine Machine Battalion",神机营
 unit,SÙ-JIÀN Immediate Action Unit,速剑快速行动部队
-unit,ZHÀNYĪNG Imperial Agents,战鹰帝国特工
+*,NOTE: A Kuang Shi Unit is composed by 1 Monitor Celestial Guard and up to 4 Kuang Shi. All of them must be in the same Combat Group.,一个僵尸单位包含1个天卫监军和最多4个僵尸。他们必须属于同一个战斗小组。
+*,CHAĪYÌ Yaókòng,遥控 差役
+*,HÙSÒNG Yaókòng,遥控 护送
+*,MAJOR LUNAH,卢娜少校
+*,WÈIBĪNG Yaókòng,遥控 卫兵
+*,XI ZHUANG,习壵
+*,Chaīyì Yáokòng,遥控，差役
+*,HSIEN Warriors,永仙武士
+*,Hùsòng Yáokòng,遥控 护送
+*,Wèibīng Yáokòng,遥控 卫兵
+equip,Tinbot (Repeater),援护机仆(中继器)
+extra,2W,2W
+extra,ARM=0,ARM=0
+extra,BS=13,BS=13
+extra,BTS=6,BTS=6
+extra,CC=15,CC=15
+extra,Dodge (PH+3),闪避(PH+3)
+extra,Escape System -2,逃生系统-2
+extra,GizmoKit (PH+1),修理装置(PH+1)
+extra,Mk12,Mk12
+extra,PARA,PARA
+extra,PH=15,PH=15
+extra,PH=17,PH=17
+extra,Plasma Carabine,电磁卡宾枪
+extra,POS,占据
+extra,PS=4,PS=4
+extra,ReRoll -3,重掷-3
+extra,UPGRADE: Carbonite (+1SD),升级:急冻(+1SD)
+extra,UPGRADE: Oblivion (+1B),升级:湮灭(+1B)
+extra,UPGRADE: Trinity (+1SD),升级:三位一体(+1SD)
+extra,UPGRADE: Trinity (PS=5),升级:三位一体(PS=5)
+note,A Pilot-X Team is composed of 1 Pilot-X and 0 to 2 RacerBots Mk-III. You cannot take a MK-III without Pilot-X. All of them must belong to the same Combat Group.,一个驾驶员X小队由1名驾驶员X和0-2名竞速机器人Mk-III组成。你不能在没有驾驶员X的时候仅将竞速机器人Mk-III加入军表。他们必须属于同一个战斗小组。
+note,"It is allowed to take only 1 Proxy per model. The minimum of Proxies must be 2 and the maximum 3.
+All the Proxies of a G: Jumper trooper must be in the same Combat Group, where they are counted as only one trooper.",军表中每种代理人只允许加入一个模型。代理人的总数量最小为2，最大为3。所有拥有灵魂：跳转者技能的代理人必须在同一个战斗组中，并视作一名士兵。
+note,There can only be one Maximus in each Army List.,军表中只能有一个马克西姆
+note,There can only be one Máximus in each Army List.,军表中只能有一个马克西姆
+profile,CLAIRE LAZHARI FTO,克莱尔·拉扎里FTO
+profile,GARUDA,金翅鸟
+profile,HAWKWOOD,霍克伍德
+profile,KINNARA Scoutbots,紧那罗侦查机器人
+profile,KIRANBOT 1,基罗多机器人1
+profile,KIRANBOT 2,基罗多机器人2
+profile,KYRA SHARMA,凯拉·夏尔马
+profile,MAXIMUS AGENT FTO,干员马克西姆FTO
+profile,MINIMUS,米尼马斯
+profile,OPERATOR MAXIMUS,操作员马克西姆
+profile,RACERBOT Mk-III,竞速机器人Mk-III
+profile,SAMEKH Rebot FTO,强援遥控机FTO
+profile,SHARVARA_K-9,奢婆罗K-9
+profile,TARKSIA,多罗叉
+profile,TARKSIA OPERATOR,多罗叉操作员
+profile,YAKSHA,夜叉
+skill,Bangbomb,闪光弹
+unit,Apsaras,飞天
+unit,Artalis Unit,阿达利部队
+unit,Dawon Tacbots,达温战术机器人
+unit,"Dr. Claire Lazhari, Genephilosopher and Optimate",克莱尔·拉扎里博士，至善成员，基因哲学家
+unit,"JOHN HAWKWOOD, Mercenary Officer",约翰·霍克伍德，佣兵指挥官
+unit,"Johnny Kao, Optimate and Technomancer Master",强尼·高，至善成员，科技术士大师
+unit,KINNARA Scoutbots,紧那罗侦查机器人
+unit,"KYRA SHARMA, The  Iron Maiden of the Optimates",凯拉·夏尔马，至善铁娘子
+unit,"Maximus, Optimate and HexaDome Legend",马克西姆，至善成员，六边穹顶的传奇
+unit,Minimus MateBot,米尼马斯搭档机器人
+unit,Motorized Bounty Hunters,摩托赏金猎人
+unit,Operator Maximus,操作员马克西姆
+unit,Optimate Agent Maximus,至善干员马克西姆
+unit,Pilot-X Team,驾驶员X小组
+unit,"Pilot-X, the Optimate Lightspeedster",驾驶员X，至善逐光者
+unit,POST-HUMANS,后人类
+unit,RacerBots,竞速机器人
+unit,Riksha Tacbots,芮克沙战术机器人
+unit,Satrah Unit,萨特拉部队
+unit,"SHAKTI, Yadu Officer",沙克蒂，雅度军官
+unit,SHARVARA HoundBots,奢婆罗猎犬机器人
+unit,Sharvara_K-9 HoundBots,奢婆罗K-9猎犬机器人
+unit,Tarkshya Interception Wing,多罗叉航空拦截联队
+unit,Tarkshya Operator,多罗叉操作员
+unit,Tarksia Interception Wing,多罗叉航空拦截联队
+unit,Yaksha Tacbots,夜叉战术机器人
+weapon,AP Thunderbolt,穿甲雷霆
+weapon,MULTI Red Fury,多用途红怒机枪
