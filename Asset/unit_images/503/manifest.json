@@ -1,0 +1,546 @@
+{
+  "source_docx": "output\\503-cn.docx",
+  "source_json": "samples\\503.json",
+  "tables": [
+    {
+      "english_name": "Moderators from Bakunin",
+      "images": [
+        {
+          "file": "Moderators from Bakunin.png",
+          "width_emu": 2488565,
+          "height_emu": 2805430,
+          "sha256": "669de6b7dbf5a3c2660cac1c48907db095ada4ba5dff7e45d304d677d9585517"
+        }
+      ]
+    },
+    {
+      "english_name": "Die Morlock Gruppe",
+      "images": [
+        {
+          "file": "Die Morlock Gruppe.png",
+          "width_emu": 3159760,
+          "height_emu": 2961005,
+          "sha256": "9d0c0fc7f7c46c76f3f9e8a3724b4e710b22cd5364a5e4df60ab09b810f12db4"
+        }
+      ]
+    },
+    {
+      "english_name": "Orphans of the Observance",
+      "images": [
+        {
+          "file": "Orphans of the Observance.png",
+          "width_emu": 3007995,
+          "height_emu": 2829560,
+          "sha256": "fc06c7b138cd75ed8b240f4f4545297587d833f99ccb80104ce812e3f5c637ea"
+        }
+      ]
+    },
+    {
+      "english_name": "Corregidor Alguaciles",
+      "images": [
+        {
+          "file": "Corregidor Alguaciles-1.png",
+          "width_emu": 1183005,
+          "height_emu": 1964690,
+          "sha256": "574596bfda6bafd1533cb15450b1bffab2d55f8a049615792b7c0ddef9839381"
+        },
+        {
+          "file": "Corregidor Alguaciles-2.png",
+          "width_emu": 1175385,
+          "height_emu": 1804670,
+          "sha256": "6bfa9c4eceeae24ec7f5e3bc615bf38fc3f5cced99e8fbf5dc601b0f591ac585"
+        },
+        {
+          "file": "Corregidor Alguaciles-3.png",
+          "width_emu": 1118235,
+          "height_emu": 1899285,
+          "sha256": "844219df8159317376cccbad5686f6f230ea1dd7e6e134f5ed42a89c1c656ddb"
+        }
+      ]
+    },
+    {
+      "english_name": "Initiated Observants",
+      "images": [
+        {
+          "file": "Initiated Observants.png",
+          "width_emu": 2789555,
+          "height_emu": 2463165,
+          "sha256": "d2042a7c115247e03c316e12f49ead0d0e0275c635be5c0f2ee000aad4b9b4e2"
+        }
+      ]
+    },
+    {
+      "english_name": "Zeros",
+      "images": [
+        {
+          "file": "Zeros.png",
+          "width_emu": 2531110,
+          "height_emu": 2454275,
+          "sha256": "b7a41e8f5cad20a0d64d7623fe0ed770fb4f1f681cdc6b18f9c56b441c61ebf2"
+        }
+      ]
+    },
+    {
+      "english_name": "Redsky Crew Marspiders",
+      "images": [
+        {
+          "file": "Redsky Crew Marspiders.png",
+          "width_emu": 2779395,
+          "height_emu": 2472055,
+          "sha256": "c707723a13fa22e6241b0015bf174e9d1b8211627bccdeffb9367dbd81442041"
+        }
+      ]
+    },
+    {
+      "english_name": "Riot Grrls",
+      "images": [
+        {
+          "file": "Riot Grrls.png",
+          "width_emu": 3409950,
+          "height_emu": 3350260,
+          "sha256": "0146381e0df86255242ed6d25e3203f6c4b70fbc65cb83bddee409d0ec8c95e0"
+        }
+      ]
+    },
+    {
+      "english_name": "Prowlers",
+      "images": [
+        {
+          "file": "Prowlers.png",
+          "width_emu": 1909445,
+          "height_emu": 2576830,
+          "sha256": "44be83da510e1541f773821f38fc6c01ed9b7f69ad9f4c36f65d47120a87abe4"
+        }
+      ]
+    },
+    {
+      "english_name": "Sin-Eater Observants ",
+      "images": [
+        {
+          "file": "Sin-Eater Observants.png",
+          "width_emu": 2438400,
+          "height_emu": 2599690,
+          "sha256": "7f74df801d9bc611b09d81581df51ab170f0aba7ffe1793e71310f2da9e02fe6"
+        }
+      ]
+    },
+    {
+      "english_name": "Taskmasters, Bakunin SWAST Team",
+      "images": [
+        {
+          "file": "Taskmasters, Bakunin SWAST Team.png",
+          "width_emu": 3569335,
+          "height_emu": 2397760,
+          "sha256": "3da0fc31206114de8e6f77f56fb101d05fabf9391659d33a0515cdf0e9876a3d"
+        }
+      ]
+    },
+    {
+      "english_name": "Reverend Cenobites",
+      "images": [
+        {
+          "file": "Reverend Cenobites.png",
+          "width_emu": 2912110,
+          "height_emu": 2658110,
+          "sha256": "9d917ba46df9f549fd55cc72a3b79796a0d45b5c82f92b9d4db4a8732e59fbb1"
+        }
+      ]
+    },
+    {
+      "english_name": "Casino Security Rounders",
+      "images": [
+        {
+          "file": "Casino Security Rounders.png",
+          "width_emu": 2048510,
+          "height_emu": 2880995,
+          "sha256": "e746b2dc8887174b0e454b28262dd538dffe465ab8257542c181c6651b57d1af"
+        }
+      ]
+    },
+    {
+      "english_name": "Mobile Brigada",
+      "images": [
+        {
+          "file": "Mobile Brigada.png",
+          "width_emu": 4208145,
+          "height_emu": 2429510,
+          "sha256": "a665bf02ccceca8726a941949137f69368e079a846ce52d176d2432d5082400c"
+        }
+      ]
+    },
+    {
+      "english_name": "Penitent Observants",
+      "images": [
+        {
+          "file": "Penitent Observants.png",
+          "width_emu": 3061335,
+          "height_emu": 2555240,
+          "sha256": "c2ae47b4705d0b74ecf7aa55f27d8d320fb3d8b5c2d7907ae8dbb665c2787dc0"
+        }
+      ]
+    },
+    {
+      "english_name": "Reverend Moiras",
+      "images": [
+        {
+          "file": "Reverend Moiras.png",
+          "width_emu": 3171190,
+          "height_emu": 2229485,
+          "sha256": "0874e2fcf8ceeb243912c9f820ff69989f85dee0b73b084e3dd17d9892a0d61d"
+        }
+      ]
+    },
+    {
+      "english_name": "Go-Pod",
+      "images": [
+        {
+          "file": "Go-Pod.png",
+          "width_emu": 3776980,
+          "height_emu": 2836545,
+          "sha256": "e33b5a6a8dbcfc8e4b46b415f165bfac5101c7d8c0325469c2f38f0a3b2ac9ac"
+        }
+      ]
+    },
+    {
+      "english_name": "Reverend Custodiers",
+      "images": [
+        {
+          "file": "Reverend Custodiers.png",
+          "width_emu": 1788795,
+          "height_emu": 2325370,
+          "sha256": "bfd7160726f6dd4fdf045a509bccdd4a2c672ec98283413dd300ecfaf2234885"
+        }
+      ]
+    },
+    {
+      "english_name": "Reverend Healers",
+      "images": [
+        {
+          "file": "Reverend Healers.png",
+          "width_emu": 1809750,
+          "height_emu": 2461260,
+          "sha256": "902f5097ce16138d0429cd404501258aecfd0cb75d0b58512c33e026307fdf7f"
+        }
+      ]
+    },
+    {
+      "english_name": "Daemonist Observant",
+      "images": [
+        {
+          "file": "Daemonist Observant.png",
+          "width_emu": 3051810,
+          "height_emu": 2539365,
+          "sha256": "facb18f976c1c7d5f537c76ee0d6b5471a17552190144844b9cb6e564f4c291f"
+        }
+      ]
+    },
+    {
+      "english_name": "Stigmata of the Observance",
+      "images": [
+        {
+          "file": "Stigmata of the Observance.png",
+          "width_emu": 2707005,
+          "height_emu": 3143250,
+          "sha256": "f3a14c6b576821467f62b26de7cacb5cbc7cba46983857fc2014e973a3927bcf"
+        }
+      ]
+    },
+    {
+      "english_name": "Lizard Squadron",
+      "images": [
+        {
+          "file": "Lizard Squadron.png",
+          "width_emu": 3063240,
+          "height_emu": 2837815,
+          "sha256": "e0ae20050a5aae27804dda0eb2b6d3da6a35221c106dc0bff0d10352d446f3cc"
+        }
+      ]
+    },
+    {
+      "english_name": "Vertigo Zonds",
+      "images": [
+        {
+          "file": "Vertigo Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1906905,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Reaktion Zonds",
+      "images": [
+        {
+          "file": "Reaktion Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1906905,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Extreme Zellenkrieger",
+      "images": [
+        {
+          "file": "Extreme Zellenkrieger.png",
+          "width_emu": 2240915,
+          "height_emu": 2254250,
+          "sha256": "cad59938f7e19155df9632f46c42426937a848be53151dcb096cbfddb2ce7714"
+        }
+      ]
+    },
+    {
+      "english_name": "Meteor Zonds",
+      "images": [
+        {
+          "file": "Meteor Zonds.png",
+          "width_emu": 2412365,
+          "height_emu": 2545715,
+          "sha256": "4603718e9472a2ed3fe26b85fe4f5fac9241598d9a2d0617f695d9c45d55b8e6"
+        }
+      ]
+    },
+    {
+      "english_name": "Zondbots",
+      "images": [
+        {
+          "file": "Zondbots.png",
+          "width_emu": 2170430,
+          "height_emu": 1878965,
+          "sha256": "537e56431c7a0db7491aba2a8fc99b054620ce70796bd7f4ca5f8d1a8b478aa1"
+        }
+      ]
+    },
+    {
+      "english_name": "Salyut Zonds",
+      "images": [
+        {
+          "file": "Salyut Zonds.png",
+          "width_emu": 2740660,
+          "height_emu": 2212340,
+          "sha256": "30440ee168dc1652714ae25fd1a157aad1c116a738b7ae47bb5f309c667bc87a"
+        }
+      ]
+    },
+    {
+      "english_name": "Vostok Sputniks ",
+      "images": [
+        {
+          "file": "Vostok Sputniks.png",
+          "width_emu": 2439670,
+          "height_emu": 1840865,
+          "sha256": "261327c103f8f763aac0fb8246e815df33b21fc9e59b24ee277a172e49e6b0f3"
+        }
+      ]
+    },
+    {
+      "english_name": "Daktaris",
+      "images": [
+        {
+          "file": "Daktaris.png",
+          "width_emu": 1630045,
+          "height_emu": 2347595,
+          "sha256": "12af5633bf29bba2b1f3da2216f8c475079e1907ea03f011b59e3d3212dcf03d"
+        }
+      ]
+    },
+    {
+      "english_name": "Clockmakers",
+      "images": [
+        {
+          "file": "Clockmakers.png",
+          "width_emu": 1598295,
+          "height_emu": 2506345,
+          "sha256": "321ad38fd7a2dc784bd20f83a90fd555f53b3ef9bf9db131ae81998df018d4ed"
+        }
+      ]
+    },
+    {
+      "english_name": "Tsyklon Sputniks",
+      "images": [
+        {
+          "file": "Tsyklon Sputniks.png",
+          "width_emu": 2691130,
+          "height_emu": 1918335,
+          "sha256": "cb1d1a335440936539307778414e183f91af8abaa4a48c00edfd6df8cd52cda4"
+        }
+      ]
+    },
+    {
+      "english_name": "Transductor Zonds",
+      "images": [
+        {
+          "file": "Transductor Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1906905,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Zellenkrieger",
+      "images": [
+        {
+          "file": "Zellenkrieger.png",
+          "width_emu": 2475865,
+          "height_emu": 2475865,
+          "sha256": "65e169a09556c9120bdbac44a4ba12fc8654b3728bc4cbbcb5af4e338689b794"
+        }
+      ]
+    },
+    {
+      "english_name": "Chimera",
+      "images": [
+        {
+          "file": "Chimera.png",
+          "width_emu": 3369945,
+          "height_emu": 2939415,
+          "sha256": "cce23e112ffee3da4832d081671fbb423ac26df8fdcfc503417a804bce078cd1"
+        }
+      ]
+    },
+    {
+      "english_name": "Stempler Zonds",
+      "images": [
+        {
+          "file": "Stempler Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1906905,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Bran do Castro, Triple Zero",
+      "images": [
+        {
+          "file": "Bran do Castro, Triple Zero.png",
+          "width_emu": 2182495,
+          "height_emu": 2388870,
+          "sha256": "9cefd181770e4f32b70797fa2d7e0e32d62764819130414f5d40c1ab6ff95d23"
+        }
+      ]
+    },
+    {
+      "english_name": "Denma Connolly, Caledonian Zellenkrieger ",
+      "images": [
+        {
+          "file": "Denma Connolly, Caledonian Zellenkrieger.png",
+          "width_emu": 1878330,
+          "height_emu": 2544445,
+          "sha256": "ccd30bd98b277fb5f8593fcd8f1f87d57e1969f8191a3a30c9845948715dfadd"
+        }
+      ]
+    },
+    {
+      "english_name": "Avicenna, Mercenary Doctor",
+      "images": [
+        {
+          "file": "Avicenna, Mercenary Doctor.png",
+          "width_emu": 2403475,
+          "height_emu": 2352675,
+          "sha256": "16a3df14281b7bedf8d04ffb0a12c0a97b0552b8fa43cf4368b059a9536281e4"
+        }
+      ]
+    },
+    {
+      "english_name": "Mother Healer Agatha Wabara",
+      "images": [
+        {
+          "file": "Mother Healer Agatha Wabara.png",
+          "width_emu": 2472690,
+          "height_emu": 2821305,
+          "sha256": "8a08633ade10ded4e5c58db606124d7d5abe96b98610462ceb9db7e4d92b6666"
+        }
+      ]
+    },
+    {
+      "english_name": "Fiddler, Aristeia!'s ex-toymaker",
+      "images": [
+        {
+          "file": "Fiddler, Aristeia!'s ex-toymaker.png",
+          "width_emu": 3006725,
+          "height_emu": 2117090,
+          "sha256": "2e589842c92d46677720d628049a24cec5e8420e463f528ae3b7116c29334ec9"
+        }
+      ]
+    },
+    {
+      "english_name": "Wolfgang Amadeus Wolff, Wulver Bounty Hunter",
+      "images": [
+        {
+          "file": "Wolfgang Amadeus Wolff, Wulver Bounty Hunter.png",
+          "width_emu": 1806575,
+          "height_emu": 2296160,
+          "sha256": "e7fe2b3380c2876a149787d0cff69721badf182131f882188f542ce083f5bccb"
+        }
+      ]
+    },
+    {
+      "english_name": "Zoe & Π-Well, Special Clockmakers Team",
+      "images": [
+        {
+          "file": "Zoe & Π-Well, Special Clockmakers Team.png",
+          "width_emu": 2625090,
+          "height_emu": 2637155,
+          "sha256": "6500a3cc9bcec3a96ee0d9a96c8b5b615b05f6ada7010c13e3f4e45947eb538f"
+        }
+      ]
+    },
+    {
+      "english_name": "Uhahu, Hacker for Hire",
+      "images": [
+        {
+          "file": "Uhahu, Hacker for Hire.png",
+          "width_emu": 1628140,
+          "height_emu": 2395220,
+          "sha256": "55beabd574b2f6e4cfa1e9365df7b600849f02608717c2ea836f3eafcf891734"
+        }
+      ]
+    },
+    {
+      "english_name": "Robin Hook, outlaw AI",
+      "images": [
+        {
+          "file": "Robin Hook, outlaw AI.png",
+          "width_emu": 2160905,
+          "height_emu": 2502535,
+          "sha256": "041c0bbaa0aa892eaa9ff735be14d8c7e7b08fa2246b38f4f04f719e2c117737"
+        }
+      ]
+    },
+    {
+      "english_name": "Reverend Superior Cassandra Kusanagi",
+      "images": [
+        {
+          "file": "Reverend Superior Cassandra Kusanagi.png",
+          "width_emu": 2560955,
+          "height_emu": 2480945,
+          "sha256": "4e3be2078f73c2ab1d944cac2c926bfcf04172dd740a99063150118d63281603"
+        }
+      ]
+    },
+    {
+      "english_name": "Sāchā, Xenotech Hunters",
+      "images": [
+        {
+          "file": "Sāchā, Xenotech Hunters.png",
+          "width_emu": 3644265,
+          "height_emu": 2656205,
+          "sha256": "21dcf471b8ec8708379bcef6ed3d84db4959832108b7cb667324d4677e90336f"
+        }
+      ]
+    },
+    {
+      "english_name": "Warcors, War Correspondents",
+      "images": [
+        {
+          "file": "Warcors, War Correspondents.png",
+          "width_emu": 2965450,
+          "height_emu": 2536190,
+          "sha256": "6c6a988e11d72a2b78365b32d2a48186a35aaa7235e26c8a2ea0d7d2edc2ba4b"
+        }
+      ]
+    }
+  ]
+}

@@ -899,7 +899,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,"Carlota Kowalsky, Tomcats Sergeant",卡洛塔·科瓦尔斯基，雄猫军士长
 *,MORIARTY the Zondcat,莫里亚蒂
 *,"Bran do Castro, Triple Zero",布兰·度·卡斯特罗，三重零号
-*,Reverend Superior Cassandra Kusanagi,资深牧师卡珊德拉·草薙
+*,Reverend Superior Cassandra Kusanagi,高阶牧师卡珊德拉·草薙
 *,"Wildcats, Polyvalent Tactical Unit",野猫，多用途战术部队
 *,'Gecko' Squad,壁虎中队
 *,'Gecko' Pilot,壁虎驾驶员
@@ -1208,8 +1208,8 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,"TRIPHAMMERS, Repurposed Industrial TAGs",杵锤，工业再利用机甲
 *,"TRIPHAMMER, Repurposed Industrial TAG",杵锤，工业再利用机甲
 *,TRIPHAMMER,杵锤
-*,FULL POWER,全动力模式
-*,BATTLE-RAVAGED,战损模式
+*,FULL POWER,全动力
+*,BATTLE-RAVAGED,战斗损毁
 *,MENDOZA,门多萨
 *,Padre-Inquisidor,随军神父
 *,KYLE HAWKINS,凯尔·霍金斯
@@ -1832,3 +1832,50 @@ unit,Zellenkrieger,牢笼斗士
 unit,Go-Bot,速攻僚机
 unit,Go-Pod,速攻艇
 unit,Switchers Gruppa,切换者小组
+extra,+3 BS,BS+3
+extra,"Morlocks, Zellenkriegers, Connolly",莫洛克，牢笼斗士，康诺利
+extra,UPGRADE: Carbonite (SR-2),升级：急冻(SR-2)
+extra,UPGRADE: Total Control (SR-2),升级：完全控制(SR-2)
+faction,Jurisdictional Command of Bakunin,巴枯宁管辖司令部
+fireteam,Armored Fireteams,装甲部队火力组
+fireteam,Moderators Fireteams,仲裁者火力组
+fireteam,Observance,修女
+fireteam,Observance Fireteams,修女火力组
+fireteam,Reverend,牧师
+fireteam,Reverends Fireteams,牧师火力组
+fireteam,Riot Grrls Fireteams,叛逆女孩火力组
+fireteam,Taskmasters Fireteams,监工火力组
+profile,CENOBITE,苦行牧师
+profile,DAEMONIST,唤魔修女
+profile,EXT. ZELLENKRIEGER,至尊牢笼斗士
+profile,INITIATED,启蒙修女
+profile,MARSPIDER,火星蜘蛛
+profile,MOTHER AGATHA,阿加莎嬷嬷
+profile,ORPHAN,孤儿
+profile,PENITENT,悔罪修女
+profile,ROBIN HOOK,罗宾·汉克
+profile,STIGMATON,圣痕
+profile,ZELLENKRIEGER FTO,牢笼斗士FTO
+profile,ZOE FTO,佐伊FTO
+profile,ZOE FTO-2,佐伊FTO-2
+profile,Π-WELL FTO,派维FTO
+profile,Π-WELL SYNC,派维SYNC
+unit,Daemonist Observant,唤魔修女
+unit,Extreme Zellenkrieger,至尊牢笼斗士
+unit,Initiated Observants,启蒙修女
+unit,Lizard Squadron,蜥蜴中队
+unit,Mother Healer Agatha Wabara,阿加莎·瓦巴拉嬷嬷
+unit,Orphans of the Observance,教会孤儿
+unit,Penitent Observants,悔罪修女
+unit,Redsky Crew Marspiders,火星蜘蛛，红天号船员
+unit,Reverend Cenobites,苦行牧师
+unit,"Robin Hook, outlaw AI",罗宾·汉克，法外AI
+unit,Stigmata of the Observance,教会圣痕
+faction,Jurisdictional Command of Corregidor,克雷吉多管辖司令部
+note,The BambaDroid cannot be fielded if a Coyote is not in the Army List. Both must be in the same Combat Group. An Army List cannot have more BambaDroids than Coyotes.,班巴机器人不能在单独加入军队，除非郊狼也在军队中。两者必须在同一个战斗小组，军队中的班巴机器人数量不能超过郊狼的数量。
+weapon,AP Red Fury,穿甲红怒机枪
+fireteam,Nomads Fireteams I,流浪者火力组I
+fireteam,Nomads Fireteams II,流浪者火力组II
+profile,RACERBOT Mk-I,竞速机器人Mk-I
+profile,RACERBOT Mk-II,竞速机器人Mk-II
+

@@ -829,16 +829,19 @@ def set_unit_header_text(cell, chinese_name: str, english_name: str, unit_images
     chinese_run.font.size = Pt(14)
     chinese_run.font.color.rgb = RGBColor(0, 0, 0)
 
-    for image in unit_images or []:
+    if unit_images:
         image_paragraph = cell.add_paragraph()
         image_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
         image_paragraph.paragraph_format.space_after = Pt(0)
-        image_run = image_paragraph.add_run()
-        width = image.get("width_emu") or None
-        if width:
-            image_run.add_picture(str(image["path"]), width=Emu(width))
-        else:
-            image_run.add_picture(str(image["path"]), width=Cm(4.0))
+        for index, image in enumerate(unit_images):
+            if index:
+                image_paragraph.add_run(" ")
+            image_run = image_paragraph.add_run()
+            width = image.get("width_emu") or None
+            if width:
+                image_run.add_picture(str(image["path"]), width=Emu(width))
+            else:
+                image_run.add_picture(str(image["path"]), width=Cm(4.0))
 
     english_paragraph = cell.add_paragraph()
     english_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
