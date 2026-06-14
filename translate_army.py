@@ -267,6 +267,7 @@ SPECIAL_CHAR_BADGES = {
     30: ("D68623", "000000"),  # Deepspace
     29: ("256D1B", "FFFFFF"),  # Surface
 }
+SPECIAL_CHAR_BADGE_FACTION_IDS = {502}
 
 
 def index_by_id(items: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
@@ -1105,7 +1106,9 @@ def char_ref_id(ref: dict[str, Any] | int) -> int | None:
         return None
 
 
-def special_char_badges(profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> list[tuple[str, str, str]]:
+def special_char_badges(profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator, faction_id: int | None) -> list[tuple[str, str, str]]:
+    if faction_id not in SPECIAL_CHAR_BADGE_FACTION_IDS:
+        return []
     badges = []
     seen = set()
     for char_ref in profile.get("chars", []) or []:
@@ -1117,8 +1120,8 @@ def special_char_badges(profile: dict[str, Any], maps: dict[str, dict[int, dict[
     return badges
 
 
-def add_special_char_badges(doc: Document, profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> None:
-    badges = special_char_badges(profile, maps, tr)
+def add_special_char_badges(doc: Document, profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator, faction_id: int | None) -> None:
+    badges = special_char_badges(profile, maps, tr, faction_id)
     if not badges:
         return
 
@@ -1144,6 +1147,7 @@ def add_unit_table(
     pg: dict[str, Any],
     maps: dict[str, dict[int, dict[str, Any]]],
     tr: Translator,
+    faction_id: int | None,
     unit_images: dict[str, list[list[dict[str, Any]]]] | None = None,
 ) -> None:
     """把一个 profileGroup 渲染成 Word 中的一张单位表。
@@ -1175,7 +1179,7 @@ def add_unit_table(
     # 对大多数 Infinity Army JSON 来说，差异主要体现在 options，而不是 profiles。
     profile = profiles[0]
     options = pg.get("options") or []
-    add_special_char_badges(doc, profile, maps, tr)
+    add_special_char_badges(doc, profile, maps, tr, faction_id)
 
     # 前 2 行为单位信息；中间按 profile 重复属性/特性/装备/技能；后面是配置/武器行。
     profile_section_rows = 6 if len(profiles) > 1 else 5
@@ -1431,7 +1435,7 @@ def generate_docx(
         if should_add_unit_options_table(unit):
             add_unit_options_table(doc, unit, maps, tr, unit_images)
         for pg in unit.get("profileGroups", []):
-            add_unit_table(doc, unit, pg, maps, tr, unit_images)
+            add_unit_table(doc, unit, pg, maps, tr, faction_id, unit_images)
         doc.add_page_break()
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
