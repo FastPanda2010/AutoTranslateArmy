@@ -1,0 +1,392 @@
+{
+  "source_docx": "output\\905-cn.docx",
+  "source_json": "samples\\905.json",
+  "tables": [
+    {
+      "english_name": "Corregidor Jaguars",
+      "images": [
+        {
+          "file": "Corregidor Jaguars.png",
+          "width_emu": 2780665,
+          "height_emu": 2770505,
+          "sha256": "de9cad7f7d73636cbd6c3dc404b6dcaa4ad228e19a79d46cb2527a3a6ec13f90"
+        }
+      ]
+    },
+    {
+      "english_name": "Irmandinhos",
+      "images": [
+        {
+          "file": "Irmandinhos.png",
+          "width_emu": 2755900,
+          "height_emu": 2543175,
+          "sha256": "b2fb02d1c829101c7c17d16a7cb5742fd24e289af8b4e3abc11baf7f701f9bdc"
+        }
+      ]
+    },
+    {
+      "english_name": "Corregidor Alguaciles",
+      "images": [
+        {
+          "file": "Corregidor Alguaciles-1.png",
+          "width_emu": 1183005,
+          "height_emu": 1964690,
+          "sha256": "574596bfda6bafd1533cb15450b1bffab2d55f8a049615792b7c0ddef9839381"
+        },
+        {
+          "file": "Corregidor Alguaciles-2.png",
+          "width_emu": 1175385,
+          "height_emu": 1804670,
+          "sha256": "6bfa9c4eceeae24ec7f5e3bc615bf38fc3f5cced99e8fbf5dc601b0f591ac585"
+        },
+        {
+          "file": "Corregidor Alguaciles-3.png",
+          "width_emu": 1118235,
+          "height_emu": 1899285,
+          "sha256": "844219df8159317376cccbad5686f6f230ea1dd7e6e134f5ed42a89c1c656ddb"
+        }
+      ]
+    },
+    {
+      "english_name": "Al Hawwa' Unit",
+      "images": [
+        {
+          "file": "Al Hawwa' Unit.png",
+          "width_emu": 2040255,
+          "height_emu": 2287270,
+          "sha256": "0ac587cf2a4387fbad12c829c01757424192a4e069599a7f02422cfb59d65630"
+        }
+      ]
+    },
+    {
+      "english_name": "Riot Grrls",
+      "images": [
+        {
+          "file": "Riot Grrls.png",
+          "width_emu": 3409950,
+          "height_emu": 3350260,
+          "sha256": "0146381e0df86255242ed6d25e3203f6c4b70fbc65cb83bddee409d0ec8c95e0"
+        }
+      ]
+    },
+    {
+      "english_name": "Highlander Caterans",
+      "images": [
+        {
+          "file": "Highlander Caterans.png",
+          "width_emu": 2362835,
+          "height_emu": 2680335,
+          "sha256": "e2fcb8c92c6cbf6be2bdff50b15544d230888fb9e0c6c46e06c429b70ab5be1f"
+        }
+      ]
+    },
+    {
+      "english_name": "Corregidor Bandits",
+      "images": [
+        {
+          "file": "Corregidor Bandits.png",
+          "width_emu": 2242185,
+          "height_emu": 2352040,
+          "sha256": "0e9aa42fb56adc4155d5fd41787a6fa4e55b2a8fc5261e54f1a463c0d957ffc0"
+        }
+      ]
+    },
+    {
+      "english_name": "Hardcases, 2nd Irregular Frontiersmen Battalion",
+      "images": [
+        {
+          "file": "Hardcases, 2nd Irregular Frontiersmen Battalion.png",
+          "width_emu": 2145030,
+          "height_emu": 2639695,
+          "sha256": "0409bffc1142eee0858806cd2ff7ac02d91842de5d16906c192b99aafabf6202"
+        }
+      ]
+    },
+    {
+      "english_name": "Brawlers, Mercenary Enforcers",
+      "images": [
+        {
+          "file": "Brawlers, Mercenary Enforcers.png",
+          "width_emu": 3517265,
+          "height_emu": 2702560,
+          "sha256": "1c7b582c18cdcc3f749f9a932754cf42ae9eaf67d01a128ecc8b832d37f8e777"
+        }
+      ]
+    },
+    {
+      "english_name": "Mobile Brigada",
+      "images": [
+        {
+          "file": "Mobile Brigada.png",
+          "width_emu": 4208145,
+          "height_emu": 2429510,
+          "sha256": "a665bf02ccceca8726a941949137f69368e079a846ce52d176d2432d5082400c"
+        }
+      ]
+    },
+    {
+      "english_name": "Hellcats",
+      "images": [
+        {
+          "file": "Hellcats.png",
+          "width_emu": 1738630,
+          "height_emu": 2350770,
+          "sha256": "cb5599506fcb17ea1f6afa6aad45ec6174f5ae481acf8f7aa01413503909cb80"
+        }
+      ]
+    },
+    {
+      "english_name": "Daktaris",
+      "images": [
+        {
+          "file": "Daktaris.png",
+          "width_emu": 1630045,
+          "height_emu": 2347595,
+          "sha256": "12af5633bf29bba2b1f3da2216f8c475079e1907ea03f011b59e3d3212dcf03d"
+        }
+      ]
+    },
+    {
+      "english_name": "Transductor Zonds",
+      "images": [
+        {
+          "file": "Transductor Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1906905,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Reaktion Zonds",
+      "images": [
+        {
+          "file": "Reaktion Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1906905,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Tsyklon Sputniks",
+      "images": [
+        {
+          "file": "Tsyklon Sputniks.png",
+          "width_emu": 2691130,
+          "height_emu": 1918335,
+          "sha256": "cb1d1a335440936539307778414e183f91af8abaa4a48c00edfd6df8cd52cda4"
+        }
+      ]
+    },
+    {
+      "english_name": "Clockmakers",
+      "images": [
+        {
+          "file": "Clockmakers.png",
+          "width_emu": 1598295,
+          "height_emu": 2506345,
+          "sha256": "321ad38fd7a2dc784bd20f83a90fd555f53b3ef9bf9db131ae81998df018d4ed"
+        }
+      ]
+    },
+    {
+      "english_name": "Vertigo Zonds",
+      "images": [
+        {
+          "file": "Vertigo Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1906905,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Zondbots",
+      "images": [
+        {
+          "file": "Zondbots.png",
+          "width_emu": 2170430,
+          "height_emu": 1878965,
+          "sha256": "537e56431c7a0db7491aba2a8fc99b054620ce70796bd7f4ca5f8d1a8b478aa1"
+        }
+      ]
+    },
+    {
+      "english_name": "Salyut Zonds",
+      "images": [
+        {
+          "file": "Salyut Zonds.png",
+          "width_emu": 2740660,
+          "height_emu": 2212340,
+          "sha256": "30440ee168dc1652714ae25fd1a157aad1c116a738b7ae47bb5f309c667bc87a"
+        }
+      ]
+    },
+    {
+      "english_name": "Stempler Zonds",
+      "images": [
+        {
+          "file": "Stempler Zonds.png",
+          "width_emu": 2960370,
+          "height_emu": 1906905,
+          "sha256": "c432487b88ea2bc57650bc75a6eeb4c7b96b02f74ce53d3c254205fea3ad4c07"
+        }
+      ]
+    },
+    {
+      "english_name": "Avicenna, Mercenary Doctor",
+      "images": [
+        {
+          "file": "Avicenna, Mercenary Doctor.png",
+          "width_emu": 2403475,
+          "height_emu": 2352040,
+          "sha256": "16a3df14281b7bedf8d04ffb0a12c0a97b0552b8fa43cf4368b059a9536281e4"
+        }
+      ]
+    },
+    {
+      "english_name": "Uhahu, Hacker for Hire",
+      "images": [
+        {
+          "file": "Uhahu, Hacker for Hire.png",
+          "width_emu": 1628140,
+          "height_emu": 2394585,
+          "sha256": "55beabd574b2f6e4cfa1e9365df7b600849f02608717c2ea836f3eafcf891734"
+        }
+      ]
+    },
+    {
+      "english_name": "Emily Handelman, Intel Agent",
+      "images": [
+        {
+          "file": "Emily Handelman, Intel Agent.png",
+          "width_emu": 1801495,
+          "height_emu": 2377440,
+          "sha256": "b4b40bbe3b6ae41fa734520bc9bc401b94bb73a49f42144ae69cc87a36dbcb3f"
+        }
+      ]
+    },
+    {
+      "english_name": "Señor Massacre",
+      "images": [
+        {
+          "file": "Señor Massacre.png",
+          "width_emu": 2023745,
+          "height_emu": 2547620,
+          "sha256": "90678ab6992d1a62db7ab37a3cf4005e905c198f2587628f4f83a3a2ac520a3f"
+        }
+      ]
+    },
+    {
+      "english_name": "Raoul Spector, Mercenary Operative",
+      "images": [
+        {
+          "file": "Raoul Spector, Mercenary Operative.png",
+          "width_emu": 1941830,
+          "height_emu": 2555875,
+          "sha256": "e9c02a6ad6a49e401518602c3b814eb22d5f904abf37792690f8f197c705ff64"
+        }
+      ]
+    },
+    {
+      "english_name": "Fiddler, Aristeia!'s ex-toymaker",
+      "images": [
+        {
+          "file": "Fiddler, Aristeia!'s ex-toymaker.png",
+          "width_emu": 3006725,
+          "height_emu": 2117090,
+          "sha256": "2e589842c92d46677720d628049a24cec5e8420e463f528ae3b7116c29334ec9"
+        }
+      ]
+    },
+    {
+      "english_name": "Knauf, Outlaw Sniper",
+      "images": [
+        {
+          "file": "Knauf, Outlaw Sniper.png",
+          "width_emu": 2348865,
+          "height_emu": 2383155,
+          "sha256": "ce9374b432ffa5537489062843648083d1e05e7c9919b3a7b42346b8314232ab"
+        }
+      ]
+    },
+    {
+      "english_name": "ANACONDA, Mercenary TAG Squad",
+      "images": [
+        {
+          "file": "ANACONDA, Mercenary TAG Squad.png",
+          "width_emu": 3805555,
+          "height_emu": 3086735,
+          "sha256": "b565451d7d2c5982766a44f994fb1e883f73a8bca850714c6777ca187ed572d8"
+        }
+      ]
+    },
+    {
+      "english_name": "Wardrivers, Mercenary Hackers",
+      "images": [
+        {
+          "file": "Wardrivers, Mercenary Hackers.png",
+          "width_emu": 1791970,
+          "height_emu": 2181860,
+          "sha256": "819701100249dcc557788fd34f4bc7313bc65df1443d889ca6f7ecf9646c2632"
+        }
+      ]
+    },
+    {
+      "english_name": "Triphammers, Repurposed Industrial TAGs",
+      "images": [
+        {
+          "file": "Triphammers, Repurposed Industrial TAGs.png",
+          "width_emu": 2628265,
+          "height_emu": 3002915,
+          "sha256": "d4728702c945cc571cf8be4551c9e29118892337be3003db291897248f3c87bc"
+        }
+      ]
+    },
+    {
+      "english_name": "DIGGERS, Armed Prospectors",
+      "images": [
+        {
+          "file": "DIGGERS, Armed Prospectors.png",
+          "width_emu": 2572385,
+          "height_emu": 2444750,
+          "sha256": "6114d33192c6d82f419a3da1f64db06ca67c02b64316d3cdca13c034ceff0ba9"
+        }
+      ]
+    },
+    {
+      "english_name": "Warcors, War Correspondents",
+      "images": [
+        {
+          "file": "Warcors, War Correspondents.png",
+          "width_emu": 2965450,
+          "height_emu": 2536190,
+          "sha256": "6c6a988e11d72a2b78365b32d2a48186a35aaa7235e26c8a2ea0d7d2edc2ba4b"
+        }
+      ]
+    },
+    {
+      "english_name": "CSU, Corporate Security Unit",
+      "images": [
+        {
+          "file": "CSU, Corporate Security Unit.png",
+          "width_emu": 1972945,
+          "height_emu": 2368550,
+          "sha256": "267606598d379832db3e45c3fccd47797b0e17581854e700355708dddd2ce0b4"
+        }
+      ]
+    },
+    {
+      "english_name": "Sāchā, Xenotech Hunters",
+      "images": [
+        {
+          "file": "Sāchā, Xenotech Hunters.png",
+          "width_emu": 3644265,
+          "height_emu": 2656205,
+          "sha256": "21dcf471b8ec8708379bcef6ed3d84db4959832108b7cb667324d4677e90336f"
+        }
+      ]
+    }
+  ]
+}

@@ -12,6 +12,7 @@ from xml.etree import ElementTree as ET
 from translate_army import (
     build_filter_maps,
     infer_faction_id,
+    profile_table_name_sources,
     sanitize_unit_image_name,
     should_add_unit_options_table,
     should_include_unit,
@@ -43,8 +44,10 @@ def expected_table_names(json_path: Path) -> list[str]:
         if should_add_unit_options_table(unit):
             names.append(unit.get("isc") or unit.get("name", ""))
         for pg in unit.get("profileGroups", []) or []:
-            if pg.get("profiles"):
-                names.append(pg.get("isc") or unit.get("isc") or unit.get("name", ""))
+            profiles = pg.get("profiles") or []
+            if profiles:
+                english_name, _ = profile_table_name_sources(unit, pg, profiles[0])
+                names.append(english_name)
     return [name for name in names if name]
 
 

@@ -1248,7 +1248,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,"PATCHERS, Structural Response Team",补丁工，结构反应小组
 *,PATCHER,补丁工
 *,FIDDLER,费德勒
-*,Jackbot,杰克机器人
+*,Jackbot,弹球
 *,The DIABLOS of D-Block,D区的恶魔
 *,DIABLO,恶魔
 *,"Lobos,  Correctional Response Group",暴狼，矫正快反部队
@@ -1878,4 +1878,19 @@ fireteam,Nomads Fireteams I,流浪者火力组I
 fireteam,Nomads Fireteams II,流浪者火力组II
 profile,RACERBOT Mk-I,竞速机器人Mk-I
 profile,RACERBOT Mk-II,竞速机器人Mk-II
+extra,Antimaterial,反器材
+extra,PH=10,PH=10
+extra,PH=9,PH=9
+extra,Zero Pain,不知疼痛
+faction,Non-Aligned Armies,独立军队
+faction,Starco. Free Company of the Star,群星自由兵团
+fireteam,Outrage,Outrage
+fireteam,Outrage Fireteams,Outrage火力组
+fireteam,PMC,PMC
+fireteam,PMC Fireteams,PMC火力组
+fireteam,StarCo Fireteams,群星兵团火力组
+profile,KNAUF FTO,克瑙夫FTO
+profile,TURTLEMEK,乌龟
+unit,Turtlemek Ancillary Remote Unit,乌龟辅助远程单位
+unit,ANACONDA OPERATOR,水蟒操作员
 

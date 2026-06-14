@@ -9,7 +9,7 @@ import re
 from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 from urllib.request import urlopen
 
 from docx import Document
@@ -811,11 +811,22 @@ def load_unit_images(image_set: str) -> dict[str, list[list[dict[str, Any]]]]:
     return result
 
 
-def next_unit_images(unit_images: dict[str, list[list[dict[str, Any]]]] | None, english_name: str) -> list[dict[str, Any]]:
-    groups = (unit_images or {}).get(english_name) or (unit_images or {}).get(normalize_unit_image_key(english_name))
-    if not groups:
+def next_unit_images_for_names(
+    unit_images: dict[str, list[list[dict[str, Any]]]] | None,
+    english_names: Iterable[str],
+) -> list[dict[str, Any]]:
+    if not unit_images:
         return []
-    return groups.pop(0)
+
+    for english_name in dict.fromkeys(normalize(name) for name in english_names if normalize(name)):
+        groups = unit_images.get(english_name) or unit_images.get(normalize_unit_image_key(english_name))
+        if groups:
+            return groups.pop(0)
+    return []
+
+
+def next_unit_images(unit_images: dict[str, list[list[dict[str, Any]]]] | None, english_name: str) -> list[dict[str, Any]]:
+    return next_unit_images_for_names(unit_images, [english_name])
 
 
 def set_unit_header_text(cell, chinese_name: str, english_name: str, unit_images: list[dict[str, Any]] | None = None) -> None:
@@ -1141,6 +1152,42 @@ def add_special_char_badges(doc: Document, profile: dict[str, Any], maps: dict[s
         set_run_shading(run, fill)
 
 
+def profile_table_name_sources(
+    unit: dict[str, Any],
+    pg: dict[str, Any],
+    profile: dict[str, Any],
+) -> tuple[str, list[str]]:
+    profile_name = profile.get("name", "")
+    isc_name = pg.get("isc") or unit.get("isc") or unit.get("name", "")
+    split_profile_group = len(unit.get("profileGroups") or []) > 1 and len(pg.get("profiles") or []) == 1
+    if split_profile_group and profile_name:
+        return profile_name, [profile_name, profile.get("isc", "")]
+
+    image_names = [
+        isc_name,
+        profile.get("isc", ""),
+        unit.get("name", ""),
+    ]
+    return isc_name, image_names
+
+
+def profile_table_title(
+    unit: dict[str, Any],
+    pg: dict[str, Any],
+    profile: dict[str, Any],
+    tr: Translator,
+) -> tuple[str, str, list[str]]:
+    english, image_names = profile_table_name_sources(unit, pg, profile)
+    profile_name = profile.get("name", "")
+
+    category = "profile" if english == profile_name else "unit"
+    title = tr.translate(category, english, record_missing=False)
+    if title == english:
+        title = tr.translate("unit" if category == "profile" else "profile", english)
+
+    return title, english, image_names
+
+
 def add_unit_table(
     doc: Document,
     unit: dict[str, Any],
@@ -1188,10 +1235,9 @@ def add_unit_table(
     style_table(table)
     set_table_column_widths(table, UNIT_TABLE_COLUMN_WIDTHS)
 
-    # pg.isc 通常是资料组的英文显示名；unit.name 往往是全大写内部名。
-    # 这里优先使用 pg.isc 翻译成中文，同时保留英文名作为第二行，方便对照官方。
-    isc = tr.translate("unit", pg.get("isc") or unit.get("isc") or unit.get("name", ""))
-    english = pg.get("isc") or unit.get("isc") or unit.get("name", "")
+    # The intro line uses ISC for the grouped unit; each table title uses the
+    # concrete profile name so attached/peripheral profiles keep their own names.
+    title, english, image_names = profile_table_title(unit, pg, profile, tr)
 
     # category 可能出现在 profileGroup 或 profile 上；取到后通过 filters.category 翻译。
     cat = category_name(pg.get("category") or profile.get("category"), maps, tr)
@@ -1202,7 +1248,7 @@ def add_unit_table(
     left = merge_row(header_top, 0, 15).merge(merge_row(header_bottom, 0, 15))
     category_cell = merge_row(header_top, 16, 19)
     logo_cell = merge_row(header_bottom, 16, 19)
-    set_unit_header_text(left, isc, english, next_unit_images(unit_images, english))
+    set_unit_header_text(left, title, english, next_unit_images_for_names(unit_images, image_names))
     set_cell_text(category_cell, cat, bold=True, size=9)
     set_logo_cell(logo_cell, profile.get("logo") or unit.get("logo"))
     set_cell_shading(left, "FFFFFF")
