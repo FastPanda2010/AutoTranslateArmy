@@ -1,0 +1,501 @@
+{
+  "source_docx": "output\\909-cn.docx",
+  "source_json": "samples\\909.json",
+  "tables": [
+    {
+      "english_name": "Fusiliers",
+      "images": [
+        {
+          "file": "Fusiliers.png",
+          "width_emu": 4246245,
+          "height_emu": 3165475,
+          "sha256": "447a2452b032e35920b3817a1d20a9550e2fcb8cda1dd1eca72185c99de574c5"
+        }
+      ]
+    },
+    {
+      "english_name": "Danavas Hackers",
+      "images": [
+        {
+          "file": "Danavas Hackers.png",
+          "width_emu": 2677795,
+          "height_emu": 2419985,
+          "sha256": "ce33d835eaf0210ace16e66e0b56ce8d1eb6dd82987036604905082f99954b57"
+        }
+      ]
+    },
+    {
+      "english_name": "Blade-Ops, Neoterran Unified Commando Regiment",
+      "images": [
+        {
+          "file": "Blade-Ops, Neoterran Unified Commando Regiment.png",
+          "width_emu": 2893695,
+          "height_emu": 2965450,
+          "sha256": "32d42bd55139363b485bac8dd519dd715883eefcbe6ed5eff77d6eb407bcfa91"
+        }
+      ]
+    },
+    {
+      "english_name": "Chaksa Longarms",
+      "images": [
+        {
+          "file": "Chaksa Longarms.png",
+          "width_emu": 3489325,
+          "height_emu": 3100070,
+          "sha256": "da35950b314c52c2b869004e90584be67bdd1cce8cda5df8579b0f555470c2e3"
+        }
+      ]
+    },
+    {
+      "english_name": "Guiláng Skirmishers",
+      "images": [
+        {
+          "file": "Guiláng Skirmishers.png",
+          "width_emu": 2818765,
+          "height_emu": 2682240,
+          "sha256": "c6eb5035f4b6e5021349aa828ef54f455884116bc1578bc1ead0f7c676a770ee"
+        }
+      ]
+    },
+    {
+      "english_name": "Blockers, Attached Agents of the CDCI",
+      "images": [
+        {
+          "file": "Blockers, Attached Agents of the CDCI.png",
+          "width_emu": 2228850,
+          "height_emu": 2626360,
+          "sha256": "532fe923f3e897234ecf358bd018dff661916b6ac94f1739bcc43a390987640f"
+        }
+      ]
+    },
+    {
+      "english_name": "Hǎidào Special Support Group",
+      "images": [
+        {
+          "file": "Hǎidào Special Support Group.png",
+          "width_emu": 3108325,
+          "height_emu": 2943225,
+          "sha256": "b2099244d2f2f3b22ab4b350129bcc7494f1db30534fcaabe750cd2ce292bc20"
+        }
+      ]
+    },
+    {
+      "english_name": "Nøkken, Special Intervention and Recon Team",
+      "images": [
+        {
+          "file": "Nøkken, Special Intervention and Recon Team.png",
+          "width_emu": 2872105,
+          "height_emu": 2771775,
+          "sha256": "da55fb2cbbc83887843a8df60c99c6243a3a3bab9f3a9124d7c83cc1ba813840"
+        }
+      ]
+    },
+    {
+      "english_name": "Karhu Special Group",
+      "images": [
+        {
+          "file": "Karhu Special Group.png",
+          "width_emu": 3566795,
+          "height_emu": 2600960,
+          "sha256": "84c50a1683f5b98904c684cdc59260afc378a734c051a3cfdb588daaeacf035e"
+        }
+      ]
+    },
+    {
+      "english_name": "Orc Troops",
+      "images": [
+        {
+          "file": "Orc Troops.png",
+          "width_emu": 3698240,
+          "height_emu": 3637915,
+          "sha256": "613346276eee9fa196db28ba035b82ae2d46561042c632a08881931da81d932b"
+        }
+      ]
+    },
+    {
+      "english_name": "Jujak Regiment, Korean Shock Infantry",
+      "images": [
+        {
+          "file": "Jujak Regiment, Korean Shock Infantry.png",
+          "width_emu": 3854450,
+          "height_emu": 2541270,
+          "sha256": "ee75e7937ad6bf589e095eb8441368a7e3d2580ab8b5318593ca2685a76e1ba6"
+        }
+      ]
+    },
+    {
+      "english_name": "Tiger Soldiers",
+      "images": [
+        {
+          "file": "Tiger Soldiers.png",
+          "width_emu": 3275330,
+          "height_emu": 2793365,
+          "sha256": "f7465735c81a61893878811e8cca41e7b44a1142487bc8d2f992e6e6855db1a9"
+        }
+      ]
+    },
+    {
+      "english_name": "Nisses",
+      "images": [
+        {
+          "file": "Nisses.png",
+          "width_emu": 2419985,
+          "height_emu": 2453640,
+          "sha256": "9bd1549e0a55fc59261d6010993b7f113b85dd938712f68ca0f0fb9983f1f117"
+        }
+      ]
+    },
+    {
+      "english_name": "GŪIJIĂ Squadrons",
+      "images": [
+        {
+          "file": "GŪIJIĂ Squadrons.png",
+          "width_emu": 3752850,
+          "height_emu": 3110230,
+          "sha256": "34628552344d0765980f03e26091ada0156ebaa5bb26bf43cce73e08789f8869"
+        }
+      ]
+    },
+    {
+      "english_name": "Sierra Dronbot",
+      "images": [
+        {
+          "file": "Sierra Dronbot.png",
+          "width_emu": 3347085,
+          "height_emu": 2158365,
+          "sha256": "ceb33f82e4c0bb9acfdc1f784faf38bc9f6368e7f6c66855efc20e39264054cd"
+        }
+      ]
+    },
+    {
+      "english_name": "Yáozăo",
+      "images": [
+        {
+          "file": "Yáozăo.png",
+          "width_emu": 2399030,
+          "height_emu": 1865630,
+          "sha256": "e0df94d34b671e3b205f5f381e23a7f8f23c2763edc15de3203d8a2ea1923a62"
+        }
+      ]
+    },
+    {
+      "english_name": "Clipper Dronbot",
+      "images": [
+        {
+          "file": "Clipper Dronbot.png",
+          "width_emu": 3347085,
+          "height_emu": 2158365,
+          "sha256": "ceb33f82e4c0bb9acfdc1f784faf38bc9f6368e7f6c66855efc20e39264054cd"
+        }
+      ]
+    },
+    {
+      "english_name": "Zhanshi Yisheng",
+      "images": [
+        {
+          "file": "Zhanshi Yisheng.png",
+          "width_emu": 1635125,
+          "height_emu": 2677795,
+          "sha256": "f2873aabe90e96197caebeeb788089d2fb819322c1aeb2afae85965e7f16840f"
+        }
+      ]
+    },
+    {
+      "english_name": "PEACEMAKER ARMBOTS",
+      "images": [
+        {
+          "file": "PEACEMAKER ARMBOTS.png",
+          "width_emu": 3628390,
+          "height_emu": 1873250,
+          "sha256": "70f6e4539b5034752b2c4c308af6f994dc84a5ccf4b7980b6f4ecfea671d5075"
+        }
+      ]
+    },
+    {
+      "english_name": "Armbots: Bulleteer",
+      "images": [
+        {
+          "file": "Armbots_ Bulleteer.png",
+          "width_emu": 2759710,
+          "height_emu": 1981200,
+          "sha256": "c112d1ce3a226f93db0f72bf1261d06a9aadc3f0f770d902d76cec62e2a353bd"
+        }
+      ]
+    },
+    {
+      "english_name": "Fugazi Dronbot",
+      "images": [
+        {
+          "file": "Fugazi Dronbot.png",
+          "width_emu": 3347085,
+          "height_emu": 2158365,
+          "sha256": "ceb33f82e4c0bb9acfdc1f784faf38bc9f6368e7f6c66855efc20e39264054cd"
+        }
+      ]
+    },
+    {
+      "english_name": "Mech-Engineer, Zhanshi Gongchéng",
+      "images": [
+        {
+          "file": "Mech-Engineer, Zhanshi Gongchéng.png",
+          "width_emu": 1929130,
+          "height_emu": 2772410,
+          "sha256": "5a0d2af067967c93ea5b8f39d136754875a92a6401ccd9a1b13e8224c6848eec"
+        }
+      ]
+    },
+    {
+      "english_name": "Mulebots",
+      "images": [
+        {
+          "file": "Mulebots.png",
+          "width_emu": 3225800,
+          "height_emu": 2301240,
+          "sha256": "71b3c52909d2f6405c3d547cc7ac582e5807612e540b7bbc799f27e6e9f8af7e"
+        }
+      ]
+    },
+    {
+      "english_name": "Pathfinder Dronbot",
+      "images": [
+        {
+          "file": "Pathfinder Dronbot.png",
+          "width_emu": 3347085,
+          "height_emu": 2158365,
+          "sha256": "ceb33f82e4c0bb9acfdc1f784faf38bc9f6368e7f6c66855efc20e39264054cd"
+        }
+      ]
+    },
+    {
+      "english_name": "Laxmee, Hacker of Fortune",
+      "images": [
+        {
+          "file": "Laxmee, Hacker of Fortune.png",
+          "width_emu": 2559050,
+          "height_emu": 2579370,
+          "sha256": "8d673b6b5de6146492e1eff874b5a39650fe2184fa838d4d067b2f99f06b393f"
+        }
+      ]
+    },
+    {
+      "english_name": "Liang Kai, Wandering Shaolin Monk",
+      "images": [
+        {
+          "file": "Liang Kai, Wandering Shaolin Monk.png",
+          "width_emu": 2569845,
+          "height_emu": 2688590,
+          "sha256": "ede7ed771be1b31338809b4f02fb8bceb9157e513153ed57e180f3b9ca07dba5"
+        }
+      ]
+    },
+    {
+      "english_name": "CARMEN JOHNS, Mercenary Biker",
+      "images": [
+        {
+          "file": "CARMEN JOHNS, Mercenary Biker.png",
+          "width_emu": 3095625,
+          "height_emu": 3110230,
+          "sha256": "67f417ea0b0dbbea99d836f3c24ccdeaeb47e7f0de188ace028cb5353eeed727"
+        }
+      ]
+    },
+    {
+      "english_name": "Señor Massacre",
+      "images": [
+        {
+          "file": "Señor Massacre.png",
+          "width_emu": 2023745,
+          "height_emu": 2547620,
+          "sha256": "90678ab6992d1a62db7ab37a3cf4005e905c198f2587628f4f83a3a2ac520a3f"
+        }
+      ]
+    },
+    {
+      "english_name": "John Hawkwood, Mercenary Officer",
+      "images": [
+        {
+          "file": "John Hawkwood, Mercenary Officer.png",
+          "width_emu": 2865755,
+          "height_emu": 2501265,
+          "sha256": "1638b0aed986b3633e42346a8c3c221b229c70e3c41baed1691e527267b5c6e6"
+        }
+      ]
+    },
+    {
+      "english_name": "Scarface & Cordelia, Mercenary Armored Team",
+      "images": [
+        {
+          "file": "Scarface & Cordelia, Mercenary Armored Team.png",
+          "width_emu": 3223260,
+          "height_emu": 3437255,
+          "sha256": "c31b380fd09d50df539bf20eb04f01ae0909d7b5af9766c08b603c5e99d41ef7"
+        }
+      ]
+    },
+    {
+      "english_name": "Valkyrie, Elite Bodyguard",
+      "images": [
+        {
+          "file": "Valkyrie, Elite Bodyguard.png",
+          "width_emu": 2569210,
+          "height_emu": 2589530,
+          "sha256": "359aa3fef8cdc297e343df67ad38da64ea541a7eca476ed7b61a4fc7f7df6ebc"
+        }
+      ]
+    },
+    {
+      "english_name": "Wild Bill, Legendary Gunslinger",
+      "images": [
+        {
+          "file": "Wild Bill, Legendary Gunslinger.png",
+          "width_emu": 2064385,
+          "height_emu": 2207260,
+          "sha256": "90a9b02e3e0be188977225067d85b4c514326b3c06ed83478f146307e3d287f3"
+        }
+      ]
+    },
+    {
+      "english_name": "Shona Carano, Special Instructor and Aristeia! Swordmaster",
+      "images": [
+        {
+          "file": "Shona Carano, Special Instructor and Aristeia! Swordmaster.png",
+          "width_emu": 2045335,
+          "height_emu": 2587625,
+          "sha256": "2ce7d1ce41468d1ea30572b3c31d96a245a538dce5a9628db97eae00c60c6c0c"
+        }
+      ]
+    },
+    {
+      "english_name": "Hannibal, Mercenary Team Leader",
+      "images": [
+        {
+          "file": "Hannibal, Mercenary Team Leader.png",
+          "width_emu": 2034540,
+          "height_emu": 2771140,
+          "sha256": "48117a239c743f720c5f617001c497d258e5fb646c91fe769c318decfe0af6c7"
+        }
+      ]
+    },
+    {
+      "english_name": "Táowù, Mastermind and schemer",
+      "images": [
+        {
+          "file": "Táowù, Mastermind and schemer.png",
+          "width_emu": 2037715,
+          "height_emu": 2496185,
+          "sha256": "332ae308ddaad046af249ca43e31dd1184f88af8db5a04c2843a4da5a077b943"
+        }
+      ]
+    },
+    {
+      "english_name": "Emily Handelman, Intel Agent",
+      "images": [
+        {
+          "file": "Emily Handelman, Intel Agent.png",
+          "width_emu": 1801495,
+          "height_emu": 2376805,
+          "sha256": "b4b40bbe3b6ae41fa734520bc9bc401b94bb73a49f42144ae69cc87a36dbcb3f"
+        }
+      ]
+    },
+    {
+      "english_name": "CSU, Corporate Security Unit",
+      "images": [
+        {
+          "file": "CSU, Corporate Security Unit.png",
+          "width_emu": 1972945,
+          "height_emu": 2368550,
+          "sha256": "267606598d379832db3e45c3fccd47797b0e17581854e700355708dddd2ce0b4"
+        }
+      ]
+    },
+    {
+      "english_name": "Kunai Solutions Ninjas",
+      "images": [
+        {
+          "file": "Kunai Solutions Ninjas.png",
+          "width_emu": 2223135,
+          "height_emu": 2189480,
+          "sha256": "2a5dcd20555cab19264bb69fb03d717215281fdff33965788d1e8af03da51daa"
+        }
+      ]
+    },
+    {
+      "english_name": "KTS, Kaplan Tactical Services",
+      "images": [
+        {
+          "file": "KTS, Kaplan Tactical Services.png",
+          "width_emu": 3090545,
+          "height_emu": 2999740,
+          "sha256": "45754ab78debddbfa0d36722d50735edd546cbb2de309e5b68d66512293b733c"
+        }
+      ]
+    },
+    {
+      "english_name": "ANACONDA, Mercenary TAG Squad",
+      "images": [
+        {
+          "file": "ANACONDA, Mercenary TAG Squad.png",
+          "width_emu": 3805555,
+          "height_emu": 3086735,
+          "sha256": "b565451d7d2c5982766a44f994fb1e883f73a8bca850714c6777ca187ed572d8"
+        }
+      ]
+    },
+    {
+      "english_name": "Warcors, War Correspondents",
+      "images": [
+        {
+          "file": "Warcors, War Correspondents.png",
+          "width_emu": 2965450,
+          "height_emu": 2536190,
+          "sha256": "6c6a988e11d72a2b78365b32d2a48186a35aaa7235e26c8a2ea0d7d2edc2ba4b"
+        }
+      ]
+    },
+    {
+      "english_name": "Varangian Guard",
+      "images": [
+        {
+          "file": "Varangian Guard.png",
+          "width_emu": 2950845,
+          "height_emu": 2386330,
+          "sha256": "c15731871d2dc95ee40a06f1279de4566b442b9af866d40530a5ad4d813f0d56"
+        }
+      ]
+    },
+    {
+      "english_name": "Beasthunters Free Guild",
+      "images": [
+        {
+          "file": "Beasthunters Free Guild.png",
+          "width_emu": 2127885,
+          "height_emu": 2397125,
+          "sha256": "e86a525254f9b8849040438d8b184fe873072675c051a270ab343eb84a2f9fb2"
+        }
+      ]
+    },
+    {
+      "english_name": "Sāchā, Xenotech Hunters",
+      "images": [
+        {
+          "file": "Sāchā, Xenotech Hunters.png",
+          "width_emu": 3644265,
+          "height_emu": 2656205,
+          "sha256": "21dcf471b8ec8708379bcef6ed3d84db4959832108b7cb667324d4677e90336f"
+        }
+      ]
+    },
+    {
+      "english_name": "Cube Jäger, Mercenary Recoverers",
+      "images": [
+        {
+          "file": "Cube Jäger, Mercenary Recoverers.png",
+          "width_emu": 1764665,
+          "height_emu": 2764155,
+          "sha256": "afb9710e8bd2ec9394374add3d1eae3cfc4f8a35132ea6252f38beb459d1c8e3"
+        }
+      ]
+    }
+  ]
+}

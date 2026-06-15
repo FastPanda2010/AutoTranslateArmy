@@ -284,10 +284,19 @@ def build_filter_maps(data: dict[str, Any]) -> dict[str, dict[int, dict[str, Any
     return maps
 
 
+def ref_id_value(ref: dict[str, Any] | int | str | None) -> int | None:
+    try:
+        return int(ref if not isinstance(ref, dict) else ref.get("id"))
+    except (TypeError, ValueError):
+        return None
+
+
 def ref_name(ref: dict[str, Any] | int, filter_key: str, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator, *, extra_brackets: str = "paren") -> str:
     """把 JSON 里的 id 引用转换成翻译后的名称，并附加 extra 修正。"""
-    ref_id = ref if isinstance(ref, int) else ref.get("id")
-    item = maps.get(filter_key, {}).get(int(ref_id), {"name": str(ref_id)})
+    ref_id = ref_id_value(ref)
+    if ref_id is None:
+        return ""
+    item = maps.get(filter_key, {}).get(ref_id, {"name": str(ref_id)})
     category = FILTER_CATEGORY[filter_key]
     name = tr.translate(category, item.get("name", ref_id))
 
@@ -333,12 +342,17 @@ def distance_extra_text(value: Any) -> str:
 
 
 def join_refs(refs: list[Any], filter_key: str, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator, *, extra_brackets: str = "paren") -> str:
-    return "，".join(ref_name(ref, filter_key, maps, tr, extra_brackets=extra_brackets) for ref in sorted_refs(refs))
+    return "，".join(
+        name
+        for ref in sorted_refs(refs)
+        if (name := ref_name(ref, filter_key, maps, tr, extra_brackets=extra_brackets))
+    )
 
 
 def sorted_refs(refs: list[Any]) -> list[Any]:
     """官方 JSON 用 order 控制显示顺序；没有 order 的项目放到最后。"""
-    return sorted(refs or [], key=lambda r: r.get("order", 999) if isinstance(r, dict) else 999)
+    valid_refs = [ref for ref in refs or [] if ref_id_value(ref) is not None]
+    return sorted(valid_refs, key=lambda r: r.get("order", 999) if isinstance(r, dict) else 999)
 
 
 def move_text(move: list[int] | tuple[int, int] | None) -> str:
@@ -1111,10 +1125,7 @@ def add_fireteam_chart(doc: Document, chart: dict[str, Any] | None, tr: Translat
 
 
 def char_ref_id(ref: dict[str, Any] | int) -> int | None:
-    try:
-        return int(ref if isinstance(ref, int) else ref.get("id"))
-    except (TypeError, ValueError):
-        return None
+    return ref_id_value(ref)
 
 
 def special_char_badges(profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator, faction_id: int | None) -> list[tuple[str, str, str]]:
@@ -1182,8 +1193,13 @@ def profile_table_title(
 
     category = "profile" if english == profile_name else "unit"
     title = tr.translate(category, english, record_missing=False)
-    if title == english:
-        title = tr.translate("unit" if category == "profile" else "profile", english)
+    if normalize(title) == normalize(english):
+        fallback_category = "unit" if category == "profile" else "profile"
+        fallback_title = tr.translate(fallback_category, english, record_missing=False)
+        if normalize(fallback_title) != normalize(english):
+            title = fallback_title
+        else:
+            title = tr.translate(category, english)
 
     return title, english, image_names
 
@@ -1389,7 +1405,10 @@ def split_equip_by_type(equip_refs: list[dict[str, Any]], maps: dict[str, dict[i
     """按 filters.equip.type 把 option 装备拆成名称栏装备和远程武器栏装备。"""
     person_equip, weapon_equip = [], []
     for equip_ref in equip_refs or []:
-        item = maps.get("equip", {}).get(int(equip_ref.get("id", -1)), {})
+        equip_id = ref_id_value(equip_ref)
+        if equip_id is None:
+            continue
+        item = maps.get("equip", {}).get(equip_id, {})
         if item.get("type") == "WEAPON":
             weapon_equip.append(equip_ref)
         else:
@@ -1406,7 +1425,10 @@ def split_weapons(weapons: list[dict[str, Any]], maps: dict[str, dict[int, dict[
     """按官方 weapon.type 把武器分为射击武器和近战武器。"""
     bs, cc = [], []
     for weapon in weapons or []:
-        item = maps.get("weapons", {}).get(int(weapon.get("id", -1)), {})
+        weapon_id = ref_id_value(weapon)
+        if weapon_id is None:
+            continue
+        item = maps.get("weapons", {}).get(weapon_id, {})
         if item.get("type") == "CC":
             cc.append(weapon)
         else:

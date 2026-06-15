@@ -166,7 +166,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,KO DALI,寇达莉
 *,DROPSUIT TARYOT,塔姚特，突降服
 *,"Akalis, Sikh Commandos",永恒之子，锡克突击队
-*,Nisses,精灵
+*,Nisses,尼斯
 *,Neoterra Bolts,新地星闪击队
 *,Orc Troops,兽人部队
 *,Knights Hospitaller,医院骑士
@@ -195,8 +195,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Clausewitz Uhlans,克劳塞维茨枪骑兵
 *,"Tikbalangs, Armored Chasseurs of Acontecimento",马头猿，机遇星装甲猎骑兵
 *,"TIKBALANGS, Armoured Chasseurs of Acontecimento",马头猿，机遇星装甲猎骑兵
-*,Armbots: Bulleteer,武装遥控机：弹眼
-*,Armbots: Peacemakers,武装遥控机：和平缔造者
+*,Armbots: Bulleteer,弹头武装遥控机
 *,"Kirpal Singh, Akalis Sergeant",基帕尔·辛格，永恒之子军士
 *,Father-Officer Gabriele De Fersen,神父军官，加布里埃尔·德菲尔逊
 *,Crusader Brethren,十字军兄弟会
@@ -259,7 +258,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,UHLAN,枪骑兵
 *,TIKBALANG,马头猿
 *,SERAPH,炽天使
-*,BULLETEER,弹眼
+*,BULLETEER,弹头
 *,PALBOT,伺服遥控机
 *,MULEBOT,骡式遥控机
 *,SINGH,辛格
@@ -324,8 +323,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,KUNAI NINJA,解决策
 *,SHAOLIN Warrior Monks,少林武僧
 *,SHAOLIN,少林武僧
-*,Zhanshi Yisheng,战士医生
-*,MECH-ENGINEER,战地工程师
+*,MECH-ENGINEER,机械工程师
 *,Gōngchéng,工程师
 *,MONSTRUCKER,怪兽卡车员
 *,"ARMAND 'LE MUET', FREELANCE KILLER",“沉默者”阿曼德，自由杀手
@@ -372,7 +370,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,HÙNDÙN,混沌
 *,YĚ MĀO Infantry,野猫步兵
 *,YĚ MĀO,野猫
-*,JUJAK Regiment,朱雀团
+*,JUJAK Regiment,朱雀军团
 *,Korean Shock Infantry,朝鲜突击步兵
 *,JUJAK,朱雀
 *,BLUE WOLF Mongol Cavalry,蓝狼蒙古骑兵
@@ -394,7 +392,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,TIAN GǑU 1st Section,天狗1队
 *,"TIAN GǑU, Orbital Activity Squad",天狗，轨道行动组
 *,TIAN GǑU,天狗
-*,CHIEF MECH-ENGINEER CHUNG-HEE JEONG,工兵主任郑昌熙
+*,CHIEF MECH-ENGINEER CHUNG-HEE JEONG,机械工程师主任郑昌熙
 *,CHUNG-HEE JEONG,郑昌熙
 *,CHIEF JEONG,郑主任
 *,Imperial Agent ADIL Mehmut (Crane Rank Armor),帝国特工阿迪力·麦合木提（鹤阶装甲）
@@ -1199,7 +1197,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Reroll,重投
 *,Hidden Deployment,隐匿部署
 *,Sergeant So-ra Kwon,权素拉中士
-*,"Sergeant SO-RA KWON, JUJAK Regiment",权素拉中士，朱雀团
+*,"Sergeant SO-RA KWON, JUJAK Regiment",朱雀军团权素拉中士
 *,So-ra Kwon,权素拉
 *,Beasthunters Free Guild,野兽猎人自由行会
 *,Beasthunter,野兽猎人
@@ -1893,4 +1891,73 @@ profile,KNAUF FTO,克瑙夫FTO
 profile,TURTLEMEK,乌龟
 unit,Turtlemek Ancillary Remote Unit,乌龟辅助远程单位
 unit,ANACONDA OPERATOR,水蟒操作员
-
+extra,UPGRADE: Fairy Dust,升级：精灵尘
+faction,White Company,白色军团
+fireteam,Anaconda Fireteams,水蟒火力组
+fireteam,Chaksa Longarms Fireteams,查卡萨射手火力组
+fireteam,Fusiliers Fireteams,燧发枪手火力组
+fireteam,K2 Fireteams,K2火力组
+fireteam,Varangian Guards Fireteams,瓦兰吉卫队火力组
+fireteam,White Company Fireteams,白色军团火力组
+profile,AUXBOT_3,辅助机3型
+profile,AUXBOT_3B,辅助机3B型
+profile,BEASTHUNTER FTO,猛兽猎人FTO
+profile,BLADE,剑卫
+profile,BLADE FTO,剑卫FTO
+profile,"Blade-Ops, Neoterran Unified Commando Regiment",剑卫，新地星联合突击军团
+profile,BLOCKER,路霸
+profile,"Blockers, Attached Agents of the CDCI",路霸，中央刑事情报部特工
+profile,BÂTARD,法棍
+profile,CARMEN,卡门
+profile,CLIPPER DRONBOT FTO,清扫者遥控机FTO
+profile,Guiláng Skirmishers,鬼狼前卫
+profile,"Jujak Regiment, Korean Shock Infantry",朱雀军团，韩国突击步兵
+profile,"Liang Kai, Wandering Shaolin Monk",梁凯，少林云游僧
+profile,"Mech-Engineer, Zhanshi Gongchéng",机械工程师
+profile,SCARFACE Loadout Alpha,疤脸-阿尔法配装
+profile,SCARFACE Loadout Alpha & CORDELIA TURNER,疤脸-阿尔法配装&科迪莉娅·特纳
+profile,SCARFACE Loadout Beta,疤脸-贝塔配装
+profile,SCARFACE Loadout Beta & CORDELIA TURNER,疤脸-贝塔配装&科迪莉娅·特纳
+profile,SCARFACE Loadout Gamma,疤脸-伽玛配装
+profile,SCARFACE Loadout Gamma & CORDELIA TURNER,疤脸-伽玛配装&科迪莉娅·特纳
+profile,Zhanshi YĪSHĒNG,战士医生
+skill,Climb,攀爬
+unit,AUXBOT_3,辅助机3型
+unit,"BÂTARD, Merc Antipode",法棍，佣兵恐狼
+unit,"Carmen Johns, Mercenary Biker",卡门·约翰斯，佣兵摩托车手
+unit,"CORDELIA TURNER, MERCENARY ENGINEER",科迪莉娅·特纳，佣兵工程师
+unit,PEACEMAKER ARMBOTS,和平缔造者武装遥控机
+unit,"Scarface & Cordelia, Mercenary Armored Team",疤脸与科迪莉娅，佣兵机甲小队
+unit,"SCARFACE TURNER, MERCENARY TAG",疤脸·特纳，佣兵机甲
+weapon,AP + EXP CC Weapon,穿甲+爆炸近战武器
+profile,Zhanshi Yisheng,战士医生
+extra,Mountain,山地
+extra,UPGRADE: Spotlight,升级：聚光灯
+faction,White Banner,白旗军
+faction,Yu Jing,玉京
+fireteam,Blue Wolf Fireteams,蓝狼火力组
+fireteam,Shaolin Fireteams,少林火力组
+fireteam,White Banner Fireteams,白旗军火力组
+fireteam,Ye Mao,野猫
+fireteam,Zhanshi Fireteams,战士火力组
+profile,BLUE WOLF PILOT,蓝狼驾驶员
+profile,BÌXIÉ,辟邪
+profile,"Bìxié, the Jade Champion",辟邪，玉之冠军
+profile,DOKKAEBI,多可比
+profile,Dokkaebi Cyberteam,多可比赛博小组
+profile,GŪDǍN,孤胆
+profile,GŪDǍN FTO,孤胆FTO
+profile,Gūdǎn Troops,孤胆部队
+profile,HAETAE,獬豸
+profile,Haetae Unit,獬豸部队
+profile,HWARANG,花郎
+profile,Hwarang Corps,花郎兵团
+profile,"Jing Qo, the Shadow of Huangdi",荆轲，黄帝之影
+profile,LÉI GŌNG FTO,雷公FTO
+profile,"Léi Gōng, Invincibles Lord of Thunder",雷公，无敌军的闪电之主
+profile,"Oktavia Grímsdóttir, Icebreaker's Harpooner",屋大维娅·格里姆斯多蒂尔，破冰船的鱼叉手
+profile,SULSA WARRIOR,方士
+profile,Sulsa Warriors,方士战团
+profile,SULYONG,水龙
+profile,TIAN GǑU FTO,天狗FTO
+profile,YÍN-SHÉ,银蛇
