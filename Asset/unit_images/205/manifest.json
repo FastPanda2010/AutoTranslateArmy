@@ -8,7 +8,7 @@
         {
           "file": "Gūdǎn Troops.png",
           "width_emu": 2559685,
-          "height_emu": 2448560,
+          "height_emu": 2447925,
           "sha256": "b7f7ede9a82e9971a68af4907d188beb695ad88e6ae026da36e9e083384c3fdc"
         }
       ]
@@ -19,7 +19,7 @@
         {
           "file": "Shaolin Warrior Monks.png",
           "width_emu": 2896235,
-          "height_emu": 2326005,
+          "height_emu": 2325370,
           "sha256": "98d14fa03fa5b9445a30688aeb7d4d858e7ec2061593bf4eef5d21a1d2f85ab7"
         }
       ]
@@ -41,7 +41,7 @@
         {
           "file": "Shàng Jí.png",
           "width_emu": 3795395,
-          "height_emu": 2805430,
+          "height_emu": 2804795,
           "sha256": "a79cfef858657911c3c536df74b2976c70cfb9f2123f01e108c2835adbf17639"
         }
       ]
@@ -85,8 +85,52 @@
         {
           "file": "Dokkaebi Cyberteam.png",
           "width_emu": 2693035,
-          "height_emu": 2444115,
+          "height_emu": 2443480,
           "sha256": "d38dc366ec61fc1680363a8aaf681aa594cf024cd5b42fc434c5bb52be31631a"
+        }
+      ]
+    },
+    {
+      "english_name": "Naval Operations Group Sulyong ",
+      "images": [
+        {
+          "file": "Naval Operations Group Sulyong.png",
+          "width_emu": 2873375,
+          "height_emu": 2250440,
+          "sha256": "71dbfa0f5f425eb3f829a344cf0ed9a110a8d85f0b7c1e89d6d4cdb25d71b5a6"
+        }
+      ]
+    },
+    {
+      "english_name": "Silver Snakes, Yín-Shé Unit  ",
+      "images": [
+        {
+          "file": "Silver Snakes, Yín-Shé Unit.png",
+          "width_emu": 2385060,
+          "height_emu": 2321560,
+          "sha256": "6f71253e5e384c84cf355e02555246924fb40207e146a68252bb6bde6ee192ac"
+        }
+      ]
+    },
+    {
+      "english_name": "Dàofei Tactical Section",
+      "images": [
+        {
+          "file": "Dàofei Tactical Section.png",
+          "width_emu": 2211705,
+          "height_emu": 2497455,
+          "sha256": "38450b84fff567d6d80955188aa42282e3f94663a29ded29570781a392547062"
+        }
+      ]
+    },
+    {
+      "english_name": "Haetae Unit",
+      "images": [
+        {
+          "file": "Haetae Unit.png",
+          "width_emu": 2253615,
+          "height_emu": 3063240,
+          "sha256": "7dbd8a965b32f8faa58822d39ef90f2130b7f0b4b19b6ac0a86ac4a121225c1c"
         }
       ]
     },
@@ -95,9 +139,31 @@
       "images": [
         {
           "file": "Fēiquán Imperial Tactical Wing.png",
-          "width_emu": 3004820,
-          "height_emu": 3082290,
+          "width_emu": 2947035,
+          "height_emu": 3023235,
           "sha256": "f408e72b59022ae428013f870fd8beb1fb141f4a2cebd9012563ef44a4371574"
+        }
+      ]
+    },
+    {
+      "english_name": "Hwarang Corps",
+      "images": [
+        {
+          "file": "Hwarang Corps.png",
+          "width_emu": 2703830,
+          "height_emu": 2309495,
+          "sha256": "1594879f8d2380f252b399d396101a204f633126aa53638c5ae0d95133d631d7"
+        }
+      ]
+    },
+    {
+      "english_name": "Hùndùn Ambush Unit",
+      "images": [
+        {
+          "file": "Hùndùn Ambush Unit.png",
+          "width_emu": 2970530,
+          "height_emu": 2338070,
+          "sha256": "4195fe74169b9531d94983cefb39f506477fa33e77b47c3c4c923af3b94a5cfe"
         }
       ]
     },
@@ -109,6 +175,50 @@
           "width_emu": 3275330,
           "height_emu": 2792730,
           "sha256": "f7465735c81a61893878811e8cca41e7b44a1142487bc8d2f992e6e6855db1a9"
+        }
+      ]
+    },
+    {
+      "english_name": "Hac Tao Special Unit",
+      "images": [
+        {
+          "file": "Hac Tao Special Unit.png",
+          "width_emu": 1741170,
+          "height_emu": 2538730,
+          "sha256": "54f057fb7ed74c7d93a473c07a883802f00f3985d97c12269b76c8cbe80e93cd"
+        }
+      ]
+    },
+    {
+      "english_name": "Yě Māo Infantry",
+      "images": [
+        {
+          "file": "Yě Māo Infantry.png",
+          "width_emu": 2494915,
+          "height_emu": 2303780,
+          "sha256": "5b29b48d5abc3abcad532dd795432a3bff9d76022d0da6a904cd4635dd0682f6"
+        }
+      ]
+    },
+    {
+      "english_name": "Sulsa Warriors",
+      "images": [
+        {
+          "file": "Sulsa Warriors.png",
+          "width_emu": 1837690,
+          "height_emu": 2313940,
+          "sha256": "cfb3e44895ea5feee8f095ec31618af5b652e4ff5c5373a3f0f3db764d309d3f"
+        }
+      ]
+    },
+    {
+      "english_name": "BLUE WOLF Mongol Cavalry",
+      "images": [
+        {
+          "file": "BLUE WOLF Mongol Cavalry.png",
+          "width_emu": 2531745,
+          "height_emu": 2658110,
+          "sha256": "080d49b41af330b83b391828ede0fd15f959af9ee480a6b79e2e8ac82d85d4d7"
         }
       ]
     },
@@ -164,6 +274,17 @@
           "width_emu": 2399030,
           "height_emu": 1865630,
           "sha256": "e0df94d34b671e3b205f5f381e23a7f8f23c2763edc15de3203d8a2ea1923a62"
+        }
+      ]
+    },
+    {
+      "english_name": "Yáofáng Lóng Yá",
+      "images": [
+        {
+          "file": "Yáofáng Lóng Yá.png",
+          "width_emu": 2663825,
+          "height_emu": 2700020,
+          "sha256": "190a4c7d5820b2afb8392f4bb766872ee32bc031776f93c07ea1533126bfdbef"
         }
       ]
     },
@@ -234,6 +355,72 @@
       ]
     },
     {
+      "english_name": "Captain Qiang Gāo, Invincibles Officer",
+      "images": [
+        {
+          "file": "Captain Qiang Gāo, Invincibles Officer.png",
+          "width_emu": 2044700,
+          "height_emu": 2988945,
+          "sha256": "fef5eeb37264bc3e6c45383ab9b4a60496abc7b525f4352cabce5dc75b0193de"
+        }
+      ]
+    },
+    {
+      "english_name": "Sergeant So-ra Kwon, Jujak Regiment",
+      "images": [
+        {
+          "file": "Sergeant So-ra Kwon, Jujak Regiment.png",
+          "width_emu": 2421255,
+          "height_emu": 2306320,
+          "sha256": "e4a600430017fdb4aacc9e572b46fd2ee8d941954a8a5e947e315f75c408354a"
+        }
+      ]
+    },
+    {
+      "english_name": "Jing Qo, the Shadow of Huangdi",
+      "images": [
+        {
+          "file": "Jing Qo, the Shadow of Huangdi.png",
+          "width_emu": 2176780,
+          "height_emu": 1998980,
+          "sha256": "e914af9be53c6938cefcfe7a037edbff4d018a3e97b92fd85d62c6bb93d77bca"
+        }
+      ]
+    },
+    {
+      "english_name": "Léi Gōng, Invincibles Lord of Thunder",
+      "images": [
+        {
+          "file": "Léi Gōng, Invincibles Lord of Thunder.png",
+          "width_emu": 2408555,
+          "height_emu": 2421255,
+          "sha256": "f740deb3699df9802003f73add90650c36301a0fcb692f1859baaa2da8cc4070"
+        }
+      ]
+    },
+    {
+      "english_name": "Chief Mech-Engineer Chung-Hee Jeong",
+      "images": [
+        {
+          "file": "Chief Mech-Engineer Chung-Hee Jeong.png",
+          "width_emu": 1425575,
+          "height_emu": 2005965,
+          "sha256": "7a9c9b0fac8b8a0bb37376d5e0d3d52e1d8146dc2eab2f328aac18f7aeed3a65"
+        }
+      ]
+    },
+    {
+      "english_name": "Bìxié, the Jade Champion",
+      "images": [
+        {
+          "file": "Bìxié, the Jade Champion.png",
+          "width_emu": 1625600,
+          "height_emu": 2598420,
+          "sha256": "35fbe8f9273a113cc9eda99a299a39fba8558ccc837b615c38ccce84603b5554"
+        }
+      ]
+    },
+    {
       "english_name": "Liang Kai, Wandering Shaolin Monk",
       "images": [
         {
@@ -252,6 +439,17 @@
           "width_emu": 2444750,
           "height_emu": 2562860,
           "sha256": "0769a8006934000d473f4afc8347cc2ac3dc1fffba226f5efd1133ad737a64d0"
+        }
+      ]
+    },
+    {
+      "english_name": "Oktavia Grímsdóttir, Icebreaker's Harpooner",
+      "images": [
+        {
+          "file": "Oktavia Grímsdóttir, Icebreaker's Harpooner.png",
+          "width_emu": 1595755,
+          "height_emu": 2108835,
+          "sha256": "28b3be4493e3e6890497532170d1f2b870941d3e8d1ff08081f1cfbf82ef77e0"
         }
       ]
     },

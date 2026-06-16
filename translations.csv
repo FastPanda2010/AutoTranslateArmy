@@ -21,8 +21,8 @@ profile,DAWON,达温
 profile,KYRA SHARMA FTO,凯拉·夏尔马FTO
 profile,CLAIRE LAZHARI,克莱尔·拉扎里
 profile,SATRAH,萨特拉
-profile,APSARA,飞天
-profile,MOTORIZED BOUNTY HUNTER,摩托赏金猎人
+*,APSARA,飞天
+*,MOTORIZED BOUNTY HUNTER,摩托赏金猎人
 profile,SFORZA,斯福尔扎
 profile,MAXIMUS OPTIMATE,至善马克西姆
 profile,JOHNNY KAO,强尼·高
@@ -298,7 +298,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Shàng Jí Invincibles,上级无敌军
 *,SHÀNG JÍ,上级
 *,ZHĒNCHÁ,侦察
-*,Armored Reconnaissance Regiment,装甲侦查团
 *,Yáofáng LÓNG YÁ,遥防 龙牙
 *,LÓNG YÁ,龙牙
 *,TÁOWÙ,梼杌
@@ -377,8 +376,8 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,BLUE WOLF,蓝狼
 *,Invincibles Lord of Thunder,无敌军闪电之主
 *,LÉI GŌNG,雷公
-*,"Captain QIANG GĀO, Invincibles Officer",强高上尉，无敌军军官
-*,QIANG GĀO,强高
+*,"Captain QIANG GĀO, Invincibles Officer",高强上尉，无敌军军官
+*,QIANG GĀO,高强
 *,JING QO,荆轲
 *,the Shadow of Huangdi,黄帝之影
 *,LIANG KAI,梁凯
@@ -817,7 +816,6 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,NAJJARUN Engineer,木器匠工兵
 *,RAFIQ REMOTE,向导遥控机
 *,SHIHAB REMOTE,陨星遥控机
-*,MONSTRUCKER,怪兽卡车
 *,SHAYTANIYAH REMOTE,恶魔遥控机
 *,FANOUS REMOTE,射灯遥控机
 *,TARIK MANSURI,塔里克·曼苏里
@@ -1020,7 +1018,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,NCO,士官
 *,NEUROCINETICS,神经运动插件
 *,NO WOUND INCAPACITATION,无视伤痛
-*,NON-HACKABLE,不可入侵
+*,NON-HACKABLE,
 *,NUMBER 2,第二指挥
 *,PARACHUTIST,伞兵
 *,PARAMEDIC,医疗兵
@@ -1414,7 +1412,7 @@ extra,"+4""",+4”
 extra,"+8""",+8”
 char,Deepspace,深空部队
 char,Surface,地表部队
-equip,Bangbomb,闪光弹
+*,Bangbomb,闪光弹
 equip,Deployable Cover,可部署掩体
 equip,TinBot: Firewall,援护机仆：防火墙
 equip,X Visor,X目镜
@@ -1531,7 +1529,7 @@ weapon,Boarding Pistol,登舰手枪
 weapon,Disco Baller,迪斯客
 weapon,E/M Carbine,电磁卡宾枪
 weapon,Kobra Pistol,眼镜蛇手枪
-weapon,Mk12,Mk12
+*,Mk12,Mk12
 weapon,PARA Mine,瘫痪地雷
 weapon,Redfury AP,穿甲红怒机枪
 *,Shock Mine,冲击地雷
@@ -1642,7 +1640,6 @@ extra,CC=15,CC=15
 extra,Dodge (PH+3),闪避(PH+3)
 extra,Escape System -2,逃生系统-2
 extra,GizmoKit (PH+1),修理装置(PH+1)
-extra,Mk12,Mk12
 extra,PARA,PARA
 extra,PH=15,PH=15
 extra,PH=17,PH=17
@@ -1662,7 +1659,7 @@ note,There can only be one Máximus in each Army List.,军表中只能有一个�
 profile,CLAIRE LAZHARI FTO,克莱尔·拉扎里FTO
 profile,GARUDA,金翅鸟
 profile,HAWKWOOD,霍克伍德
-profile,KINNARA Scoutbots,紧那罗侦查机器人
+*,KINNARA Scoutbots,紧那罗侦查机器人
 profile,KIRANBOT 1,基罗多机器人1
 profile,KIRANBOT 2,基罗多机器人2
 profile,KYRA SHARMA,凯拉·夏尔马
@@ -1675,18 +1672,14 @@ profile,SHARVARA_K-9,奢婆罗K-9
 profile,TARKSIA,多罗叉
 profile,TARKSIA OPERATOR,多罗叉操作员
 profile,YAKSHA,夜叉
-skill,Bangbomb,闪光弹
-unit,Apsaras,飞天
 unit,Artalis Unit,阿达利部队
 unit,Dawon Tacbots,达温战术机器人
 unit,"Dr. Claire Lazhari, Genephilosopher and Optimate",克莱尔·拉扎里博士，至善成员，基因哲学家
 unit,"JOHN HAWKWOOD, Mercenary Officer",约翰·霍克伍德，佣兵指挥官
 unit,"Johnny Kao, Optimate and Technomancer Master",强尼·高，至善成员，科技术士大师
-unit,KINNARA Scoutbots,紧那罗侦查机器人
 unit,"KYRA SHARMA, The  Iron Maiden of the Optimates",凯拉·夏尔马，至善铁娘子
 unit,"Maximus, Optimate and HexaDome Legend",马克西姆，至善成员，六边穹顶的传奇
 unit,Minimus MateBot,米尼马斯搭档机器人
-unit,Motorized Bounty Hunters,摩托赏金猎人
 unit,Operator Maximus,操作员马克西姆
 unit,Optimate Agent Maximus,至善干员马克西姆
 unit,Pilot-X Team,驾驶员X小组
@@ -1710,7 +1703,7 @@ extra,Cyberplug,赛博器官
 extra,Jungle,丛林
 extra,PH=14,PH=14
 extra,PH=16,PH=16
-extra,Stingers,
+extra,Stingers,毒牙
 extra,UPGRADE: Carbonite (+1 B),升级：急冻(+1B)
 extra,UPGRADE: Firewall (-6),升级：防火墙(-6)
 extra,UPGRADE: Trinity,升级：三位一体
@@ -1719,7 +1712,6 @@ fireteam,Control Fireteams,控制火力组
 fireteam,Dragon,龙
 fireteam,Dragon Fireteams,龙火力组
 fireteam,FTO-2,FTO-2
-fireteam,Harbingers,预兆者
 fireteam,Harbingers Fireteams,预兆者火力组
 fireteam,Heavies Fireteams,重装兵火力组
 fireteam,Research,研究
@@ -1735,7 +1727,7 @@ profile,DRAKIOS FTO,德拉基奥斯FTO
 profile,GEARHEAD,齿轮狂徒
 profile,GEARHEAD FTO,齿轮狂徒FTO
 profile,GLYPH WARCOR,符印战地记者
-profile,HARBINGER,预兆者
+*,HARBINGER,预兆者
 profile,IRONSIDE,铁躯
 profile,JUGGERNAUT,巨无霸
 profile,KISS! (Repeater),KISS!(中继器)
@@ -1899,7 +1891,7 @@ fireteam,Fusiliers Fireteams,燧发枪手火力组
 fireteam,K2 Fireteams,K2火力组
 fireteam,Varangian Guards Fireteams,瓦兰吉卫队火力组
 fireteam,White Company Fireteams,白色军团火力组
-profile,AUXBOT_3,辅助机3型
+*,AUXBOT_3,辅助机3型
 profile,AUXBOT_3B,辅助机3B型
 profile,BEASTHUNTER FTO,猛兽猎人FTO
 profile,BLADE,剑卫
@@ -1922,7 +1914,6 @@ profile,SCARFACE Loadout Gamma,疤脸-伽玛配装
 profile,SCARFACE Loadout Gamma & CORDELIA TURNER,疤脸-伽玛配装&科迪莉娅·特纳
 profile,Zhanshi YĪSHĒNG,战士医生
 skill,Climb,攀爬
-unit,AUXBOT_3,辅助机3型
 unit,"BÂTARD, Merc Antipode",法棍，佣兵恐狼
 unit,"Carmen Johns, Mercenary Biker",卡门·约翰斯，佣兵摩托车手
 unit,"CORDELIA TURNER, MERCENARY ENGINEER",科迪莉娅·特纳，佣兵工程师
@@ -1961,3 +1952,21 @@ profile,Sulsa Warriors,方士战团
 profile,SULYONG,水龙
 profile,TIAN GǑU FTO,天狗FTO
 profile,YÍN-SHÉ,银蛇
+unit,Naval Operations Group Sulyong,水龙，海军特别行动组
+unit,"Silver Snakes, Yín-Shé Unit",银蛇部队
+extra,Aquatic,水域
+extra,Explosion,爆炸
+extra,Firewall -6,防火墙-6
+faction,Invincible Army,无敌军
+fireteam,Forward Fireteams,前进火力组
+fireteam,Invincible,无敌
+fireteam,Invincible Fireteams,无敌火力组
+fireteam,Shock Fireteams,突击火力组
+profile,GŪIJIĂ PILOT,龟甲驾驶员
+profile,HÚLÁNG FTO,狐狼FTO
+profile,HÚLÁNG FTO-2,狐狼FTO-2
+profile,KOKRAM FTO,科克拉姆FTO
+profile,KOKRAM FTO-2,科克拉姆FTO-2
+profile,YĀN HUǑ FTO,烟火FTO
+unit,"Zhēnchá, Armored Reconnaissance Regiment",侦察，装甲侦查团
+unit,"Zúyŏng Invincibles, Terra-cotta Soldiers",卒勇无敌军
