@@ -1981,3 +1981,38 @@ profile,SAITO TOGAN,东岸才人
 profile,SCARFACE,疤脸
 unit,Saito Togan,东岸才人
 weapon,Armed Turret (AP Rifle),武装炮台(穿甲步枪)
+faction,Aleph,阿勒夫
+faction,Operations Subsection of the SSS,特别情况处行动科
+fireteam,Spec-Ops,特战干员
+profile,CHAKORA SPECBOT_1,遮俱罗特战遥控机_1
+profile,CHAKORA SPECBOT_2,遮俱罗特战遥控机_2
+profile,CHAKORA SPECBOTS,遮俱罗特战遥控机
+profile,CHANDRA,月神
+profile,CHANDRA  HEAVY,月神重装干员
+profile,CHANDRA HEAVY SPEC-OPS,月神重装干员
+profile,CHANDRA-1,月神-1
+profile,CHANDRA-1 SPEC-OPS,月神-1特战干员
+profile,INITIAL PROFILE,初始档案
+skill,Infinity Spec-Ops,特战干员
+skill,Infinity Team-Ops,特战小组
+unit,Aleph Team-Ops,阿勒夫特战小组
+unit,Chandra Spec-Ops,月神特战干员
+profile,SpecBot 1 or 2,特战遥控机_1 或 特战遥控机_2
+extra,BS,BS
+extra,CC,CC
+extra,MOV,MOV
+note,Rules reminder: Select upgrades according to the Spec-Ops / Team-Ops rules in use; each Trooper in a Team-Ops group must select a different option.,注意：请根据特战干员 / 特战小组规则选择升级。特战小组的每个士兵必须选择不同的升级。
+note,Spec-Ball Support Options,特战球支援选项
+note,Spec-Ops / Team-Ops Upgrade Options,特战干员 / 特战小组升级选项
+note,Tacball Support Options,战术球支援选项
+profile,GUǏ FĒNG,鬼风
+profile,GUǏ FĒNG HEAVY,鬼风重装干员
+profile,GUǏ FĒNG HEAVY SPEC-OPS,鬼风重装干员
+profile,GUǏ FĒNG-1,鬼风-1
+profile,GUǏ FĒNG-1 SPEC-OPS,鬼风-1特战干员
+profile,MÉN TÓNG SPECBOT_1,门童特战遥控机_1
+profile,MÉN TÓNG SPECBOT_2,门童特战遥控机_2
+profile,MÉN TÓNG SPECBOTS,门童特战遥控机
+unit,Guǐ Fēng  Spec-Ops,鬼风特战干员
+unit,GUǏ FĒNG SPEC-OPS,鬼风特战干员
+unit,Yu Jing  Team-Ops,玉京特战小组

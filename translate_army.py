@@ -6,11 +6,12 @@ import hashlib
 import io
 import json
 import re
+import tempfile
 from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Iterable
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 from docx import Document
 from docx.enum.section import WD_ORIENT
@@ -29,6 +30,8 @@ FACTION_COVER_LOGO_RENDER_ZOOM = 4
 ASSET_DIR = Path("Asset")
 LOGO_CACHE_DIR = Path(".cache") / "logos"
 UNIT_IMAGE_DIR = ASSET_DIR / "unit_images"
+ARMY_API_URL = "https://api.corvusbelli.com/army/units/en/{faction_id}"
+ARMY_API_ORIGIN = "https://infinityuniverse.com"
 ORDER_ICON_WIDTH = Pt(10)
 ORDER_ICON_FILES = {
     "REGULAR": "regular.svg",
@@ -36,6 +39,16 @@ ORDER_ICON_FILES = {
     "LIEUTENANT": "lieutenant.svg",
     "IRREGULAR": "irregular.svg",
     "IMPETUOUS": "impetuous.svg",
+}
+ORDER_ICON_PNG_DIR = ASSET_DIR / "order_icons"
+# Army 的新版导出有时使用命令全名，有时使用单字母代码。统一为原有图标键。
+ORDER_TYPE_ALIASES = {
+    "R": "REGULAR",
+    "T": "TACTICAL",
+    "L": "LIEUTENANT",
+    "I": "IRREGULAR",
+    "E": "IMPETUOUS",
+    "IMP": "IMPETUOUS",
 }
 UNIT_TABLE_COLUMN_WIDTHS = [
     Cm(0.4), Cm(0.4),  # 命令
@@ -46,6 +59,18 @@ UNIT_TABLE_COLUMN_WIDTHS = [
     Cm(0.7),  # C
 ]
 FIRETEAM_TABLE_COLUMN_WIDTHS = [Cm(2.0), Cm(2.0), Cm(8.0)]
+
+# Infinity N5.3 的 Spec-Ops / Team-Ops 升级选项。官方 Army JSON 目前只在
+# profile.skills 标记这两项技能，升级表本身并不随军表 JSON 一起导出，因此在
+# 生成 Word 时在对应单位下方补上这张固定规则表。
+OPS_SKILL_NAMES = {"Infinity Spec-Ops", "Infinity Team-Ops"}
+OPS_UPGRADE_TABLE_TITLE = "Spec-Ops / Team-Ops Upgrade Options"
+SPEC_BALL_TABLE_TITLE = "Spec-Ball Support Options"
+TACBALL_TABLE_TITLE = "Tacball Support Options"
+OPS_RULES_REMINDER = (
+    "Rules reminder: Select upgrades according to the Spec-Ops / Team-Ops rules in use; "
+    "each Trooper in a Team-Ops group must select a different option."
+)
 
 
 def apply_doc_font(run) -> None:
@@ -342,9 +367,18 @@ def distance_extra_text(value: Any) -> str:
 
 
 def join_refs(refs: list[Any], filter_key: str, maps: dict[str, dict[int, dict[str, Any]]], tr: Translator, *, extra_brackets: str = "paren") -> str:
+    ordered_refs = sorted_refs(refs)
+    if filter_key == "skills":
+        # Spec-Ops / Team-Ops 是资料卡的构建规则，置于技能串末尾，避免打断
+        # 单位本身的常规技能顺序；同类项目之间继续保持 Army 的原始顺序。
+        ordered_refs.sort(
+            key=lambda ref: normalize(
+                maps.get("skills", {}).get(ref_id_value(ref) or -1, {}).get("name", "")
+            ) in OPS_SKILL_NAMES
+        )
     return "，".join(
         name
-        for ref in sorted_refs(refs)
+        for ref in ordered_refs
         if (name := ref_name(ref, filter_key, maps, tr, extra_brackets=extra_brackets))
     )
 
@@ -531,17 +565,24 @@ def set_cell_text(cell, text: str, *, bold: bool = False, italic: bool = False, 
 
 @lru_cache(maxsize=16)
 def order_icon_png(order_type: str) -> bytes | None:
-    """读取 Asset 中的命令 SVG，并转换成 Word 可插入的 PNG。"""
-    icon_file = ORDER_ICON_FILES.get(order_type.upper())
+    """读取预渲染命令 PNG；旧项目缺少 PNG 时再尝试转换 SVG。"""
+    normalized_type = ORDER_TYPE_ALIASES.get(order_type.upper(), order_type.upper())
+    icon_file = ORDER_ICON_FILES.get(normalized_type)
     if not icon_file:
         return None
+
+    png_path = ORDER_ICON_PNG_DIR / f"{Path(icon_file).stem}.png"
+    if png_path.exists():
+        return png_path.read_bytes()
+
     path = ASSET_DIR / icon_file
     if not path.exists():
         return None
     try:
-        import resvg_py
+        import resvg_python
 
-        return resvg_py.svg_to_bytes(path.read_text(encoding="utf-8"))
+        # resvg-python 返回整数列表；python-docx 需要 bytes-like 对象。
+        return bytes(resvg_python.svg_to_png(path.read_text(encoding="utf-8")))
     except Exception:
         return None
 
@@ -556,14 +597,15 @@ def set_order_icons_cell(cell, orders: list[dict[str, Any]], *, italic: bool = F
 
     for order in orders or []:
         order_type = str(order.get("type", "")).upper()
+        display_type = ORDER_TYPE_ALIASES.get(order_type, order_type)
         repeat = max(1, int(order.get("total") or 1))
         for _ in range(repeat):
-            png = order_icon_png(order_type)
+            png = order_icon_png(display_type)
             run = paragraph.add_run()
             if png:
                 run.add_picture(io.BytesIO(png), width=ORDER_ICON_WIDTH)
             else:
-                run.text = order_type[:1]
+                run.text = display_type[:1]
                 run.italic = italic
                 apply_doc_font(run)
                 run.font.size = Pt(8)
@@ -1303,6 +1345,170 @@ def add_unit_table(
                 set_cell_shading(cell, "EFEEEE")
 
     add_note_paragraph(doc, pg.get("notes") or profile.get("notes"), tr)
+    # Spec-Ops 的参考表紧跟所属单位；Team-Ops 的三个 profileGroup 共用一套
+    # 表格，改由 generate_docx 在整个 Team-Ops 单位末尾统一输出。
+    if "Infinity Spec-Ops" in ops_skill_names(profiles, maps):
+        spectables = unit.get("spectables", {})
+        add_ops_upgrade_table(doc, spectables.get("table", {}).get("items", []), maps, tr)
+        add_ball_support_table(doc, SPEC_BALL_TABLE_TITLE, spectables.get("specball", {}).get("items", []), maps, tr)
+
+
+def has_ops_skill(profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]]) -> bool:
+    """Return whether a profile has the Infinity Spec-Ops or Team-Ops skill."""
+    for skill_ref in profile.get("skills", []):
+        skill_id = ref_id_value(skill_ref)
+        if skill_id is None:
+            continue
+        skill_name = maps.get("skills", {}).get(skill_id, {}).get("name", "")
+        if normalize(skill_name) in OPS_SKILL_NAMES:
+            return True
+    return False
+
+
+def ops_skill_names(profiles: list[dict[str, Any]], maps: dict[str, dict[int, dict[str, Any]]]) -> set[str]:
+    """Return the Ops skill names represented by this profile group."""
+    result: set[str] = set()
+    for profile in profiles:
+        for skill_ref in profile.get("skills", []):
+            skill_id = ref_id_value(skill_ref)
+            skill_name = maps.get("skills", {}).get(skill_id or -1, {}).get("name", "")
+            if normalize(skill_name) in OPS_SKILL_NAMES:
+                result.add(normalize(skill_name))
+    return result
+
+
+def unit_ops_skill_names(unit: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]]) -> set[str]:
+    """Return every Ops skill represented across a unit's profile groups."""
+    result: set[str] = set()
+    for profile_group in unit.get("profileGroups", []):
+        result.update(ops_skill_names(profile_group.get("profiles", []), maps))
+    return result
+
+
+def add_ops_upgrade_table(
+    doc: Document,
+    items: list[dict[str, Any]],
+    maps: dict[str, dict[int, dict[str, Any]]],
+    tr: Translator,
+) -> None:
+    """Render the unit's actual spectables.table upgrade options."""
+    if not items:
+        return
+
+    # Use the same 20-column geometry as a unit table, so this compact chart
+    # aligns with the army-book grid and has stable Word column widths.
+    table = doc.add_table(rows=2 + len(items), cols=20)
+    style_table(table)
+    set_table_column_widths(table, UNIT_TABLE_COLUMN_WIDTHS)
+
+    title = merge_row(table.rows[0], 0, 19)
+    set_ops_upgrade_title_cell(title, tr)
+    set_cell_shading(title, "D9EAF7")
+
+    header = table.rows[1]
+    set_cell_text(merge_row(header, 0, 2), "序号", bold=True, size=8)
+    set_cell_text(merge_row(header, 3, 19), "升级项目", bold=True, size=8)
+    for cell in header.cells:
+        set_cell_shading(cell, "E7E6E6")
+
+    for index, item in enumerate(items, start=1):
+        row = table.rows[index + 1]
+        set_cell_text(merge_row(row, 0, 2), str(index), size=8)
+        set_cell_text(
+            merge_row(row, 3, 19),
+            spectable_item_text(item, maps, tr),
+            size=8,
+            alignment=WD_ALIGN_PARAGRAPH.LEFT,
+        )
+        if index % 2 == 0:
+            for cell in row.cells:
+                set_cell_shading(cell, "EFEEEE")
+
+
+
+def set_ops_upgrade_title_cell(cell, tr: Translator) -> None:
+    """Place the rules reminder directly below the upgrade-table title."""
+    cell.text = ""
+    paragraph = cell.paragraphs[0]
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    paragraph.paragraph_format.space_after = Pt(0)
+    title_run = paragraph.add_run(tr.translate("note", OPS_UPGRADE_TABLE_TITLE))
+    title_run.bold = True
+    apply_doc_font(title_run)
+    title_run.font.size = Pt(9)
+    reminder_run = paragraph.add_run()
+    reminder_run.add_break()
+    reminder_run = paragraph.add_run(tr.translate("note", OPS_RULES_REMINDER))
+    reminder_run.italic = True
+    apply_doc_font(reminder_run)
+    reminder_run.font.size = Pt(7.5)
+    cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+
+
+SPECTABLE_REF_FILTERS = {"weapon": "weapons", "skill": "skills", "equip": "equip"}
+SPECTABLE_STAT_LABELS = {"bs": "BS", "arm": "ARM", "bts": "BTS"}
+
+
+def spectable_item_text(item: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], tr: Translator) -> str:
+    """Format one official spectables item from its attrs list."""
+    attrs = item.get("attrs", [])
+    move = {attr.get("stat"): attr.get("q") for attr in attrs if attr.get("type") == "stat" and attr.get("stat") in {"move0", "move1"}}
+    parts: list[str] = []
+    if move:
+        move_values = [move.get("move0"), move.get("move1")]
+        if all(value is not None for value in move_values):
+            parts.append(f"{tr.translate('extra', 'MOV')} {move_text(move_values)}")
+
+    for attr in attrs:
+        attr_type = attr.get("type")
+        if attr_type == "stat":
+            stat = attr.get("stat")
+            if stat in {"move0", "move1"}:
+                continue
+            label = SPECTABLE_STAT_LABELS.get(stat, str(stat or "").upper())
+            value = attr.get("q")
+            suffix = f" +{value}" if value is not None else ""
+            parts.append(f"{tr.translate('extra', label)}{suffix}")
+            continue
+        filter_key = SPECTABLE_REF_FILTERS.get(attr_type)
+        if filter_key:
+            text = ref_name(attr, filter_key, maps, tr)
+            if text:
+                parts.append(text)
+    return " + ".join(parts)
+
+
+def add_ball_support_table(
+    doc: Document,
+    title_text: str,
+    items: list[dict[str, Any]],
+    maps: dict[str, dict[int, dict[str, Any]]],
+    tr: Translator,
+) -> None:
+    """Render the unit's actual spectables.specball support options."""
+    if not items:
+        return
+    table = doc.add_table(rows=2 + len(items), cols=20)
+    style_table(table)
+    set_table_column_widths(table, UNIT_TABLE_COLUMN_WIDTHS)
+
+    title = merge_row(table.rows[0], 0, 19)
+    set_cell_text(title, tr.translate("note", title_text), bold=True, size=9, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+    set_cell_shading(title, "D9EAF7")
+
+    header = table.rows[1]
+    set_cell_text(merge_row(header, 0, 2), "序号", bold=True, size=8)
+    set_cell_text(merge_row(header, 3, 19), "支援项目", bold=True, size=8)
+    for cell in header.cells:
+        set_cell_shading(cell, "E7E6E6")
+
+    for index, item in enumerate(items, start=1):
+        row = table.rows[index + 1]
+        set_cell_text(merge_row(row, 0, 2), str(index), size=8)
+        set_cell_text(merge_row(row, 3, 19), spectable_item_text(item, maps, tr), size=8, alignment=WD_ALIGN_PARAGRAPH.LEFT)
+        if index % 2 == 0:
+            for cell in row.cells:
+                set_cell_shading(cell, "EFEEEE")
 
 
 def profile_section_title(profile: dict[str, Any], tr: Translator) -> str:
@@ -1509,12 +1715,56 @@ def generate_docx(
             add_unit_options_table(doc, unit, maps, tr, unit_images)
         for pg in unit.get("profileGroups", []):
             add_unit_table(doc, unit, pg, maps, tr, faction_id, unit_images)
+        if "Infinity Team-Ops" in unit_ops_skill_names(unit, maps):
+            # Team-Ops 的 LI / HI / REM 是同一组，升级与 Tacball 选择表仅输出一次。
+            spectables = unit.get("spectables", {})
+            add_ops_upgrade_table(doc, spectables.get("table", {}).get("items", []), maps, tr)
+            add_ball_support_table(doc, TACBALL_TABLE_TITLE, spectables.get("specball", {}).get("items", []), maps, tr)
         doc.add_page_break()
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     doc.save(output_path)
     if missing_path:
         tr.write_missing(missing_path)
+
+
+def update_army_json(json_path: Path) -> None:
+    """Download the latest official Army JSON for the numeric input filename.
+
+    For example, ``samples/205.json`` is refreshed from the ``/en/205`` API
+    endpoint.  The existing local file is replaced only after a successful
+    request and JSON validation, so it remains available if the API is down.
+    """
+    if json_path.suffix.lower() != ".json" or not json_path.stem.isdigit():
+        raise ValueError(
+            f"输入 JSON 文件名必须是纯数字（例如 205.json），当前为：{json_path.name}"
+        )
+
+    faction_id = json_path.stem
+    request = Request(
+        ARMY_API_URL.format(faction_id=faction_id),
+        headers={"Origin": ARMY_API_ORIGIN},
+        method="GET",
+    )
+    with urlopen(request, timeout=30) as response:
+        payload = response.read()
+
+    try:
+        data = json.loads(payload.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise RuntimeError(f"Army API 返回的不是有效 JSON：{request.full_url}") from exc
+    if not isinstance(data, dict):
+        raise RuntimeError(f"Army API 返回的 JSON 顶层不是对象：{request.full_url}")
+
+    json_path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        mode="wb", dir=json_path.parent, prefix=f".{json_path.stem}-", suffix=".tmp", delete=False
+    ) as temp_file:
+        temp_path = Path(temp_file.name)
+        temp_file.write(payload)
+    temp_path.replace(json_path)
+    # 使用 ASCII 提示，避免 Windows 控制台的本地编码导致生成流程中断。
+    print(f"Updated Army JSON: {json_path} (faction {faction_id})")
 
 
 def parse_args() -> argparse.Namespace:
@@ -1529,6 +1779,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    update_army_json(args.json)
     generate_docx(args.json, args.output, args.glossary, args.missing)
 
 
