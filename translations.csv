@@ -360,9 +360,9 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,MÓWÁNG,魔王
 *,HÚLÁNG Shocktroopers,狐狼突击队
 *,HÚLÁNG,狐狼
-*,"TAI SHENG, Zúyŏng Invincibles NCO",泰胜，卒佣无敌军士官
+*,"TAI SHENG, Zúyŏng Invincibles NCO",泰胜，卒俑无敌军士官
 *,TAI SHENG,泰胜
-*,"Krit KOKRAM, Zúyŏng Invincibles Specialist",克里特·科克拉姆，卒俑无敌军专家
+*,"Krit KOKRAM, Zúyŏng Invincibles Specialist",克里特·科克拉姆，卒俑无敌军专业军士
 *,Krit KOKRAM,克里特·科克拉姆
 *,KOKRAM,科克拉姆
 *,HÙNDÙN Ambush Unit,混沌伏击部队
@@ -774,7 +774,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Special Deterrance Group Azra'il,死神，特种威慑小组
 *,Al Hawwa' Unit,弄蛇者部队
 *,Hassassin Farzans,哈萨辛智者
-*,Nasmat Remotes,援护遥控机
+*,Nasmat Remotes,微风遥控机
 *,Kameel Remotes,骆驼遥控机
 *,Hussein Al-Djabel,侯赛因·贾巴尔，哈萨辛死士
 *,"Saladin, O-12 Liaison Officer",萨拉丁，O-12联络官员
@@ -788,7 +788,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Hassassin Áyyār,哈萨辛独行者
 *,Husam Operative Leila Sharif,蕾拉·沙里夫，哈桑特战队员
 *,"HAKIMS, Special Medical Assistance Team",哈基姆，特别医疗援助小组
-*,Nasmat A2,援护遥控机A2
+*,Nasmat A2,微风A2型
 *,Mukhtar Active Response Unit,获选者反应部队
 *,Nahab Aeromobile Team,掠食者航空机动队
 *,Namurr Experimental Operative Group,速虎试验部队
@@ -828,7 +828,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,O-12 Liaison Officer,O-12联络官
 *,DAYLAMI,德拉米
 *,ODALISQUE,侍女
-*,BASHI BAZOUK,先驱捕手
+*,BASHI BAZOUK,流匪
 *,HAFZA,守护天使
 *,MUYIB,回应者
 *,LASIQ,执行者
@@ -836,7 +836,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,AZRA'IL,死神
 *,HAWWA',弄蛇者
 *,FARZAN,智者
-*,NASMAT,援护
+*,NASMAT,微风
 *,KAMEEL,骆驼
 *,AL-DJABEL,贾巴尔
 *,BARID,信使
@@ -849,7 +849,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,ÁYYĀR,独行者
 *,LEILA SHARIF,蕾拉·沙里夫
 *,HAKIM,哈基姆
-*,NASMAT A2,援护遥控机A2
+*,NASMAT A2,微风A2型
 *,MUKHTAR,获选者
 *,NAHAB,掠食者
 *,NAMURR,速虎
@@ -1243,7 +1243,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,CHERNOBOG,岑诺伯格
 *,"PATCHERS, Structural Response Team",补丁工，结构反应小组
 *,PATCHER,补丁工
-*,FIDDLER,费德勒
+*,FIDDLER,提琴手
 *,Jackbot,弹球
 *,The DIABLOS of D-Block,D区的恶魔
 *,DIABLO,恶魔
@@ -1346,7 +1346,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,Impetuous,鲁莽
 *,Not Impetuous,
 *,Hackable,可入侵
-*,Non Hackable,不可入侵
+*,Non Hackable,
 *,Cube,记忆立方
 *,Cube 2.0,记忆立方 2.0
 *,No Cube,
@@ -1969,4 +1969,15 @@ profile,KOKRAM FTO,科克拉姆FTO
 profile,KOKRAM FTO-2,科克拉姆FTO-2
 profile,YĀN HUǑ FTO,烟火FTO
 unit,"Zhēnchá, Armored Reconnaissance Regiment",侦察，装甲侦查团
-unit,"Zúyŏng Invincibles, Terra-cotta Soldiers",卒勇无敌军
+unit,"Zúyŏng Invincibles, Terra-cotta Soldiers",卒俑无敌军
+fireteam,Yu Jing Fireteams,玉京火力组
+fireteam,Yu Jing Fireteams II,玉京火力组II
+unit,Zhànyīng Imperial Agents,战鹰帝国特工
+faction,Druze Bayram Security,德鲁兹驿站安保
+fireteam,Druze Bayram Security Fireteams,德鲁兹驿站安保火力组
+fireteam,Mechanized Fireteams,装甲部队火力组
+profile,AÏDA SWANSON FTO,阿依达·斯旺森FTO
+profile,SAITO TOGAN,东岸才人
+profile,SCARFACE,疤脸
+unit,Saito Togan,东岸才人
+weapon,Armed Turret (AP Rifle),武装炮台(穿甲步枪)

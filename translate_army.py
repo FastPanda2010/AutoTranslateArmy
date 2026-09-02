@@ -767,6 +767,11 @@ def normalize_unit_image_key(name: str) -> str:
     return re.sub(r"\s+", " ", normalize(name))
 
 
+def unit_image_lookup_keys(name: str) -> list[str]:
+    normalized = normalize_unit_image_key(name)
+    return list(dict.fromkeys([normalize(name), normalized, normalized.casefold()]))
+
+
 def unit_image_source_dirs(image_set: str) -> list[Path]:
     if not UNIT_IMAGE_DIR.exists():
         return []
@@ -792,8 +797,7 @@ def add_unit_image_group(
     if not english_name or not entries:
         return
 
-    keys = list(dict.fromkeys([english_name, normalize_unit_image_key(english_name)]))
-    for key in keys:
+    for key in unit_image_lookup_keys(english_name):
         result.setdefault(key, []).append(entries)
 
 
@@ -833,9 +837,10 @@ def next_unit_images_for_names(
         return []
 
     for english_name in dict.fromkeys(normalize(name) for name in english_names if normalize(name)):
-        groups = unit_images.get(english_name) or unit_images.get(normalize_unit_image_key(english_name))
-        if groups:
-            return groups.pop(0)
+        for key in unit_image_lookup_keys(english_name):
+            groups = unit_images.get(key)
+            if groups:
+                return groups.pop(0)
     return []
 
 
