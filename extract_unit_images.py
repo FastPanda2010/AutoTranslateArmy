@@ -100,6 +100,37 @@ def match_expected_name(title: str, expected: list[str], start_index: int) -> tu
     return None
 
 
+def save_manifest_table(
+    output_dir: Path,
+    counters: dict[str, int],
+    english_name: str,
+    images: list[dict[str, Any]],
+) -> dict[str, Any]:
+    stem = sanitize_unit_image_name(english_name)
+    counters[stem] = counters.get(stem, 0) + 1
+    occurrence = counters[stem]
+    saved_images = []
+    for image_index, image in enumerate(images, start=1):
+        suffix_parts = []
+        if occurrence > 1:
+            suffix_parts.append(str(occurrence))
+        if len(images) > 1:
+            suffix_parts.append(str(image_index))
+        suffix = f"-{'-'.join(suffix_parts)}" if suffix_parts else ""
+        filename = f"{stem}{suffix}{image['extension']}"
+        (output_dir / filename).write_bytes(image["data"])
+        saved_images.append(
+            {
+                "file": filename,
+                "width_emu": image["width_emu"],
+                "height_emu": image["height_emu"],
+                "sha256": image["sha256"],
+            }
+        )
+
+    return {"english_name": english_name, "images": saved_images}
+
+
 def extract_unit_images(docx_path: Path, json_path: Path, output_dir: Path) -> dict[str, Any]:
     expected = expected_table_names(json_path)
     manifest_tables: list[dict[str, Any]] = []
@@ -119,39 +150,17 @@ def extract_unit_images(docx_path: Path, json_path: Path, output_dir: Path) -> d
             cells = table.findall(".//w:tc", NS)
             if not cells:
                 continue
-            title = cell_text(cells[0])
-            images = image_entries(cells[0], rels, docx)
-            if not title or not images:
-                continue
+            for cell in cells:
+                title = cell_text(cell)
+                images = image_entries(cell, rels, docx)
+                if not title or not images:
+                    continue
 
-            match = match_expected_name(title, expected, expected_index)
-            if match is None:
-                continue
-            expected_index, english_name = match
-
-            stem = sanitize_unit_image_name(english_name)
-            counters[stem] = counters.get(stem, 0) + 1
-            occurrence = counters[stem]
-            saved_images = []
-            for image_index, image in enumerate(images, start=1):
-                suffix_parts = []
-                if occurrence > 1:
-                    suffix_parts.append(str(occurrence))
-                if len(images) > 1:
-                    suffix_parts.append(str(image_index))
-                suffix = f"-{'-'.join(suffix_parts)}" if suffix_parts else ""
-                filename = f"{stem}{suffix}{image['extension']}"
-                (output_dir / filename).write_bytes(image["data"])
-                saved_images.append(
-                    {
-                        "file": filename,
-                        "width_emu": image["width_emu"],
-                        "height_emu": image["height_emu"],
-                        "sha256": image["sha256"],
-                    }
-                )
-
-            manifest_tables.append({"english_name": english_name, "images": saved_images})
+                match = match_expected_name(title, expected, expected_index)
+                if match is None:
+                    continue
+                expected_index, english_name = match
+                manifest_tables.append(save_manifest_table(output_dir, counters, english_name, images))
 
     manifest = {
         "source_docx": str(docx_path),

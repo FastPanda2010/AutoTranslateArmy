@@ -7,7 +7,7 @@
 ## 快速开始
 
 ```powershell
-& py translate_army.py samples\703.json 你想输出路径/文件名（比如output/703-cn.docx） --glossary translations.csv --missing output\missing.csv
+& py translate_army.py samples\703.json 你想输出路径/文件名（比如output/703-cn.docx） --glossary translations.csv --missing output\missing.csv --pdf-output output\703-cn.pdf
 ```
 
 每次运行都会根据输入 JSON 的文件名自动更新官方数据：例如输入 `samples\205.json` 时，程序会以 `Origin: https://infinityuniverse.com` 请求 `https://api.corvusbelli.com/army/units/en/205`，确认返回有效 JSON 后再替换本地文件。因此输入文件名必须是纯数字形式，如 `205.json`。
@@ -15,7 +15,10 @@
 生成结果：
 
 - `output/703-cn.docx`：中文军书 Word 文件
+- `output/703-cn.pdf`：可选；传入 `--pdf-output`（或简写 `--pdf`）后，由本机 Microsoft Word 自动导出的 PDF 文件
 - `output/missing.csv`：JSON 中出现但词汇表未覆盖的词，补进 `translations.csv` 后重新运行即可
+
+PDF 导出仅适用于 Windows，且需要本机安装 Microsoft Word。未指定 `--pdf-output` 时，程序行为与以前完全相同。
 
 ## 词汇表格式
 

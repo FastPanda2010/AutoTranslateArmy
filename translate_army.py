@@ -5,7 +5,9 @@ import csv
 import hashlib
 import io
 import json
+import os
 import re
+import subprocess
 import tempfile
 from dataclasses import dataclass, field
 from functools import lru_cache
@@ -71,6 +73,9 @@ OPS_RULES_REMINDER = (
     "Rules reminder: Select upgrades according to the Spec-Ops / Team-Ops rules in use; "
     "each Trooper in a Team-Ops group must select a different option."
 )
+# 网页 Army 将这一项作为 Spec-Ops 的 Spec-Ball 首个隐式选择显示；703.json
+# 的 spectables.specball.items 未显式包含它，因此在导出时补入。
+SPEC_OPS_SPECBOT_ITEM = {"attrs": [{"type": "profile", "name": "SpecBot 1 or 2"}]}
 
 
 def apply_doc_font(run) -> None:
@@ -462,7 +467,12 @@ def category_name(category_id: Any, maps: dict[str, dict[int, dict[str, Any]]], 
 
 
 def unit_category_sort_key(unit: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]], original_index: int) -> tuple[int, int]:
-    """按第一个可识别的 profileGroup/profile category 给单位排序。"""
+    """按类别给单位排序，并把 Spec-Ops / Team-Ops 统一放到最后。"""
+    # Ops 单位在 Army 数据中仍会标为 Veteran 等常规类别；若只按 category
+    # 排序，它们就会夹在相应类别中。这里按实际技能识别整个单位，而不是依赖
+    # 显示名称，以兼容各阵营不同的 Ops 单位名。
+    if unit_ops_skill_names(unit, maps):
+        return len(CATEGORY_SORT_ORDER) + 1, original_index
     category_id = first_unit_category_id(unit)
     return category_sort_key(category_id, maps, original_index)
 
@@ -1350,7 +1360,8 @@ def add_unit_table(
     if "Infinity Spec-Ops" in ops_skill_names(profiles, maps):
         spectables = unit.get("spectables", {})
         add_ops_upgrade_table(doc, spectables.get("table", {}).get("items", []), maps, tr)
-        add_ball_support_table(doc, SPEC_BALL_TABLE_TITLE, spectables.get("specball", {}).get("items", []), maps, tr)
+        specball_items = [SPEC_OPS_SPECBOT_ITEM, *spectables.get("specball", {}).get("items", [])]
+        add_ball_support_table(doc, SPEC_BALL_TABLE_TITLE, specball_items, maps, tr)
 
 
 def has_ops_skill(profile: dict[str, Any], maps: dict[str, dict[int, dict[str, Any]]]) -> bool:
@@ -1461,6 +1472,11 @@ def spectable_item_text(item: dict[str, Any], maps: dict[str, dict[int, dict[str
 
     for attr in attrs:
         attr_type = attr.get("type")
+        if attr_type == "profile":
+            text = tr.translate("profile", attr.get("name", ""))
+            if text:
+                parts.append(text)
+            continue
         if attr_type == "stat":
             stat = attr.get("stat")
             if stat in {"move0", "move1"}:
@@ -1680,8 +1696,9 @@ def generate_docx(
     output_path: Path,
     glossary_path: Path | None,
     missing_path: Path | None,
+    pdf_output_path: Path | None = None,
 ) -> None:
-    """完整生成流程：读 JSON -> 读词汇表 -> 建索引 -> 写 Word -> 导出缺词表。"""
+    """完整生成流程：读 JSON -> 读词汇表 -> 建索引 -> 写 Word/PDF -> 导出缺词表。"""
     data = json.loads(json_path.read_text(encoding="utf-8"))
     faction_id = infer_faction_id(json_path, data)
     faction_metadata = load_faction_metadata(json_path)
@@ -1724,8 +1741,54 @@ def generate_docx(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     doc.save(output_path)
+    if pdf_output_path:
+        export_docx_to_pdf(output_path, pdf_output_path)
     if missing_path:
         tr.write_missing(missing_path)
+
+
+def export_docx_to_pdf(docx_path: Path, pdf_output_path: Path) -> None:
+    """通过 Windows 上已安装的 Microsoft Word 将 DOCX 无界面导出为 PDF。"""
+    if os.name != "nt":
+        raise RuntimeError("PDF 自动导出仅支持安装了 Microsoft Word 的 Windows 环境。")
+
+    source = docx_path.resolve()
+    destination = pdf_output_path.resolve()
+    if destination.suffix.lower() != ".pdf":
+        raise ValueError(f"PDF 输出文件必须使用 .pdf 扩展名：{destination}")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+
+    # 使用 COM 自动化而非第三方 Python 包，避免额外依赖，也能保留 Word 的排版结果。
+    # 路径作为 PowerShell 参数传入，不拼接到命令脚本中。
+    command = r'''& {
+        param([string] $sourcePath, [string] $destinationPath)
+        $ErrorActionPreference = 'Stop'
+        $word = $null
+        $document = $null
+        try {
+            $word = New-Object -ComObject Word.Application
+            $word.Visible = $false
+            $word.DisplayAlerts = 0
+            $document = $word.Documents.Open($sourcePath, $false, $true)
+            # wdExportFormatPDF = 0
+            $document.ExportAsFixedFormat($destinationPath, 0)
+        }
+        finally {
+            if ($null -ne $document) { $document.Close($false) }
+            if ($null -ne $word) { $word.Quit() }
+        }
+    }'''
+    result = subprocess.run(
+        ["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", command, str(source), str(destination)],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    if result.returncode != 0 or not destination.is_file():
+        details = (result.stderr or result.stdout).strip()
+        hint = "请确认已安装可正常启动的 Microsoft Word。"
+        raise RuntimeError(f"PDF 导出失败：{details or hint}")
 
 
 def update_army_json(json_path: Path) -> None:
@@ -1756,12 +1819,15 @@ def update_army_json(json_path: Path) -> None:
     if not isinstance(data, dict):
         raise RuntimeError(f"Army API 返回的 JSON 顶层不是对象：{request.full_url}")
 
+    # API 可能返回压缩的单行 JSON；统一格式化后再保存，方便版本比对和人工查看。
+    formatted_payload = (json.dumps(data, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+
     json_path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(
         mode="wb", dir=json_path.parent, prefix=f".{json_path.stem}-", suffix=".tmp", delete=False
     ) as temp_file:
         temp_path = Path(temp_file.name)
-        temp_file.write(payload)
+        temp_file.write(formatted_payload)
     temp_path.replace(json_path)
     # 使用 ASCII 提示，避免 Windows 控制台的本地编码导致生成流程中断。
     print(f"Updated Army JSON: {json_path} (faction {faction_id})")
@@ -1774,13 +1840,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("output", type=Path, help="Output .docx path.")
     parser.add_argument("--glossary", type=Path, default=Path("translations.csv"), help="CSV/JSON glossary path.")
     parser.add_argument("--missing", type=Path, default=None, help="Write untranslated glossary entries to this CSV.")
+    parser.add_argument(
+        "--pdf-output",
+        "--pdf",
+        dest="pdf_output",
+        type=Path,
+        default=None,
+        help="Optional PDF output path; exports the generated DOCX through Microsoft Word.",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
     update_army_json(args.json)
-    generate_docx(args.json, args.output, args.glossary, args.missing)
+    generate_docx(args.json, args.output, args.glossary, args.missing, args.pdf_output)
 
 
 if __name__ == "__main__":

@@ -19,7 +19,7 @@
         {
           "file": "Thorakitai.png",
           "width_emu": 3300730,
-          "height_emu": 2536190,
+          "height_emu": 2535555,
           "sha256": "73e341af0bda153161bafe0f54242a647d8ca7fc2b4ba5546e4d86bf1e90c74c"
         }
       ]
@@ -58,47 +58,13 @@
       ]
     },
     {
-      "english_name": "Arjuna Troops",
+      "english_name": "ARJUNA Troops",
       "images": [
         {
-          "file": "Arjuna Troops.png",
+          "file": "ARJUNA Troops.png",
           "width_emu": 3518535,
-          "height_emu": 2390140,
+          "height_emu": 2389505,
           "sha256": "76124a553283806e428f6355c727cd54ba471bbf82d5796baad43d9199732a81"
-        }
-      ]
-    },
-    {
-      "english_name": "Nagas",
-      "images": [
-        {
-          "file": "Nagas-1.png",
-          "width_emu": 2554605,
-          "height_emu": 2380615,
-          "sha256": "dd72a01a63e5155be9c84a45ac67dc662da74d4a449da2d199f3de72ab51a3b3"
-        },
-        {
-          "file": "Nagas-2.png",
-          "width_emu": 1052195,
-          "height_emu": 2393950,
-          "sha256": "87685cd2ed3fa277adc0f108697a42ab55c1ac78aae5b450b5f8eef80cd9c695"
-        }
-      ]
-    },
-    {
-      "english_name": "Kinnara Scoutbots",
-      "images": [
-        {
-          "file": "Kinnara Scoutbots-1.png",
-          "width_emu": 1421130,
-          "height_emu": 2165985,
-          "sha256": "2296e6a9ee04dffb8e417b76d873484f51bffa6a24e8c3050d3e3fd209ce4727"
-        },
-        {
-          "file": "Kinnara Scoutbots-2.png",
-          "width_emu": 1812925,
-          "height_emu": 2265045,
-          "sha256": "3ca427929a9a2f5c91dde2b8ec317ee78ed558e99d4dd6785282da5819050d7b"
         }
       ]
     },
@@ -114,13 +80,69 @@
       ]
     },
     {
+      "english_name": "Nagas",
+      "images": [
+        {
+          "file": "Nagas-1.png",
+          "width_emu": 2554605,
+          "height_emu": 2379980,
+          "sha256": "dd72a01a63e5155be9c84a45ac67dc662da74d4a449da2d199f3de72ab51a3b3"
+        },
+        {
+          "file": "Nagas-2.png",
+          "width_emu": 1052195,
+          "height_emu": 2393315,
+          "sha256": "87685cd2ed3fa277adc0f108697a42ab55c1ac78aae5b450b5f8eef80cd9c695"
+        }
+      ]
+    },
+    {
+      "english_name": "Kinnara Scoutbots",
+      "images": [
+        {
+          "file": "Kinnara Scoutbots-1.png",
+          "width_emu": 1421130,
+          "height_emu": 2164080,
+          "sha256": "2296e6a9ee04dffb8e417b76d873484f51bffa6a24e8c3050d3e3fd209ce4727"
+        },
+        {
+          "file": "Kinnara Scoutbots-2.png",
+          "width_emu": 1812925,
+          "height_emu": 2263775,
+          "sha256": "3ca427929a9a2f5c91dde2b8ec317ee78ed558e99d4dd6785282da5819050d7b"
+        }
+      ]
+    },
+    {
       "english_name": "Garuda Tacbots",
       "images": [
         {
           "file": "Garuda Tacbots.png",
           "width_emu": 3324225,
-          "height_emu": 2910840,
+          "height_emu": 2911475,
           "sha256": "e9a96078f18f23f5fd644c7dd059cff1553500a4b1f745d63527b372a61bb249"
+        }
+      ]
+    },
+    {
+      "english_name": "TARKSHYA Interception Wing",
+      "images": [
+        {
+          "file": "TARKSHYA Interception Wing.png",
+          "width_emu": 2821940,
+          "height_emu": 2694940,
+          "sha256": "31d210087fdc691a8ab6d0d4e510492290fa6f52ffe54d34124909895ab8a277"
+        }
+      ]
+    },
+    {
+      "english_name": "TARKSHYA OPERATOR",
+      "images": [
+        {
+          "file": "TARKSHYA OPERATOR.png",
+          "width_emu": 2193925,
+          "height_emu": 2245995,
+          "sha256": "24b92e86f1040623da4a762e2d25d5d1ebf52ca848e0ff9c890a2a472f7d3f53"
         }
       ]
     },
@@ -130,13 +152,13 @@
         {
           "file": "Shukra Consultants-1.png",
           "width_emu": 1515745,
-          "height_emu": 2237740,
+          "height_emu": 2235835,
           "sha256": "cff99a89b3685619acf657e8bd67ca51f4432419da16d2f0f46a7a751afcc667"
         },
         {
           "file": "Shukra Consultants-2.png",
           "width_emu": 1570990,
-          "height_emu": 2251075,
+          "height_emu": 2250440,
           "sha256": "3cfe65faf3879f33e618a34b3ef3ffa37d236d298dfc375ec2a1dd8d28ea854c"
         }
       ]
@@ -147,16 +169,16 @@
         {
           "file": "Riksha Tacbots.png",
           "width_emu": 2749550,
-          "height_emu": 2573020,
+          "height_emu": 2572385,
           "sha256": "60fe80d46d6393294e216be3f8fd1d544c90d695f0c209ef489b6a78ddbe86a8"
         }
       ]
     },
     {
-      "english_name": "Deva Functionaries",
+      "english_name": "DEVA Functionaries",
       "images": [
         {
-          "file": "Deva Functionaries.png",
+          "file": "DEVA Functionaries.png",
           "width_emu": 3452495,
           "height_emu": 2600325,
           "sha256": "b1090fcf332b984bc1589f45148bfdd6acf888b5c9faf08af6fc9c2b21fd2e0b"
@@ -169,8 +191,54 @@
         {
           "file": "Artalis Unit.png",
           "width_emu": 2755900,
-          "height_emu": 2304415,
+          "height_emu": 2303780,
           "sha256": "1a857ad1a76795a9d30456dc5b276a0b9acc1be8788c4e3f75598141cd784c8b"
+        }
+      ]
+    },
+    {
+      "english_name": "CHANDRA SPEC-OPS",
+      "images": [
+        {
+          "file": "CHANDRA SPEC-OPS-1.png",
+          "width_emu": 1231900,
+          "height_emu": 2446655,
+          "sha256": "bac524116f104d0db004a77e2cb66f4bf1739e2d470c4bbf109c487991bc70fc"
+        },
+        {
+          "file": "CHANDRA SPEC-OPS-2.png",
+          "width_emu": 1083945,
+          "height_emu": 1414780,
+          "sha256": "eff91576a7bae0a5a715824407d9f644aac762fbcd18a6e2decab7cc829831db"
+        },
+        {
+          "file": "CHANDRA SPEC-OPS-3.png",
+          "width_emu": 1324610,
+          "height_emu": 1955165,
+          "sha256": "576028919b056728057ef1f64340b75fcb10d4827bc7dff02204fd669c30d467"
+        }
+      ]
+    },
+    {
+      "english_name": "CHANDRA-1 SPEC-OPS",
+      "images": [
+        {
+          "file": "CHANDRA-1 SPEC-OPS-1.png",
+          "width_emu": 1231900,
+          "height_emu": 2446655,
+          "sha256": "bac524116f104d0db004a77e2cb66f4bf1739e2d470c4bbf109c487991bc70fc"
+        },
+        {
+          "file": "CHANDRA-1 SPEC-OPS-2.png",
+          "width_emu": 1083945,
+          "height_emu": 1414780,
+          "sha256": "eff91576a7bae0a5a715824407d9f644aac762fbcd18a6e2decab7cc829831db"
+        },
+        {
+          "file": "CHANDRA-1 SPEC-OPS-3.png",
+          "width_emu": 1324610,
+          "height_emu": 1955165,
+          "sha256": "576028919b056728057ef1f64340b75fcb10d4827bc7dff02204fd669c30d467"
         }
       ]
     },
@@ -197,6 +265,28 @@
       ]
     },
     {
+      "english_name": "PROXY Mk.2",
+      "images": [
+        {
+          "file": "PROXY Mk.2.png",
+          "width_emu": 3159125,
+          "height_emu": 2595245,
+          "sha256": "03e49c9b3cd7952aaec0353405f25c2330168fd16636786321441d2fe06a0b81"
+        }
+      ]
+    },
+    {
+      "english_name": "PROXY Mk.5",
+      "images": [
+        {
+          "file": "PROXY Mk.5.png",
+          "width_emu": 2524125,
+          "height_emu": 2002155,
+          "sha256": "e127f9d652ada448e1bcd4ff3f09c1abaeac70e54c8a5adc7b21277e8d970290"
+        }
+      ]
+    },
+    {
       "english_name": "Asuras",
       "images": [
         {
@@ -208,7 +298,7 @@
         {
           "file": "Asuras-2.png",
           "width_emu": 1595755,
-          "height_emu": 2224405,
+          "height_emu": 2223770,
           "sha256": "22157a66e66031663ce850bfdb5b5ac50d943fb1a90146653f6b97903f1b3b07"
         }
       ]
@@ -219,7 +309,7 @@
         {
           "file": "Dasyus.png",
           "width_emu": 2480945,
-          "height_emu": 2773680,
+          "height_emu": 2773045,
           "sha256": "f5194dfac0392ecf97109dd679890cb1844f0fd08d6ccc4f5d8c77018f91218d"
         }
       ]
@@ -236,24 +326,13 @@
       ]
     },
     {
-      "english_name": "Maruts",
+      "english_name": "MARUTS",
       "images": [
         {
-          "file": "Maruts.png",
-          "width_emu": 3224530,
-          "height_emu": 3209925,
-          "sha256": "33f69b56e0e398efceb38833a6ccc4167ca2d3daa3a8f09722f268490b366c87"
-        }
-      ]
-    },
-    {
-      "english_name": "Probots",
-      "images": [
-        {
-          "file": "Probots.png",
-          "width_emu": 3010535,
-          "height_emu": 2270760,
-          "sha256": "daeaff4119eb3989e07dac4a8f0dd577456210a679fe469736f8b7a944cc13d3"
+          "file": "MARUTS.png",
+          "width_emu": 3302635,
+          "height_emu": 2783205,
+          "sha256": "693a5c3385db3295df390901808ac5c2a6c0764d2e4256dd7f16e34dd1aa62c2"
         }
       ]
     },
@@ -276,6 +355,17 @@
           "width_emu": 2482850,
           "height_emu": 2046605,
           "sha256": "a86905507eac800e69430e0012b58f2d63f7fbc957e75d77e7512fc9197a6f85"
+        }
+      ]
+    },
+    {
+      "english_name": "Probots",
+      "images": [
+        {
+          "file": "Probots.png",
+          "width_emu": 3010535,
+          "height_emu": 2270760,
+          "sha256": "daeaff4119eb3989e07dac4a8f0dd577456210a679fe469736f8b7a944cc13d3"
         }
       ]
     },
@@ -340,7 +430,7 @@
         {
           "file": "Rudras GunBots.png",
           "width_emu": 2816860,
-          "height_emu": 2375535,
+          "height_emu": 2374900,
           "sha256": "3dc84c7ce5eeffc60d0ab4d41520d8c39358d62ff4eac035d4ad4dfdd2e5c4b6"
         }
       ]
@@ -351,7 +441,7 @@
         {
           "file": "Yadu Officer Shakti.png",
           "width_emu": 2120900,
-          "height_emu": 2779395,
+          "height_emu": 2778760,
           "sha256": "f060d984b92579c2bc7b319710ce4d315e7fa35f71f163e582071357f65b246c"
         }
       ]
@@ -362,30 +452,8 @@
         {
           "file": "Father Lucien Sforza, Authorized Bounty Hunter.png",
           "width_emu": 2211705,
-          "height_emu": 2917190,
+          "height_emu": 2916555,
           "sha256": "73c867d63e12d98750d383a6b8a082f1a98c9f1e52540354f7a57e6c5ffac05b"
-        }
-      ]
-    },
-    {
-      "english_name": "Miranda Ashcroft, Authorized Bounty Hunter",
-      "images": [
-        {
-          "file": "Miranda Ashcroft, Authorized Bounty Hunter.png",
-          "width_emu": 2235200,
-          "height_emu": 2265680,
-          "sha256": "4f0bd9effb2e713cfe56c1ed1756b74fa5c7989734d4bae6ce9dc7168e6d0381"
-        }
-      ]
-    },
-    {
-      "english_name": "Maximus, Optimate and HexaDome Legend",
-      "images": [
-        {
-          "file": "Maximus, Optimate and HexaDome Legend.png",
-          "width_emu": 1592580,
-          "height_emu": 2166620,
-          "sha256": "4fcd26627fb3315b71683f6b5696fd801647b18002e651953a9da44a0c3c81f3"
         }
       ]
     },
@@ -401,19 +469,41 @@
       ]
     },
     {
-      "english_name": "Dart, Optimate Huntress",
+      "english_name": "DART, Optimate Huntress",
       "images": [
         {
-          "file": "Dart, Optimate Huntress-1.png",
+          "file": "DART, Optimate Huntress-1.png",
           "width_emu": 1606550,
-          "height_emu": 2338705,
+          "height_emu": 2337435,
           "sha256": "60813e45d64d8ee051e49089c6786eec101e3f4747bca62adcd87fa10ef4e614"
         },
         {
-          "file": "Dart, Optimate Huntress-2.png",
+          "file": "DART, Optimate Huntress-2.png",
           "width_emu": 1299845,
-          "height_emu": 2327275,
+          "height_emu": 2324100,
           "sha256": "abc988ec5f034d65169ca4868dc2acc14842210832cfa94a4f7a1569d8d629ac"
+        }
+      ]
+    },
+    {
+      "english_name": "Miranda Ashcroft, Authorized Bounty Hunter",
+      "images": [
+        {
+          "file": "Miranda Ashcroft, Authorized Bounty Hunter.png",
+          "width_emu": 2235200,
+          "height_emu": 2265045,
+          "sha256": "4f0bd9effb2e713cfe56c1ed1756b74fa5c7989734d4bae6ce9dc7168e6d0381"
+        }
+      ]
+    },
+    {
+      "english_name": "MAXIMUS, Optimate and HexaDome Legend",
+      "images": [
+        {
+          "file": "MAXIMUS, Optimate and HexaDome Legend.png",
+          "width_emu": 1592580,
+          "height_emu": 2165985,
+          "sha256": "4fcd26627fb3315b71683f6b5696fd801647b18002e651953a9da44a0c3c81f3"
         }
       ]
     },
@@ -423,8 +513,19 @@
         {
           "file": "John Hawkwood, Mercenary Officer.png",
           "width_emu": 2865755,
-          "height_emu": 2501900,
+          "height_emu": 2501265,
           "sha256": "1638b0aed986b3633e42346a8c3c221b229c70e3c41baed1691e527267b5c6e6"
+        }
+      ]
+    },
+    {
+      "english_name": "Optimate Agent MAXIMUS",
+      "images": [
+        {
+          "file": "Optimate Agent MAXIMUS.png",
+          "width_emu": 3308985,
+          "height_emu": 2520315,
+          "sha256": "52b2b8565284eb48d80717757530d2c83551cd26b9fbc1d6b42bff57898a4ac8"
         }
       ]
     },
@@ -434,7 +535,7 @@
         {
           "file": "Authorized Bounty Hunters.png",
           "width_emu": 1897380,
-          "height_emu": 2407285,
+          "height_emu": 2406015,
           "sha256": "f5072783726480700ea0defb1f58699c8a5f6dcc738514fd67c25f0b0d8ba1f0"
         }
       ]
@@ -456,7 +557,7 @@
         {
           "file": "CSU, Corporate Security Unit.png",
           "width_emu": 1569085,
-          "height_emu": 2362835,
+          "height_emu": 2362200,
           "sha256": "b0618a81f8a5e9c75f76882ab92a2ae22f7fb0a910b43ed4c613194cc98ad2d6"
         }
       ]
@@ -467,19 +568,8 @@
         {
           "file": "Motorized Bounty Hunters.png",
           "width_emu": 2787015,
-          "height_emu": 2442845,
+          "height_emu": 2442210,
           "sha256": "d3e412c9de5282e4a9e7c51ecc73b6fce5a75218f7203dd2f9676c2a09d2cc67"
-        }
-      ]
-    },
-    {
-      "english_name": "Sāchā, Xenotech Hunters",
-      "images": [
-        {
-          "file": "Sāchā, Xenotech Hunters.png",
-          "width_emu": 3352165,
-          "height_emu": 2442845,
-          "sha256": "21dcf471b8ec8708379bcef6ed3d84db4959832108b7cb667324d4677e90336f"
         }
       ]
     },
@@ -489,7 +579,7 @@
         {
           "file": "Warcors, War Correspondents.png",
           "width_emu": 2783840,
-          "height_emu": 2381250,
+          "height_emu": 2380615,
           "sha256": "f11ad74a75484eff2fb9fd30c0be06106a87356b8d518ec367a0f9cf3c2738d5"
         }
       ]
