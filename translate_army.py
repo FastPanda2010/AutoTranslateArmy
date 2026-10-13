@@ -1835,9 +1835,20 @@ def update_army_json(json_path: Path) -> None:
 
 def parse_args() -> argparse.Namespace:
     """命令行参数定义。"""
-    parser = argparse.ArgumentParser(description="Translate Infinity Army JSON into a Chinese DOCX army book.")
-    parser.add_argument("json", type=Path, help="Official Infinity Army JSON file.")
-    parser.add_argument("output", type=Path, help="Output .docx path.")
+    parser = argparse.ArgumentParser(
+        description="Translate Infinity Army JSON into a Chinese DOCX army book.",
+        epilog=(
+            "Short form: py translate_army.py 703\n"
+            "Full form: py translate_army.py samples/703.json output/703-cn.docx"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "json",
+        type=Path,
+        help="Official Infinity Army JSON file, or a numeric faction ID such as 703.",
+    )
+    parser.add_argument("output", type=Path, nargs="?", help="Output .docx path.")
     parser.add_argument("--glossary", type=Path, default=Path("translations.csv"), help="CSV/JSON glossary path.")
     parser.add_argument("--missing", type=Path, default=None, help="Write untranslated glossary entries to this CSV.")
     parser.add_argument(
@@ -1848,7 +1859,20 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Optional PDF output path; exports the generated DOCX through Microsoft Word.",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    # 最常用的调用只需要提供军表编号。完整路径调用仍然保留，方便自定义输入和输出位置。
+    if args.output is None:
+        if args.json.parent == Path(".") and args.json.name.isdigit():
+            faction_id = args.json.name
+            args.json = Path("samples") / f"{faction_id}.json"
+            args.output = Path("output") / f"{faction_id}-cn.docx"
+            if args.missing is None:
+                args.missing = Path("output") / "missing.csv"
+        else:
+            parser.error("output is required unless the input is a numeric faction ID, such as 703")
+
+    return args
 
 
 def main() -> None:

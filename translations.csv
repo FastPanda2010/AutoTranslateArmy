@@ -208,7 +208,7 @@ profile,MAXIMUS AGENT,干员马克西姆
 *,"Locust, Clandestine Action Team",蝗虫，秘密行动小组
 *,PanOceanian Black Friars,泛大洋黑衣修士
 *,"Tech-Bees, Maintenance Battalions",维修营机蜂
-*,Motorized Knights of Montesa,蒙特莎机动骑士
+*,Motorized Knights of Montesa,蒙特莎摩托骑士
 *,"Echo-Bravo, Rapid Reaction Unit","回音杀手,快速反应部队"
 *,"Zulu-Cobra, Recon and Special Intervention Group",祖鲁眼镜蛇，特殊侦察与介入小队
 *,Helot Militia,希洛人民兵
@@ -2016,3 +2016,70 @@ profile,MÉN TÓNG SPECBOTS,门童特战遥控机
 unit,Guǐ Fēng  Spec-Ops,鬼风特战干员
 unit,GUǏ FĒNG SPEC-OPS,鬼风特战干员
 unit,Yu Jing  Team-Ops,玉京特战小组
+extra,Aquatic/Jungle,水域/丛林
+extra,Disposable(2),消耗品(2)
+extra,Non Specialist,
+extra,PH,PH
+faction,Military Orders,军事修会
+faction,PanOceania,泛大洋洲联邦
+fireteam,Crusade Fireteams,圣战火力组
+fireteam,Military Orders Fireteams,军事修会火力组
+fireteam,Order Sergeants Fireteams,修会军士火力组
+fireteam,Velox Fireteams,快攻火力组
+profile,AUXBOT_2,辅助机_2
+profile,BLUEBERRY SPECBOT_1,蓝莓特战遥控机_1
+profile,BLUEBERRY SPECBOT_2,蓝莓特战遥控机_2
+profile,BLUEBERRY SPECBOTS,蓝莓特战遥控机
+profile,BROTHER KONSTANTINOS FTO,康斯坦丁修士FTO
+profile,CONFESSOR,告解者
+profile,CONFESSOR HEAVY,告解者重装干员
+profile,CONFESSOR HEAVY SPEC-OPS,告解者重装干员
+profile,CONFESSOR-1,告解者-1
+profile,CONFESSOR-1 SPEC-OPS,告解者干员
+profile,CRUX KNIGHT,十字架骑士
+profile,CRUX KNIGHT FTO,十字架骑士FTO
+profile,ESCORT SERGEANT,护卫军士
+profile,JOAN OF ARC v2,贞德v2
+profile,KNIGHT HOSPITALLER FTO,医院骑士FTO
+profile,KNIGHT OF SANTIAGO FTO,圣地亚哥骑士FTO
+profile,KNIGHTS OF MONTESA FTO,蒙特萨骑士FTO
+profile,MENDOZA FTO,门多萨FTO
+profile,MOTORIZED KNIGHT OF MONTESA,蒙特萨摩托骑士
+profile,ORDER SERGEANT FTO,修会军士FTO
+profile,"SERAPHS, Armoured Cavalry of Military Order",炽天使，军事修会装甲骑兵
+profile,TIKBALANG OF MONTESA,蒙特萨骑士团马头猿
+profile,"TIKBALANGS, Armored Chasseurs Regiment",马头猿，装甲猎骑兵军团
+unit,"Coadjutor Crosiers, Military Order Infantry",执杖廷卫，军事修会步兵
+unit,Confessor  Spec-Ops,告解者特战干员
+unit,Confessor  Team-Ops,告解者特战小队
+unit,CONFESSOR SPEC-OPS,告解者特战干员
+unit,Knight Hospitaller Kyle Hawkins,医院骑士凯尔·霍金斯
+unit,Knight of Justice (KOJ),正义骑士
+unit,Knights of Montesa,蒙特萨骑士团
+unit,Padre-Inquisidor Mendoza,随军审判官门多萨
+unit,Team Crux Father-Knights,神父骑士十字架小队
+unit,"Tikbalangs, Armored Chasseurs Regiment",马头猿，装甲猎骑兵军团
+weapon,AP + Shock CC Weapon,穿甲+冲击近战武器
+faction,Combined Army,联合军
+faction,Next Wave,后浪
+profile,BLUR,虚幻
+profile,BLUR HEAVY,虚幻重装干员
+profile,BLUR HEAVY SPEC-OPS,虚幻重装干员
+profile,BLUR-1,虚幻-1
+profile,BLUR-1 SPEC-OPS,虚幻-1特战干员
+profile,DOG-WARRIOR FORM,巨犬战士形态
+profile,DOGFACE FORM,人形态
+profile,IOANN BANN,伊奥安·班恩
+profile,KISS!,KISS!
+profile,NEXUS-7,链接-7
+profile,VOLDRON 401 SPECBOT_1,沃德隆401特战遥控机_1
+profile,VOLDRON 401 SPECBOT_2,沃德隆401特战遥控机_2
+profile,VOLDRON 401 SPECBOTS,沃德隆401特战遥控机
+profile,VOLDRON 404 SPECBOT_1,沃德隆404特战遥控机_1
+profile,VOLDRON 404 SPECBOT_2,沃德隆404特战遥控机_2
+profile,VOLDRON 404 SPECBOTS,沃德隆404特战遥控机
+unit,Blur Spec-Ops,虚幻特战干员
+unit,"Ioann Bann, Varangian Dog-Warrior",伊奥安·班恩，瓦兰吉犬战士
+unit,Next Wave Team-Ops,后浪特战小队
+unit,Nexus-7 Spec-Ops,链接-7特战干员
+weapon,AP + T2 CC Weapon,穿甲+T2近战武器
