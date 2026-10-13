@@ -25,6 +25,17 @@
       ]
     },
     {
+      "english_name": "Contrabandoleros, Resource Extraction Team",
+      "images": [
+        {
+          "file": "Contrabandoleros, Resource Extraction Team.png",
+          "width_emu": 3058160,
+          "height_emu": 2710815,
+          "sha256": "bcdaff7185548fb710080961354135238cbbf6da5b41137ecaa2ec26bf3c4437"
+        }
+      ]
+    },
+    {
       "english_name": "Gearheads, Tech Savant Team",
       "images": [
         {
@@ -43,17 +54,6 @@
           "width_emu": 3328035,
           "height_emu": 1927225,
           "sha256": "f804d43c54fdb8aca39f3ecf3958c3898ad6c19fc5f52a6feef811ec99a207d3"
-        }
-      ]
-    },
-    {
-      "english_name": "Contrabandoleros, Resource Extraction Team",
-      "images": [
-        {
-          "file": "Contrabandoleros, Resource Extraction Team.png",
-          "width_emu": 3058160,
-          "height_emu": 2710815,
-          "sha256": "bcdaff7185548fb710080961354135238cbbf6da5b41137ecaa2ec26bf3c4437"
         }
       ]
     },
@@ -124,13 +124,46 @@
       ]
     },
     {
-      "english_name": "Juggernauts, Armored Assault Cavalry",
+      "english_name": "JUGGERNAUTS, Armored Assault Cavalry",
       "images": [
         {
-          "file": "Juggernauts, Armored Assault Cavalry.png",
+          "file": "JUGGERNAUTS, Armored Assault Cavalry.png",
           "width_emu": 3197860,
           "height_emu": 2875280,
           "sha256": "d28966de6237bcbdc7f1647e6c767b4fea5f1ad14d58389280d63e77717c3725"
+        }
+      ]
+    },
+    {
+      "english_name": "Tekdrakens: Steeljaws",
+      "images": [
+        {
+          "file": "Tekdrakens_ Steeljaws.png",
+          "width_emu": 3065780,
+          "height_emu": 2489835,
+          "sha256": "8e4a22ee0a9743125f42872c47ec8814dfb7e2b99c11ba969dc5be190165337c"
+        }
+      ]
+    },
+    {
+      "english_name": "Med-Tech Obsidon Medchanoid",
+      "images": [
+        {
+          "file": "Med-Tech Obsidon Medchanoid.png",
+          "width_emu": 1995170,
+          "height_emu": 2436495,
+          "sha256": "ae98a453bb8a21732c4d0469087a81a4c63d1af51b7905b18597cce3849b723e"
+        }
+      ]
+    },
+    {
+      "english_name": "Slave Drones",
+      "images": [
+        {
+          "file": "Slave Drones.png",
+          "width_emu": 2341880,
+          "height_emu": 2037080,
+          "sha256": "300e30153b11c221cd0fa54364d08d45db7e0cb380ea6bade62e2d6e7687daf2"
         }
       ]
     },
@@ -186,39 +219,6 @@
           "width_emu": 3340100,
           "height_emu": 2663190,
           "sha256": "4bcfe269c848e9d8432dc48d830762e55f9f7d5248985f9ab70d59d346b58ac8"
-        }
-      ]
-    },
-    {
-      "english_name": "Tekdrakens: Steeljaws",
-      "images": [
-        {
-          "file": "Tekdrakens_ Steeljaws.png",
-          "width_emu": 3065780,
-          "height_emu": 2489835,
-          "sha256": "8e4a22ee0a9743125f42872c47ec8814dfb7e2b99c11ba969dc5be190165337c"
-        }
-      ]
-    },
-    {
-      "english_name": "Med-Tech Obsidon Medchanoid",
-      "images": [
-        {
-          "file": "Med-Tech Obsidon Medchanoid.png",
-          "width_emu": 1995170,
-          "height_emu": 2436495,
-          "sha256": "ae98a453bb8a21732c4d0469087a81a4c63d1af51b7905b18597cce3849b723e"
-        }
-      ]
-    },
-    {
-      "english_name": "Slave Drones",
-      "images": [
-        {
-          "file": "Slave Drones.png",
-          "width_emu": 2341880,
-          "height_emu": 2037080,
-          "sha256": "300e30153b11c221cd0fa54364d08d45db7e0cb380ea6bade62e2d6e7687daf2"
         }
       ]
     },
@@ -300,12 +300,12 @@
       ]
     },
     {
-      "english_name": "Bit",
+      "english_name": "BIT",
       "images": [
         {
-          "file": "Bit.png",
+          "file": "BIT.png",
           "width_emu": 2433955,
-          "height_emu": 2691130,
+          "height_emu": 2690495,
           "sha256": "db6c2614c0f9cce28f5f970f8f65f76fa9f2bce626aa50de9832793dc68a9460"
         }
       ]
@@ -333,24 +333,13 @@
       ]
     },
     {
-      "english_name": "Patroclus, Team Achilles' shadow",
+      "english_name": "DRAKIOS, Team Achilles' dragon",
       "images": [
         {
-          "file": "Patroclus, Team Achilles' shadow.png",
-          "width_emu": 2319020,
-          "height_emu": 2833370,
-          "sha256": "b9c9a6b5c8d338eafc8d9ba85e50f4098ee3d87f3f1af05ce1329dac2157a535"
-        }
-      ]
-    },
-    {
-      "english_name": "Sāchā, Xenotech Hunters",
-      "images": [
-        {
-          "file": "Sāchā, Xenotech Hunters.png",
-          "width_emu": 3352165,
-          "height_emu": 2442845,
-          "sha256": "21dcf471b8ec8708379bcef6ed3d84db4959832108b7cb667324d4677e90336f"
+          "file": "DRAKIOS, Team Achilles' dragon.png",
+          "width_emu": 3597910,
+          "height_emu": 3081655,
+          "sha256": "8b2373571b25e409b99bffeed6274b79b802f098d816bf6040fbf61d2b5fbfa8"
         }
       ]
     },
@@ -366,6 +355,28 @@
       ]
     },
     {
+      "english_name": "Patroclus, Team Achilles' shadow",
+      "images": [
+        {
+          "file": "Patroclus, Team Achilles' shadow.png",
+          "width_emu": 2319020,
+          "height_emu": 2833370,
+          "sha256": "b9c9a6b5c8d338eafc8d9ba85e50f4098ee3d87f3f1af05ce1329dac2157a535"
+        }
+      ]
+    },
+    {
+      "english_name": "Ioann Bann, Varangian Dog-Warrior",
+      "images": [
+        {
+          "file": "Ioann Bann, Varangian Dog-Warrior.png",
+          "width_emu": 3828415,
+          "height_emu": 3601085,
+          "sha256": "fadc1c1456a54df6e2f77c2a02edf4944a5614588b9e42e7d40b9e8c0275e6cc"
+        }
+      ]
+    },
+    {
       "english_name": "Cube Jäger, Mercenary Recoverers",
       "images": [
         {
@@ -373,6 +384,17 @@
           "width_emu": 1764665,
           "height_emu": 2764155,
           "sha256": "afb9710e8bd2ec9394374add3d1eae3cfc4f8a35132ea6252f38beb459d1c8e3"
+        }
+      ]
+    },
+    {
+      "english_name": "Nexus-7 Spec-Ops",
+      "images": [
+        {
+          "file": "Nexus-7 Spec-Ops.png",
+          "width_emu": 3820795,
+          "height_emu": 3303270,
+          "sha256": "45ccff3ee84f6cfa89d59e086e57b6569c3678af769456a68820435db398b9bf"
         }
       ]
     }
